@@ -16,6 +16,8 @@
         <activity android:name=".authscreen.RegisterActivity" />
         <activity android:name=".authscreen.ResetActivity" />
 
+        <!-- Activities -->
+
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppSplashTheme">
@@ -25,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +39,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

@@ -28,6 +28,8 @@ class LoginActivity : AppCompatActivity(),  View.OnClickListener {
 
         loginbtn.setOnClickListener(this)
         btnSignUp.setOnClickListener(this)
+        btnForgot.setOnClickListener(this)
+
 
         mAuth = FirebaseAuth.getInstance()
     }
@@ -50,6 +52,9 @@ class LoginActivity : AppCompatActivity(),  View.OnClickListener {
             }
             R.id.btnSignUp -> {
                 startActivity(Intent(this, RegisterActivity::class.java))
+            }
+            R.id.btnForgot -> {
+                startActivity(Intent(this, ResetActivity::class.java))
             }
         }
     }

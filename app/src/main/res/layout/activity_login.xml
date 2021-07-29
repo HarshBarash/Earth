@@ -27,7 +27,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/bottom_background" />
 
         <TextView
@@ -129,21 +128,18 @@
             app:layout_constraintStart_toStartOf="@+id/loginbtn"
             app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
 
-    <TextView
-        android:id="@+id/btnForgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="88dp"
-        android:text="Forgot your password?"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/loginbtn"
-        app:layout_constraintEnd_toEndOf="@+id/loginbtn"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonPassword"
-        app:layout_constraintVertical_bias="0.068" />
+        <TextView
+            android:id="@+id/btnForgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot your password?"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toTopOf="@+id/loginbtn"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonPassword"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonPassword"
+            app:layout_constraintVertical_bias="0.324" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

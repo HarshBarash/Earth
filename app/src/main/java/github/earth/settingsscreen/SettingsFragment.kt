@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), PasswordDialog.Listener {
 
     private lateinit var mUser: User
     private lateinit var mPendingUser: User
@@ -95,7 +95,7 @@ class SettingsFragment : Fragment() {
     }
 
 
-    fun onPasswordConfirm(password: String) {
+    override fun onPasswordConfirm(password: String) {
         if (password.isNotEmpty()) {
             val credential = EmailAuthProvider.getCredential(mUser.email, password)
             mFirebase.reauthenticate(credential) {

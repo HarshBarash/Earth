@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Earth">
         <activity android:name=".authscreen.LoginActivity" />
         <activity android:name=".authscreen.RegisterActivity" />
+        <activity android:name=".authscreen.ResetActivity" />
 
         <activity
             android:name=".SplashScreen"

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "124809325952",
+    "firebase_url": "https://bootcamp-russia-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bootcamp-russia",
+    "storage_bucket": "bootcamp-russia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124809325952:android:793ba7b51850812223a565",
+        "android_client_info": {
+          "package_name": "github.earth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124809325952-977m35v8d7i07iuub82pkqd8uk5c4aic.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "github.earth",
+            "certificate_hash": "6277e0bc8b5209c135c8528577a2ad7c20cd26ca"
+          }
+        },
+        {
+          "client_id": "124809325952-5aitm784d9ba0g6fnt6qd97f74iqiljb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKpV3-8ZjByCb3i_hq-kJociOcONfB7gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124809325952-5aitm784d9ba0g6fnt6qd97f74iqiljb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

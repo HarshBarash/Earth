@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity(),  View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.d(LOG_LOGIN_ACTIVITY, "onCreate")
+        Log.d(LOG_LOGIN_ACTIVITY, "onCreate called")
 
 
         loginbtn.setOnClickListener(this)
@@ -57,5 +57,4 @@ class LoginActivity : AppCompatActivity(),  View.OnClickListener {
 
     private fun validate(email: String, password: String) =
         email.isNotEmpty() && password.isNotEmpty()
-
 }

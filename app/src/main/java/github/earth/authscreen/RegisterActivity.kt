@@ -20,15 +20,18 @@ import github.earth.R
 import github.earth.models.User
 import github.earth.utils.LOG_REGISTER_ACTIVITY
 import kotlinx.android.synthetic.main.activity_signup.*
+import java.util.*
 
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+        Log.v(LOG_REGISTER_ACTIVITY, "onCreate called")
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
@@ -70,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun mkUsername(username: String) =
-        username.toLowerCase().replace(" ", ".")
+        username.lowercase(Locale.getDefault()).replace(" ", ".")
 
     private fun FirebaseAuth.fetchSignInMethodsForEmail(email: String,
                                                         onSuccess: (List<String>) -> Unit) {

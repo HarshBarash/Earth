@@ -28,11 +28,11 @@ class HomeFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
 
-
-        if (mAuth.currentUser == null) {
-            val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
-            getActivity()?.startActivity(intent_toLogin)
-        }
+//Параша
+//        if (mAuth.currentUser == null) {
+//            val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
+//            getActivity()?.startActivity(intent_toLogin)
+//        }
 
         return rootView
     }

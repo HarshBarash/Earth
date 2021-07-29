@@ -2,32 +2,34 @@ package github.earth.settingsscreen
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import github.earth.R
 import github.earth.authscreen.LoginActivity
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
 import github.earth.utils.LOG_SETTINGS_FRAGMENT
+import github.earth.views.FirebaseHelper
+import github.earth.views.PasswordDialog
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 
 class SettingsFragment : Fragment() {
 
+    private lateinit var mUser: User
+    private lateinit var mPendingUser: User
+    private lateinit var mFirebase: FirebaseHelper
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
-    private lateinit var mUser: User
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -42,13 +44,17 @@ class SettingsFragment : Fragment() {
 
         view.log_out_button.setOnClickListener{
                 mAuth.signOut()
+                val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
+                getActivity()?.startActivity(intent_toLogin)
             }
+
+        mFirebase = FirebaseHelper(activity)
 
         //вероятность низкая, но пусть будет
         mAuth.addAuthStateListener {
             if (it.currentUser == null) {
-                val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
-                getActivity()?.startActivity(intent_toLogin)
+                val intent_toLogintwo = Intent (getActivity(), LoginActivity::class.java)
+                getActivity()?.startActivity(intent_toLogintwo)
             }
         }
 
@@ -65,23 +71,40 @@ class SettingsFragment : Fragment() {
             return view
     }
 
+
     private fun updateProfile() {
-
-
-        val user = User(
-            email = etMail.text.toString(),
-            username = etUsername.text.toString()
-        )
-
-        val error = validate(user)
+        mPendingUser = readInputs()
+        val error = validate(mPendingUser)
         if (error == null) {
-            if (user.email == mUser.email) {
-                updateUser(user)
+            if (mPendingUser.email == mUser.email) {
+                updateUser(mPendingUser)
             } else {
-
+                getActivity()?.let { PasswordDialog().show(it.getSupportFragmentManager() , "password_dialog") }
             }
         } else {
-            Toast.makeText(requireView().context , "Error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireView().context , error, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun readInputs(): User {
+        return User(
+            username = etUsername.text.toString(),
+            email = etMail.text.toString(),
+
+        )
+    }
+
+
+    fun onPasswordConfirm(password: String) {
+        if (password.isNotEmpty()) {
+            val credential = EmailAuthProvider.getCredential(mUser.email, password)
+            mFirebase.reauthenticate(credential) {
+                mFirebase.updateEmail(mPendingUser.email) {
+                    updateUser(mPendingUser)
+                }
+            }
+        } else {
+            Toast.makeText(requireView().context , "You should enter your password", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -89,15 +112,10 @@ class SettingsFragment : Fragment() {
         val updatesMap = mutableMapOf<String, Any>()
         if (user.email != mUser.email) updatesMap["email"] = user.email
         if (user.username != mUser.username) updatesMap["username"] = user.username
-        mDatabase.child("users").child(mAuth.currentUser!!.uid).updateChildren(updatesMap)
-            .addOnCompleteListener{
-                if (it.isSuccessful) {
-                    Toast.makeText(requireView().context , "Profile saved", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireView().context, it.exception!!.message,  Toast.LENGTH_SHORT).show()
 
-                }
-            }
+        mFirebase.updateUser(updatesMap) {
+            Toast.makeText(requireView().context , "Profile saved", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

@@ -1,25 +1,28 @@
 package github.earth.settingsscreen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import github.earth.MainActivity
 import github.earth.R
 import github.earth.authscreen.LoginActivity
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
-import github.earth.utils.LOG_SETTINGS_FRAGMENT
+import github.earth.utils.*
 import github.earth.views.PasswordDialog
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
+import java.util.*
 
 
 class SettingsFragment : Fragment(), PasswordDialog.Listener {
@@ -52,7 +55,7 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?) {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         Log.d(LOG_SETTINGS_FRAGMENT, "onCreate")
@@ -227,3 +230,6 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener {
         }
     }
 }
+
+//fuck error
+

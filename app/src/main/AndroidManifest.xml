@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="github.earth">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature
@@ -10,12 +9,14 @@
 
 
     <application
+        android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/splash_image"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/splash_image"
         android:supportsRtl="true"
         android:theme="@style/Theme.Earth">
+        <activity android:name=".ErrorActivity"/>
         <activity android:name=".authscreen.LoginActivity" />
         <activity android:name=".authscreen.RegisterActivity" />
         <activity android:name=".authscreen.ResetActivity" />
@@ -32,7 +33,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.Earth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +56,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

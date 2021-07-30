@@ -20,12 +20,24 @@ const val LOG_SHAREINFO_FRAGMENT  = "ShareInfoFragment"
 const val LOG_SHARELINK_FRAGMENT  = "ShareLinkFragment"
 
 
+/**************************************| Shared Preferences |**************************************/
+
+const val SETTINGS_FILE         = "SettingsFile"
+const val SETTINGS_LANGUAGE     = "Language"
+const val SETTINGS_THEME        = "Theme"
+const val SETTINGS_APP_ICON     = "AppIcon"
+
 /********************************************| .Other |********************************************/
 
 const val LOG_VEL               = "ValueEventListener"
 
 const val DISABLE               = "Disable"
 const val ENABLE                = "Enable"
+
+const val ENGLISH               = "en"
+const val RUSSIAN               = "ru"
+const val GERMAN                = "de"
+
 
 /* Алексей призывает вас соблюдать чистату и порядок!
  * Кстати, каждые 60 секунд в Африке проходит 1 минута

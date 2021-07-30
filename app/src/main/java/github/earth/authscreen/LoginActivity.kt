@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.MainActivity
 import github.earth.R
@@ -24,7 +21,6 @@ class LoginActivity : AppCompatActivity(),  View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Log.d(LOG_LOGIN_ACTIVITY, "onCreate called")
-
 
         loginbtn.setOnClickListener(this)
         btnSignUp.setOnClickListener(this)

@@ -11,7 +11,7 @@
         android:right="24dp"
         android:left="24dp">
         <bitmap
-            android:gravity="left|right|top|bottom|center|center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:src="@drawable/splash_image"
             android:tileMode="disabled" />
     </item>

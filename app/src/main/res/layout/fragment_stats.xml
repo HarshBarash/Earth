@@ -10,6 +10,7 @@
         android:id="@+id/appBarLayoutStats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,12 +23,9 @@
             android:background="@color/background_day"
             app:navigationIconTint="@color/black"
             app:titleTextColor="@color/black"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
-            app:title="Статистика" />
+            app:titleCentered="true"
+            app:title="@string/title_stats" />
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
 
     <ImageView
         android:id="@+id/ring"

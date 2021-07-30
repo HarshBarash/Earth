@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Главная</string>
+    <string name="title_sorting">Сортировка</string>
+    <string name="title_stats">Статистика</string>
+    <string name="title_places">Места</string>
+    <string name="title_login">Войти</string>
+    <string name="please_enter_password">Пожалуйста введите пароль</string>
+    <string name="enter_your_password">Введите ваш пароль…</string>
+    <string name="enter_your_username">Введите ваш никнейм...</string>
+    <string name="enter_your_email">Введите вашу эл. почту...</string>
+    <string name="username">Никнейм</string>
+    <string name="email">Эл. Почта</string>
+    <string name="password">Пароль</string>
+    <string name="title_settings" translatable="false">Настройки</string>
+</resources>

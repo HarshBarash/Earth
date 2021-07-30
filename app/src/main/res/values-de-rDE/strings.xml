@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_settings">-</string>
+    <string name="title_places">-</string>
+    <string name="title_stats">-</string>
+    <string name="title_sorting">-</string>
+    <string name="title_home">-</string>
+    <string name="title_login">-</string>
+    <string name="please_enter_password">-</string>
+    <string name="enter_your_password">-</string>
+    <string name="enter_your_username">-</string>
+    <string name="enter_your_email">-</string>
+    <string name="username">-</string>
+    <string name="email">-</string>
+    <string name="password">-</string>
+</resources>

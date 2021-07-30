@@ -6,8 +6,9 @@
     <string name="title_stats">Statistics</string>
     <string name="title_places">Places</string>
     <string name="title_settings">Settings</string>
-    <string name="title_register">SignUp</string>
     <string name="title_login">Login</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_sharephoto">Share photo</string>
 
     <string name="please_enter_password">Please enter password</string>
     <string name="enter_your_password">Enter your password…</string>
@@ -21,7 +22,6 @@
     <string name="oops">Oops…</string>
     <string name="error_joke">The earth is spinning too fast</string>
     
-    <string name="title_profile">Profile</string>
     <string name="General">General</string>
     <string name="Language">General</string>
     <string name="Theme">General</string>

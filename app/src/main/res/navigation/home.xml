@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/ProfileScreen"/>
+        <action
+            android:id="@+id/action_HomeFragment_to_SharePhotiScreen"
+            app:destination="@id/SharePhotiScreen" />
     </fragment>
 
 <!--    Экраны на homefragment-->
@@ -25,4 +28,10 @@
         android:name="github.earth.homescreen.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+        android:id="@+id/SharePhotiScreen"
+        android:name="github.earth.homescreen.ShareFragmentPhoto"
+        android:label="@string/title_sharephoto"
+        tools:layout="@layout/fragment_sharephoto"/>
 </navigation>

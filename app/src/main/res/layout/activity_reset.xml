@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/signup_logo" />
+        app:srcCompat="@drawable/reset_logo" />
 
     <ImageView
         android:id="@+id/imageView3"

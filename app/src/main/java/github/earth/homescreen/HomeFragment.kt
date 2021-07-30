@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.R
 import github.earth.authscreen.LoginActivity
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -36,6 +37,9 @@ class HomeFragment : Fragment() {
             //Кто-нибудь, скажите Антону что это здесь не нужно
         }
 
+        pluscontent.setOnClickListener({
+            navController.navigate(R.id.action_HomeFragment_to_SharePhotiScreen)
+        })
         return rootView
     }
 

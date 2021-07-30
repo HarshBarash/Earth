@@ -17,7 +17,7 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:scaleType="fitXY"
@@ -44,7 +44,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Email"
         android:textColor="#ffffff"
         android:textSize="20sp"
@@ -120,7 +120,7 @@
         android:ems="10"
         android:textColorHint="@color/white"
         android:hint="Enter Your password..."
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:paddingStart="16dp"
         android:textColor="#c7c7c7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,4 +142,18 @@
         app:layout_constraintEnd_toEndOf="@+id/editTextTextSignUpPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextTextSignUpPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextSignUpPassword" />
+
+    <TextView
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Already have an account?"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupbtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

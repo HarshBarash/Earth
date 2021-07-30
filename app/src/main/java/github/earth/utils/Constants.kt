@@ -15,9 +15,9 @@ const val LOG_PLACES_FRAGMENT     = "PlacesFragment"
 const val LOG_HOME_FRAGMENT       = "HomeFragment"
 const val LOG_STATS_FRAGMENT      = "StatsFragment"
 const val LOG_PROFILE_FRAGMENT    = "ProfileFragment"
-const val LOG_SHAREPHOTO_FRAGMENT = "SharePhotoFragment"
-const val LOG_SHAREINFO_FRAGMENT  = "ShareInfoFragment"
-const val LOG_SHARELINK_FRAGMENT  = "ShareLinkFragment"
+const val LOG_SHARE_PHOTO_FRAGMENT = "SharePhotoFragment"
+const val LOG_SHARE_INFO_FRAGMENT  = "ShareInfoFragment"
+const val LOG_SHARE_LINK_FRAGMENT  = "ShareLinkFragment"
 
 
 /**************************************| Shared Preferences |**************************************/

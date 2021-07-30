@@ -30,10 +30,10 @@ class HomeFragment : Fragment() {
 
 
         if (mAuth.currentUser == null) {
-            val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
-            getActivity()?.startActivity(intent_toLogin)
-            getActivity()?.finish()
-
+            val intent_toLogin = Intent (activity, LoginActivity::class.java)
+            activity?.startActivity(intent_toLogin)
+            activity?.finish()
+            //Кто-нибудь, скажите Антону что это здесь не нужно
         }
 
         return rootView

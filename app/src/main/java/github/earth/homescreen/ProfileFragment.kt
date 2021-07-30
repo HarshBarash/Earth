@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import github.earth.R
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
+import github.earth.utils.FirebaseHelper
 import github.earth.utils.LOG_PROFILE_FRAGMENT
-import github.earth.views.FirebaseHelper
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {

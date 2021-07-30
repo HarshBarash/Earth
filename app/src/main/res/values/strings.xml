@@ -20,4 +20,10 @@
 
     <string name="oops">Oops…</string>
     <string name="error_joke">The earth is spinning too fast</string>
+    
+    <string name="title_profile">Profile</string>
+    <string name="General">General</string>
+    <string name="Language">General</string>
+    <string name="Theme">General</string>
+
 </resources>

@@ -7,7 +7,6 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import github.earth.settingsscreen.SettingsFragment
 
 
 class FirebaseHelper(private val activity: FragmentActivity?) {

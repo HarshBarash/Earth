@@ -7,10 +7,12 @@
     <string name="title_login">Войти</string>
     <string name="please_enter_password">Пожалуйста введите пароль</string>
     <string name="enter_your_password">Введите ваш пароль…</string>
-    <string name="enter_your_username">Введите ваш никнейм...</string>
-    <string name="enter_your_email">Введите вашу эл. почту...</string>
+    <string name="enter_your_username">Введите ваш никнейм…</string>
+    <string name="enter_your_email">Введите вашу эл. почту…</string>
     <string name="username">Никнейм</string>
     <string name="email">Эл. Почта</string>
     <string name="password">Пароль</string>
     <string name="title_settings" translatable="false">Настройки</string>
+    <string name="oops">Уупс…</string>
+    <string name="error_joke">Земля вращается слишком быстро</string>
 </resources>

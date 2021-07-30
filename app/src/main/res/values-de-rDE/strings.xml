@@ -13,4 +13,6 @@
     <string name="username">-</string>
     <string name="email">-</string>
     <string name="password">-</string>
+    <string name="oops">-</string>
+    <string name="error_joke">-</string>
 </resources>

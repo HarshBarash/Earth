@@ -18,4 +18,6 @@
     <string name="signup" translatable="false">Signup</string>
     <string name="password">Password</string>
 
+    <string name="oops">Oops…</string>
+    <string name="error_joke">The earth is spinning too fast</string>
 </resources>

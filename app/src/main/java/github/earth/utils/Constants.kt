@@ -9,11 +9,16 @@ const val LOG_REGISTER_ACTIVITY = "RegisterActivity"
 
 /******************************************| .Fragments |******************************************/
 
-const val LOG_SORTING_FRAGMENT  = "SortingFragment"
-const val LOG_SETTINGS_FRAGMENT = "SettingsFragment"
-const val LOG_PLACES_FRAGMENT   = "PlacesFragment"
-const val LOG_HOME_FRAGMENT     = "HomeFragment"
-const val LOG_STATS_FRAGMENT    = "StatsFragment"
+const val LOG_SORTING_FRAGMENT    = "SortingFragment"
+const val LOG_SETTINGS_FRAGMENT   = "SettingsFragment"
+const val LOG_PLACES_FRAGMENT     = "PlacesFragment"
+const val LOG_HOME_FRAGMENT       = "HomeFragment"
+const val LOG_STATS_FRAGMENT      = "StatsFragment"
+const val LOG_PROFILE_FRAGMENT    = "ProfileFragment"
+const val LOG_SHAREPHOTO_FRAGMENT = "SharePhotoFragment"
+const val LOG_SHAREINFO_FRAGMENT  = "ShareInfoFragment"
+const val LOG_SHARELINK_FRAGMENT  = "ShareLinkFragment"
+
 
 /********************************************| .Other |********************************************/
 

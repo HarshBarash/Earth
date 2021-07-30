@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_day">
+
+
+    <TextView
+        android:id="@+id/titletwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Information"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/TVTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_26ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/white_btn"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="149dp"
+        android:inputType="text">
+
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/TVLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Level:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_26ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        tools:ignore="MissingConstraints">
+
+    </TextView>
+
+    <Spinner
+        android:id="@+id/spinnerLevel"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/_12sdp"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_gravity="center"
+        android:background="@drawable/white_btn"
+        app:layout_constraintBottom_toTopOf="@+id/TVMaterials"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVLevel"
+        tools:ignore="DuplicateIds,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/TVMaterials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Materials:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_26ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="358dp">
+
+    </TextView>
+
+    <Spinner
+        android:id="@+id/spinnerMaterials"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/white_btn"
+        app:layout_constraintBottom_toTopOf="@+id/TVTime"
+        app:layout_constraintTop_toBottomOf="@+id/TVMaterials"
+        app:layout_constraintVertical_bias="0.242"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="21dp" />
+
+    <TextView
+        android:id="@+id/TVTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_26ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="506dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="min"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_26ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toEndOf="@+id/etTime"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerMaterials"
+        tools:ignore="MissingConstraints">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/etTime"
+        android:layout_width="@dimen/_225sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/white_btn"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVTime"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/continuetwo"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/white_btn"
+        android:gravity="bottom|center"
+        android:text="Continue"
+        android:textColor="#000000"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTime"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

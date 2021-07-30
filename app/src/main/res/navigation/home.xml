@@ -14,16 +14,15 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
 
-<!--        ПЕРЕХОД С HOME-->
-<!--        <action-->
-<!--            android:id="@+id/action_title_to_about"-->
-<!--            app:destination="@id/aboutScreen"/>-->
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/ProfileScreen"/>
     </fragment>
 
 <!--    Экраны на homefragment-->
-<!--    <fragment-->
-<!--        android:id="@+id/aboutScreen"-->
-<!--        android:name="github.openpump.homescreen.About"-->
-<!--        android:label="@string/title_about"-->
-<!--        tools:layout="@layout/fragment_about"/>-->
+    <fragment
+        android:id="@+id/ProfileScreen"
+        android:name="github.earth.homescreen.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

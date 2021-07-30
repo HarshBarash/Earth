@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import github.earth.R
 import kotlinx.android.synthetic.main.dialog_password.view.*
 
+//не работает. Пофиксить
 class PasswordDialog : DialogFragment(){
 
     private lateinit var mListener: Listener
@@ -29,9 +30,9 @@ class PasswordDialog : DialogFragment(){
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = requireActivity().layoutInflater.inflate(R.layout.dialog_password, null)
         return AlertDialog.Builder(requireContext()).setView(view)
-            .setPositiveButton(android.R.string.ok, {_, _ ->
+            .setPositiveButton(android.R.string.ok) { _, _ ->
                 mListener.onPasswordConfirm(view.password_input.text.toString())
-            })
+            }
             .setNegativeButton(android.R.string.cancel, {_, _ ->
                 // do nothing
             })

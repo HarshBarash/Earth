@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
         if (mAuth.currentUser == null) {
             val intent_toLogin = Intent (getActivity(), LoginActivity::class.java)
             getActivity()?.startActivity(intent_toLogin)
-            getActivity()?.finish();
+            getActivity()?.finish()
 
         }
 

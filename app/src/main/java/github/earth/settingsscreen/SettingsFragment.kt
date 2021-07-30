@@ -64,8 +64,8 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener {
         mDatabase.child("users").child(mAuth.currentUser!!.uid)
             .addListenerForSingleValueEvent(ValueEventListenerAdapter {
                 mUser = it.getValue(User::class.java)!!
-                etMail.setText(mUser.email, TextView.BufferType.EDITABLE)
-                etUsername.setText(mUser.username, TextView.BufferType.EDITABLE)
+                etMail.setText(mUser.email)
+                etUsername.setText(mUser.username)
         })
 
             return view
@@ -115,6 +115,7 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener {
 
         mFirebase.updateUser(updatesMap) {
             Toast.makeText(requireView().context , "Profile saved", Toast.LENGTH_SHORT).show()
+            getActivity()?.finish()
         }
     }
 

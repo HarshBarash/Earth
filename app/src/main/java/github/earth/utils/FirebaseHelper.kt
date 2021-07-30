@@ -1,4 +1,4 @@
-package github.earth.views
+package github.earth.utils
 
 import android.content.Context
 import android.widget.Toast

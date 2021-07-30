@@ -14,5 +14,5 @@
     <string name="password">Пароль</string>
     <string name="title_settings" translatable="false">Настройки</string>
     <string name="oops">Уупс…</string>
-    <string name="error_joke">Земля вращается слишком быстро</string>
+    <string name="error_joke">Похоже, земля вращается слишком быстро</string>
 </resources>

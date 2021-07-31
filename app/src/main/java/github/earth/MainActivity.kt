@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.earth.utils.LOG_MAIN_ACTIVITY
 import github.earth.utils.SETTINGS_FILE
 import github.earth.utils.SETTINGS_LANGUAGE
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_sharephoto.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         // Setup the bottom navigation view with navController
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
+
 
     }
 

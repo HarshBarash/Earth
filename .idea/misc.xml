@@ -4,18 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.38385416666666666" />
+        <entry key="app/src/main/res/drawable/bottom_menu.xml" value="0.35625" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.35625" />
+        <entry key="app/src/main/res/drawable/edittext_background.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.6412825651302605" />
+        <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/image_item.xml" value="0.35572916666666665" />
-      </map>
-    </option>
-  </component>
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/alexe/StudioProjects/Earth/app/src/main/res/layout/fragment_home.xml" value="0.3641304347826087" />
-        <entry key="..\:/Users/alexe/StudioProjects/Earth/app/src/main/res/layout/fragment_settings.xml" value="0.22" />
       </map>
     </option>
   </component>

@@ -18,8 +18,8 @@
             android:id="@+id/action_home_to_profile"
             app:destination="@id/ProfileScreen"/>
         <action
-            android:id="@+id/action_HomeFragment_to_SharePhotiScreen"
-            app:destination="@id/SharePhotiScreen" />
+            android:id="@+id/action_HomeFragment_to_SharePhotoScreen"
+            app:destination="@id/SharePhotoScreen" />
     </fragment>
 
 <!--    Экраны на homefragment-->
@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_profile"/>
 
     <fragment
-        android:id="@+id/SharePhotiScreen"
+        android:id="@+id/SharePhotoScreen"
         android:name="github.earth.homescreen.ShareFragmentPhoto"
         android:label="@string/title_sharephoto"
         tools:layout="@layout/fragment_sharephoto"/>

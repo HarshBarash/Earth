@@ -12,7 +12,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import github.earth.R
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
@@ -69,7 +69,9 @@ class ImagesAdapter(private val images: List<String?>) :
     }
 
     private fun ImageView.loadImage(image: String) {
-        Glide.with(this).load(image).centerCrop().into(this)
+        Picasso.get()
+            .load(image)
+            .into(this);
     }
 }
 

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.R
 import github.earth.authscreen.LoginActivity
@@ -27,6 +29,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         Log.v(LOG_HOME_FRAGMENT, "onCreate called")
 
         mAuth = FirebaseAuth.getInstance()
+
 
         if (mAuth.currentUser == null) {
             val intent_toLogin = Intent (activity, LoginActivity::class.java)
@@ -62,7 +65,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnPlusContent -> {
-                navController.navigate(R.id.action_HomeFragment_to_SharePhotiScreen)
+                findNavController().navigate(R.id.action_HomeFragment_to_SharePhotoScreen)
             }
         }
     }

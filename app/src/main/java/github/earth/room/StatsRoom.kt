@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-//таблица с данными
+//таблица с данными.
 
 @Parcelize
 @Entity(tableName = "stats_table")

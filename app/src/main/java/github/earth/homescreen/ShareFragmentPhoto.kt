@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
+import github.earth.authscreen.showToast
 
 
 class ShareFragmentPhoto  : Fragment() {
@@ -63,19 +64,14 @@ class ShareFragmentPhoto  : Fragment() {
         return view
     }
 
-//     fun onNext(image: String) {
-//        if (mCameraHelper.imageUri != null) {
-//            mImageUri = mCameraHelper.imageUri.toString()
-//            findNavController().navigate(R.id.action_
-//
-//                } else {
-//                    showToast("This email already exists")
-//                }
-//            }
-//        } else {
-//            showToast("Please enter email")
-//        }
-//    }
+     fun onNext(image: String) {
+        if (mCameraHelper.imageUri != null) {
+            mImageUri = mCameraHelper.imageUri.toString()
+            findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
+        } else {
+            Toast.makeText(requireView().context , "Please add a photo", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 
 

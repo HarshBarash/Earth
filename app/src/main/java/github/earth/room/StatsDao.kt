@@ -3,7 +3,7 @@ package com.example.room.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-//методы для работы с БД
+//методы для работы с БД.
 @Dao
 interface StatsDao {
 

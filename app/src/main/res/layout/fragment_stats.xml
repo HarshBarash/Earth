@@ -27,15 +27,17 @@
             app:title="@string/title_stats" />
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <ImageView
         android:id="@+id/ring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
         android:layout_width="@dimen/_45sdp"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginStart="@dimen/_40sdp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/circle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats" />
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/circle" />
 
     <ImageView
         android:id="@+id/acc"
@@ -49,16 +51,17 @@
 
     <ImageView
         android:id="@+id/ring2"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/_40sdp"
-        android:background="@drawable/circle"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ring"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:background="@drawable/circle"
+        android:backgroundTint="@color/white" />
 
     <ImageView
         android:id="@+id/global"
@@ -73,27 +76,27 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_325sdp"
+        android:layout_height="@dimen/_300sdp"
         android:layout_marginBottom="@dimen/_100sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
-        app:layout_constraintVertical_bias="0.664"
+        app:layout_constraintVertical_bias="0.651"
         tools:listitem="@layout/custom_row" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
-        android:layout_marginBottom="@dimen/_50sdp"
-        android:src="@drawable/rect"
         android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:src="@drawable/rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -124,6 +127,4 @@
         android:textSize="@dimen/_15ssp" />
 
     <!-- Предпросмотр адаптера -->
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

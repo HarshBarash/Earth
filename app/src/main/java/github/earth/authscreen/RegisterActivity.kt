@@ -1,25 +1,30 @@
 package github.earth.authscreen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.models.User
-import github.earth.room.stats_room.viewModels.StatsViewModel
 import github.earth.utils.LOG_REGISTER_ACTIVITY
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.*
 
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var mStatsViewModel: StatsViewModel
+
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
 
@@ -31,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
 
-        signupbtn.setOnClickListener {
+        signupbtn.setOnClickListener{
 
             val email = editTextTextSignUpEmail.text.toString()
             val username = editTextTextSignUpUsername.text.toString()
@@ -39,13 +44,13 @@ class RegisterActivity : AppCompatActivity() {
 
 
             if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty()) {
-                mAuth.createUserWithEmailAndPassword(email, password) {
-                    it.user?.let { it1 ->
-                        mDatabase.createUser(it1.uid, mkUser(username, email)) {
-                            startHomeActivity()
+                    mAuth.createUserWithEmailAndPassword(email, password) {
+                        it.user?.let { it1 ->
+                            mDatabase.createUser(it1.uid, mkUser(username, email)) {
+                                startHomeActivity()
+                            }
                         }
                     }
-                }
             } else {
                 showToast("Please enter email, username and password")
             }
@@ -64,16 +69,14 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun mkUser(username: String, email: String): User {
-        return User(username = username, email = email)
+        return User( username = username, email = email)
     }
 
     private fun mkUsername(username: String) =
         username.lowercase(Locale.getDefault()).replace(" ", ".")
 
-    private fun FirebaseAuth.fetchSignInMethodsForEmail(
-        email: String,
-        onSuccess: (List<String>) -> Unit,
-    ) {
+    private fun FirebaseAuth.fetchSignInMethodsForEmail(email: String,
+                                                        onSuccess: (List<String>) -> Unit) {
         fetchSignInMethodsForEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
                 onSuccess(it.result?.signInMethods ?: emptyList<String>())
@@ -94,10 +97,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun FirebaseAuth.createUserWithEmailAndPassword(
-        email: String, password: String,
-        onSuccess: (AuthResult) -> Unit,
-    ) {
+    private fun FirebaseAuth.createUserWithEmailAndPassword(email: String, password: String,
+                                                            onSuccess: (AuthResult) -> Unit) {
         createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -107,7 +108,5 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
-
-
 }
 

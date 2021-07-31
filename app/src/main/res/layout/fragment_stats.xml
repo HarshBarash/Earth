@@ -27,291 +27,104 @@
             app:title="@string/title_stats" />
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <ImageView
         android:id="@+id/ring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
         android:layout_width="@dimen/_45sdp"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginStart="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:background="@drawable/circle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats" />
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/circle" />
 
     <ImageView
         android:id="@+id/acc"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        android:background="@drawable/ic_account"
         app:layout_constraintBottom_toBottomOf="@+id/ring"
         app:layout_constraintEnd_toEndOf="@+id/ring"
         app:layout_constraintStart_toStartOf="@+id/ring"
-        app:layout_constraintTop_toTopOf="@+id/ring" />
+        app:layout_constraintTop_toTopOf="@+id/ring"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:background="@drawable/ic_account" />
 
     <ImageView
         android:id="@+id/ring2"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginEnd="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:background="@drawable/circle"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ring"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:background="@drawable/circle"
+        android:backgroundTint="@color/white" />
 
     <ImageView
         android:id="@+id/global"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        android:background="@drawable/ic_global"
         app:layout_constraintBottom_toBottomOf="@+id/ring2"
         app:layout_constraintEnd_toEndOf="@+id/ring2"
         app:layout_constraintStart_toStartOf="@+id/ring2"
-        app:layout_constraintTop_toTopOf="@+id/ring2" />
+        app:layout_constraintTop_toTopOf="@+id/ring2"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:background="@drawable/ic_global" />
 
-    <ImageView
-        android:id="@+id/collected"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginLeft="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
-        android:layout_marginRight="@dimen/_25sdp"
-        android:src="@drawable/rect"
-        app:layout_constraintEnd_toStartOf="@+id/saved_trees"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ring" />
-
-    <ImageView
-        android:id="@+id/rank"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:layout_marginLeft="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
-        android:layout_marginRight="@dimen/_25sdp"
-        android:src="@drawable/rect"
-        app:layout_constraintEnd_toStartOf="@+id/visited_place"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/collected" />
-
-    <ImageView
-        android:id="@+id/saved_trees"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
-        android:layout_marginRight="@dimen/_25sdp"
-        android:src="@drawable/rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ring2" />
-
-    <ImageView
-        android:id="@+id/visited_place"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
-        android:layout_marginRight="@dimen/_25sdp"
-        android:src="@drawable/rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_trees" />
-
-    <ImageView
-        android:id="@+id/purpose_rect"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginLeft="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginRight="@dimen/_25sdp"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_marginBottom="@dimen/_100sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
+        app:layout_constraintVertical_bias="0.651"
+        tools:listitem="@layout/custom_row" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
         android:src="@drawable/rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visited_place"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txt_collected"
+        android:id="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="20dp"
-
-        android:fontFamily="@font/roboto_medium"
-        android:text="Собрано:"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:text="Цель:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toStartOf="@+id/collected"
-        app:layout_constraintTop_toTopOf="@+id/collected" />
+        android:textSize="@dimen/_25ssp" />
 
     <TextView
-        android:id="@+id/txt_saved_trees"
-        android:layout_width="@dimen/_110sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-
-        android:fontFamily="@font/roboto_medium"
-        android:text="Спасено деревьев:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintEnd_toEndOf="@+id/saved_trees"
-        app:layout_constraintStart_toStartOf="@+id/saved_trees"
-        app:layout_constraintTop_toTopOf="@+id/saved_trees" />
-
-    <TextView
-        android:id="@+id/txt_visited"
-        android:layout_width="132dp"
-        android:layout_height="52dp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Посещено мест:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/visited_place"
-        app:layout_constraintTop_toTopOf="@+id/visited_place" />
-
-    <TextView
-        android:id="@+id/txt_rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Рейтинг:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/rank"
-        app:layout_constraintTop_toTopOf="@+id/rank" />
-
-    <TextView
-        android:id="@+id/purpose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Цель: "
-        android:textColor="@color/black"
-        android:textSize="@dimen/_30ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/purpose_rect"
-        app:layout_constraintStart_toStartOf="@+id/purpose_rect"
-        app:layout_constraintTop_toTopOf="@+id/purpose_rect" />
-
-    <TextView
-        android:id="@+id/purpose_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_116sdp"
-        android:layout_marginLeft="@dimen/_116sdp"
-        android:fontFamily="@font/roboto"
-        android:text="120k "
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/purpose_rect"
-        app:layout_constraintStart_toStartOf="@+id/purpose"
-        app:layout_constraintTop_toTopOf="@+id/purpose_rect" />
-
-    <ImageView
-        android:id="@+id/icon_collected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:src="@drawable/ic_sorting"
-        app:layout_constraintStart_toStartOf="@+id/collected"
-        app:layout_constraintTop_toBottomOf="@+id/txt_collected"
-        app:tint="@color/background_day" />
-
-    <ImageView
-        android:id="@+id/icon_tree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:src="@drawable/ic_places"
-        app:layout_constraintStart_toStartOf="@+id/saved_trees"
-        app:layout_constraintTop_toBottomOf="@+id/txt_saved_trees"
-        app:tint="@color/background_day"/>
-
-    <ImageView
-        android:id="@+id/icon_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:src="@drawable/ic_places_mark"
-        app:layout_constraintStart_toStartOf="@+id/visited_place"
-        app:layout_constraintTop_toBottomOf="@+id/txt_visited"
-        app:tint="@color/background_day" />
-
-    <TextView
-        android:id="@+id/count_collected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/roboto"
-        android:text="0 кг"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toEndOf="@+id/icon_collected"
-        app:layout_constraintTop_toBottomOf="@+id/txt_collected" />
-
-    <TextView
-        android:id="@+id/count_saved_trees"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:fontFamily="@font/roboto"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toEndOf="@+id/icon_tree"
-        app:layout_constraintTop_toBottomOf="@+id/txt_saved_trees" />
-
-    <TextView
-        android:id="@+id/user_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/roboto"
-        android:text="# 0"
-        android:textColor="@color/background_day"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/rank"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rank" />
-
-    <TextView
-        android:id="@+id/count_visited_places"
+        android:id="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.494"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:fontFamily="@font/roboto"
-        android:text="0"
+        android:text="100к"
         android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toEndOf="@+id/icon_place"
-        app:layout_constraintTop_toBottomOf="@+id/txt_visited" />
+        android:textSize="@dimen/_15ssp" />
 
-
+    <!-- Предпросмотр адаптера -->
 </androidx.constraintlayout.widget.ConstraintLayout>

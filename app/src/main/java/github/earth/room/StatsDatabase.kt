@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-//сама БД
+//сама БД.
 @Database(entities = [StatsRoom::class], version = 1, exportSchema = false)
 abstract class StatsDatabase : RoomDatabase() {
 

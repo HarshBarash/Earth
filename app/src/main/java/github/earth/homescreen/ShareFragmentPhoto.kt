@@ -27,6 +27,7 @@ import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 
 
 class ShareFragmentPhoto  : Fragment() {
@@ -34,9 +35,10 @@ class ShareFragmentPhoto  : Fragment() {
     private lateinit var mCameraHelper: CameraHelper
     private lateinit var mFirebaseHelper: FirebaseHelper
     private lateinit var mUser : User
+    private var mImageUri: String? = null
 
     var imageUri: Uri? = null
-    val REQUEST_CODE = 1
+
     private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
 
 
@@ -54,13 +56,26 @@ class ShareFragmentPhoto  : Fragment() {
         Glide.with(this).load(mCameraHelper.imageUri).centerCrop().into(imageView)
 
 
+
         mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
             it.getValue(User::class.java)!!
         })
         return view
     }
 
-
+//     fun onNext(image: String) {
+//        if (mCameraHelper.imageUri != null) {
+//            mImageUri = mCameraHelper.imageUri.toString()
+//            findNavController().navigate(R.id.action_
+//
+//                } else {
+//                    showToast("This email already exists")
+//                }
+//            }
+//        } else {
+//            showToast("Please enter email")
+//        }
+//    }
 
 
 

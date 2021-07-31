@@ -27,11 +27,47 @@
         android:id="@+id/ProfileScreen"
         android:name="github.earth.homescreen.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_ProfileScreen_to_SharePhotoScreen"
+            app:destination="@id/SharePhotoScreen" />
+    </fragment>
 
     <fragment
         android:id="@+id/SharePhotoScreen"
         android:name="github.earth.homescreen.ShareFragmentPhoto"
         android:label="@string/title_sharephoto"
-        tools:layout="@layout/fragment_sharephoto"/>
+        tools:layout="@layout/fragment_sharephoto">
+        <action
+            android:id="@+id/action_SharePhotoScreen_to_shareInfoFragment"
+            app:destination="@id/shareInfoFragment" />
+        <action
+            android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shareInfoFragment"
+        android:name="github.earth.homescreen.ShareInfoFragment"
+        android:label="ShareInfoFragment"
+        tools:layout="@layout/fragment_shareinfo">
+        <action
+            android:id="@+id/action_shareInfoFragment_to_shareLinkFragment"
+            app:destination="@id/shareLinkFragment" />
+        <action
+            android:id="@+id/action_shareInfoFragment_to_SharePhotoScreen"
+            app:destination="@id/SharePhotoScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/shareLinkFragment"
+        android:name="github.earth.homescreen.ShareLinkFragment"
+        android:label="ShareLinkFragment"
+        tools:layout="@layout/fragment_sharelink">
+        <action
+            android:id="@+id/action_shareLinkFragment_to_shareInfoFragment"
+            app:destination="@id/shareInfoFragment" />
+        <action
+            android:id="@+id/action_shareLinkFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
 </navigation>

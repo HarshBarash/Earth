@@ -1,11 +1,18 @@
 package github.earth.homescreen
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import github.earth.R
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
@@ -32,6 +39,43 @@ class ProfileFragment : Fragment() {
 
 
         })
+
+        images_recycler.layoutManager = GridLayoutManager(activity, 2)
+        mFirebaseHelper.database.child("images").child(mFirebaseHelper.auth.currentUser!!.uid)
+            .addValueEventListener(ValueEventListenerAdapter {
+                val images = it.children.map { it.getValue((String::class.java)) }
+                images_recycler.adapter = ImagesAdapter(images)
+            })
+
         return view
     }
 }
+
+
+class ImagesAdapter(private val images: List<String?>) :
+    RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+    class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+       val image = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false) as ImageView
+        return ViewHolder(image)
+    }
+
+
+    override fun getItemCount(): Int = images.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        images[position]?.let { holder.image.loadImage(it) }
+    }
+
+    private fun ImageView.loadImage(image: String) {
+        Glide.with(this).load(image).centerCrop().into(this)
+    }
+}
+
+class SquareImageView(context: Context, attrs: AttributeSet) :
+    androidx.appcompat.widget.AppCompatImageView (context, attrs) {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+    }

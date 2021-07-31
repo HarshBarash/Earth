@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/background_day"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/collected_rect"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/rect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/visited_place_rect"
+
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_62sdp"
+        android:src="@drawable/rect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/rank_rect"
+
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_62sdp"
+        android:src="@drawable/rect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_visited_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:fontFamily="@font/roboto"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/visited_place_rect"
+        app:layout_constraintTop_toBottomOf="@+id/visited_place" />
+
+    <TextView
+        android:id="@+id/txt_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="0"
+        android:textColor="@color/background_day"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/rank_rect"
+        app:layout_constraintTop_toBottomOf="@+id/rank" />
+
+    <TextView
+        android:id="@+id/rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Рейтинг:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/rank_rect"
+        app:layout_constraintTop_toTopOf="@+id/rank_rect" />
+
+    <TextView
+        android:id="@+id/visited_place"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
+
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Мест посещено:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/visited_place_rect"
+        app:layout_constraintTop_toTopOf="@+id/visited_place_rect" />
+
+    <ImageView
+        android:id="@+id/saved_trees_rect"
+
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:src="@drawable/rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/collected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Собрано:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/collected_rect"
+        app:layout_constraintTop_toTopOf="@+id/collected_rect" />
+
+    <TextView
+        android:id="@+id/txt_collected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:fontFamily="@font/roboto"
+        android:text="0 кг"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/collected_rect"
+        app:layout_constraintTop_toTopOf="@+id/collected_rect" />
+
+    <TextView
+        android:id="@+id/txt_saved_trees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/roboto"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/saved_trees_rect"
+        app:layout_constraintTop_toBottomOf="@+id/saved_trees" />
+
+    <TextView
+        android:id="@+id/saved_trees"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
+
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Деревьев спасено:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toStartOf="@+id/saved_trees_rect"
+        app:layout_constraintTop_toTopOf="@+id/saved_trees_rect" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

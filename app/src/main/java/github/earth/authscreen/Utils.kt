@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
@@ -19,7 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import github.earth.models.User
 import github.earth.utils.LOG_VEL
 
-class ValueEventListenerAdapter (val handler: (DataSnapshot) -> Unit) : ValueEventListener {
+class ValueEventListenerAdapter(val handler: (DataSnapshot) -> Unit) : ValueEventListener {
     override fun onDataChange(data: DataSnapshot) {
         handler(data)
     }
@@ -30,7 +29,7 @@ class ValueEventListenerAdapter (val handler: (DataSnapshot) -> Unit) : ValueEve
 }
 
 // наследник всех классов контекста -> активити
-fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT ){
+fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, text, duration).show()
 }
 

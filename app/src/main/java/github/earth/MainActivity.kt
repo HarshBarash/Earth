@@ -1,20 +1,17 @@
 package github.earth
 
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import github.earth.utils.LOG_MAIN_ACTIVITY
-import github.earth.utils.SETTINGS_FILE
-import github.earth.utils.SETTINGS_LANGUAGE
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_sharephoto.*
+import github.earth.utils.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -74,29 +71,91 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setLanguage() {
-        //Я крутой, мне похер на deprecated
-        val sp = getSharedPreferences(SETTINGS_FILE, 0)
-        val defLang = Locale.getDefault().displayLanguage
+    fun changeIcon(iconName: String) {
+        val packageManager = packageManager
 
-        val language: String = sp.getString(SETTINGS_LANGUAGE, null) ?: return
+        val sp = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE)
+        val currentIcon = sp.getString(SETTINGS_APP_ICON, IC_DEFAULT_LAUNCHER)
 
-        Log.v(LOG_MAIN_ACTIVITY, "SharedPrefs lang: $language")
+        Log.v(LOG_MAIN_ACTIVITY, "New Icon Name: $iconName\nOld Icon Name: $currentIcon")
 
-        if (defLang == language)
-            return
+        val currentIconPackage = when(currentIcon) {
+            IC_DEFAULT -> IC_DEFAULT_LAUNCHER
+            IC_PURPLE -> IC_PURPLE_LAUNCHER
+            IC_BEIGE -> IC_BEIGE_LAUNCHER
+            IC_GRAY -> IC_GRAY_LAUNCHER
+            IC_PINK -> IC_PINK_LAUNCHER
+            IC_LIGHT_PINK -> IC_LIGHT_PINK_LAUNCHER
+            IC_RED -> IC_RED_LAUNCHER
+            IC_YELLOW -> IC_YELLOW_LAUNCHER
+            IC_ORANGE -> IC_ORANGE_LAUNCHER
+            IC_GREEN -> IC_GREEN_LAUNCHER
+            IC_BLUE -> IC_BLUE_LAUNCHER
+            else -> {
+                Toast.makeText(this, "Error! Operation cancelled", Toast.LENGTH_SHORT)
+                return
+            }
+        }
 
-        val locale = Locale(language)
-        Locale.setDefault(locale)
-        // Create a new configuration object
-        val config = Configuration()
-        // Set the locale of the new configuration
-        config.locale = locale
-        // Update the configuration of the Accplication context
-        resources.updateConfiguration(
-            config,
-            resources.displayMetrics
-        )
+
+        disableIcon(currentIconPackage, packageManager)
+        //Сохрание новой иконки
+        sp.edit().putString(SETTINGS_APP_ICON, iconName).apply()
+
+        when (iconName) {
+            IC_DEFAULT -> enableIcon(IC_DEFAULT_LAUNCHER, packageManager)
+            IC_PURPLE -> enableIcon(IC_PURPLE_LAUNCHER, packageManager)
+            IC_BEIGE -> enableIcon(IC_BEIGE_LAUNCHER, packageManager)
+            IC_GRAY -> enableIcon(IC_GRAY_LAUNCHER, packageManager)
+            IC_PINK -> enableIcon(IC_PINK_LAUNCHER, packageManager)
+            IC_LIGHT_PINK -> enableIcon(IC_LIGHT_PINK_LAUNCHER, packageManager)
+            IC_RED -> enableIcon(IC_RED_LAUNCHER, packageManager)
+            IC_YELLOW -> enableIcon(IC_YELLOW_LAUNCHER, packageManager)
+            IC_ORANGE -> enableIcon(IC_ORANGE_LAUNCHER, packageManager)
+            IC_GREEN -> enableIcon(IC_GREEN_LAUNCHER, packageManager)
+            IC_BLUE -> enableIcon(IC_BLUE_LAUNCHER, packageManager)
+        }
     }
 
-}
+        private fun disableIcon(componentPackage: String, packageManager: PackageManager) {
+            packageManager.setComponentEnabledSetting(
+                ComponentName(PACKAGE, componentPackage),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+            )
+        }
+
+        private fun enableIcon(componentPackage: String, packageManager: PackageManager) {
+            packageManager.setComponentEnabledSetting(
+                ComponentName(PACKAGE, componentPackage),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP
+            )
+        }
+
+        private fun setLanguage() {
+            //Я крутой, мне похер на deprecated
+            val sp = getSharedPreferences(SETTINGS_FILE, 0)
+            val defLang = Locale.getDefault().displayLanguage
+
+            val language: String = sp.getString(SETTINGS_LANGUAGE, null) ?: return
+
+            Log.v(LOG_MAIN_ACTIVITY, "SharedPrefs lang: $language")
+
+            if (defLang == language)
+                return
+
+            val locale = Locale(language)
+            Locale.setDefault(locale)
+            // Create a new configuration object
+            val config = Configuration()
+            // Set the locale of the new configuration
+            config.locale = locale
+            // Update the configuration of the Accplication context
+            resources.updateConfiguration(
+                config,
+                resources.displayMetrics
+            )
+        }
+
+    }

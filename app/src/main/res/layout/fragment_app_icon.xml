@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/_5sdp">
+
+    <TextView
+        android:id="@+id/tvDialogTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select new icon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App will be restarted after your choice"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDialogTittle" />
+
+    <TextView
+        android:id="@+id/tvWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/iconChangeWarning"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivIcDef"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/ivIcPurple"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_purple" />
+
+                <ImageView
+                    android:id="@+id/ivIcPink"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_pink" />
+
+                <ImageView
+                    android:id="@+id/ivIcLightPink"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_light_pink" />
+
+                <ImageView
+                    android:id="@+id/ivIcYellow"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_yellow" />
+
+                <ImageView
+                    android:id="@+id/ivIcGray"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivIcBlue"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_blue" />
+
+                <ImageView
+                    android:id="@+id/ivIcGreen"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_green" />
+
+                <ImageView
+                    android:id="@+id/ivIcBeige"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_beige" />
+
+                <ImageView
+                    android:id="@+id/ivIcRed"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_red" />
+
+                <ImageView
+                    android:id="@+id/ivIcOrange"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    app:srcCompat="@mipmap/ic_launcher_orange" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

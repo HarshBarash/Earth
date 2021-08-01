@@ -22,4 +22,9 @@
 
     <color name="splash_background">#FF9DD0F4</color>
 
+    <color name="ic_violet">#ADB5FF</color>
+    <color name="ic_pink">#EC9DF4</color>
+    <color name="ic_green">#5BC640</color>
+    <color name="ic_blue">#51B7FF</color>
+
 </resources>

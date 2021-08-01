@@ -2,12 +2,14 @@ package github.earth.settingsscreen
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.EmailAuthProvider
@@ -16,6 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import github.earth.MainActivity
 import github.earth.R
+import github.earth.SelectIconDialogFragment
 import github.earth.authscreen.LoginActivity
 import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
@@ -39,10 +42,13 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
     private lateinit var etMail: EditText
     private lateinit var etUsername: EditText
 
+    private lateinit var ivSelectedIcon: ImageView
+
     private lateinit var fltSave: FloatingActionButton
 
     private var sLanguage: String? = null
     private var newLanguage: String? = null
+    private var sIcon: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +59,15 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
         mDatabase = FirebaseDatabase.getInstance().reference
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         Log.d(LOG_SETTINGS_FRAGMENT, "onCreateView called")
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
+        ivSelectedIcon = view.findViewById(R.id.ivSelectedIcon)
         spinLanguages = view.findViewById(R.id.spinLanguages)
         btnLogOut = view.findViewById(R.id.btnLogOut)
         fltSave = view.findViewById(R.id.fltSave)
@@ -99,13 +108,27 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
 
         val spConfig = activity?.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE) ?: return
         sLanguage = spConfig.getString(SETTINGS_LANGUAGE, Locale.getDefault().displayLanguage.toString())
+        sIcon = spConfig.getString(SETTINGS_APP_ICON, IC_DEFAULT)
 
-        if (sLanguage == ENGLISH)
-            spinLanguages.setSelection(0)
-        else if (sLanguage == RUSSIAN)
-            spinLanguages.setSelection(1)
-        else if (sLanguage == GERMAN)
-            spinLanguages.setSelection(2)
+        when (sLanguage) {
+            ENGLISH -> spinLanguages.setSelection(0)
+            RUSSIAN -> spinLanguages.setSelection(1)
+            GERMAN -> spinLanguages.setSelection(2)
+        }
+
+        when(sIcon) {
+            IC_DEFAULT -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.mipmap.ic_launcher,null))
+            IC_PURPLE -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_purple,null))
+            IC_BEIGE -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_beige,null))
+            IC_GRAY -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_gray,null))
+            IC_PINK -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_pink,null))
+            IC_LIGHT_PINK -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_light_pink,null))
+            IC_RED -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_red,null))
+            IC_YELLOW -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_yellow,null))
+            IC_ORANGE -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_orange,null))
+            IC_GREEN -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_green,null))
+            IC_BLUE -> ivSelectedIcon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.mipmap.ic_launcher_blue,null))
+        }
 
     }
 
@@ -172,6 +195,11 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
             R.id.fltSave -> {
                 saveUserSettings()
             }
+            R.id.ivSelectedIcon -> {
+                var dialog = SelectIconDialogFragment()
+                dialog.show((activity as MainActivity).supportFragmentManager, "customDialog")
+
+            }
         }
     }
 
@@ -201,6 +229,7 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
 
         btnLogOut.setOnClickListener(this)
         fltSave.setOnClickListener(this)
+        ivSelectedIcon.setOnClickListener(this)
 
         spinLanguages.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

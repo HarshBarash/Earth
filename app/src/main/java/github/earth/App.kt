@@ -13,5 +13,6 @@ class App : Application() {
             .trackActivities(true)
             .errorActivity(ErrorActivity::class.java)
             .apply()
+
     }
 }

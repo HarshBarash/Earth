@@ -23,7 +23,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimaryVariant"
             app:navigationIconTint="@color/black"
-            app:titleTextColor="@color/black"
             app:titleCentered="true"
             app:title="@string/title_settings" />
 
@@ -64,8 +63,9 @@
                         android:id="@+id/tvCardProfileTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
-                        android:textSize="24sp" />
+                        android:text="@string/title_profile"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/_20ssp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tfUsername"
@@ -83,9 +83,9 @@
                             android:id="@+id/etUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Username"
+                            android:hint="@string/Username"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,9 +106,9 @@
                             android:id="@+id/etMail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Email"
+                            android:hint="@string/Email"
                             android:inputType="textEmailAddress"
-                            android:textSize="24sp" />
+                            android:textSize="@dimen/_16ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +120,7 @@
                         android:layout_gravity="end"
                         android:layout_marginEnd="15dp"
                         android:padding="5dp"
-                        android:text="Log Out"
+                        android:text="@string/LogOut"
                         android:textColor="@color/app_basic_light_blue_color"
                         app:icon="@drawable/ic_logout"
                         app:iconTint="@color/app_basic_light_blue_color" />
@@ -148,21 +148,22 @@
                         android:id="@+id/tvCardGeneralTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="General"
-                        android:textSize="24sp" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:text="@string/General"
+                        android:textSize="@dimen/_20ssp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tvLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Language"
-                            android:textSize="24sp"
+                            android:text="@string/Language"
+                            android:textSize="@dimen/_16ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -179,19 +180,19 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:orientation="horizontal">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_height="match_parent">
 
                             <TextView
                                 android:id="@+id/tvTheme"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Theme"
-                                android:textSize="24sp"
+                                android:text="@string/Theme"
+                                android:textSize="@dimen/_16ssp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -312,6 +313,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -319,8 +321,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
-                            android:text="App Icon"
-                            android:textSize="24sp"
+                            android:text="@string/App_Icon"
+                            android:textSize="@dimen/_16ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -329,6 +331,7 @@
                             android:id="@+id/ivSelectedIcon"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
+                            android:layout_marginEnd="8dp"
                             android:src="@mipmap/ic_launcher"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package github.earth.authscreen
+package github.earth.utils
 
 import android.app.Activity
 import android.content.Context
@@ -10,12 +10,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import github.earth.R
+import github.earth.homescreen.ShareFragmentPhoto
 import github.earth.models.User
 import github.earth.utils.LOG_VEL
 
@@ -30,10 +33,9 @@ class ValueEventListenerAdapter (val handler: (DataSnapshot) -> Unit) : ValueEve
 }
 
 // наследник всех классов контекста -> активити
-fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT ){
+fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, text, duration).show()
 }
-
 
 fun coordinateBtnAndInputs(btn: Button, vararg inputs: EditText) {
     val watcher = object : TextWatcher {
@@ -55,6 +57,15 @@ fun Editable.toStringOrNull(): String? {
     return if (str.isEmpty()) null else str
 }
 
+fun ImageView.loadUserPhoto(photoUrl: String?) =
+    ifNotDestroyed {
+        Glide.with(this).load(photoUrl).fallback(R.drawable.ic_userphoto).into(this)
+    }
+
+fun ImageView.loadImage(image: String?) =
+    ifNotDestroyed {
+        Glide.with(this).load(image).centerCrop().into(this)
+    }
 
 private fun View.ifNotDestroyed(block: () -> Unit) {
     if (!(context as Activity).isDestroyed) {
@@ -68,9 +79,3 @@ fun <T> task(block: (TaskCompletionSource<T>) -> Unit): Task<T> {
     return taskSource.task
 }
 
-fun DataSnapshot.asUser(): User? =
-    key?.let { getValue(User::class.java)?.copy(uid = it) }
-
-
-fun DatabaseReference.setValueTrueOrRemove(value: Boolean) =
-    if (value) setValue(true) else removeValue()

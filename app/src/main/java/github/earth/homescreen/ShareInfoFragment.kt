@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import github.earth.R
-import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
 import github.earth.utils.CameraHelper
 import github.earth.utils.FirebaseHelper
+import github.earth.utils.ValueEventListenerAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 

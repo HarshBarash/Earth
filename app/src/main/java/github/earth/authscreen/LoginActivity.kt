@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.utils.LOG_LOGIN_ACTIVITY
+import github.earth.utils.showToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.editTextTextPersoEmail
 

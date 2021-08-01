@@ -16,19 +16,16 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.database.ServerValue
 import github.earth.R
-import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
 import github.earth.utils.CameraHelper
 import github.earth.utils.FirebaseHelper
-import kotlinx.android.synthetic.main.fragment_sharephoto.*
-import java.io.File
-import java.net.URL
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
-import github.earth.authscreen.showToast
+import github.earth.utils.ValueEventListenerAdapter
+import kotlinx.android.synthetic.main.fragment_sharephoto.view.*
 
 
 class ShareFragmentPhoto  : Fragment() {
@@ -54,6 +51,9 @@ class ShareFragmentPhoto  : Fragment() {
         mCameraHelper = CameraHelper(requireActivity())
         mCameraHelper.takeCameraPicture()
 
+        view.continuebitn.setOnClickListener { share() }
+
+
         Glide.with(this).load(mCameraHelper.imageUri).centerCrop().into(imageView)
 
 
@@ -64,15 +64,31 @@ class ShareFragmentPhoto  : Fragment() {
         return view
     }
 
-     fun onNext(image: String) {
-        if (mCameraHelper.imageUri != null) {
-            mImageUri = mCameraHelper.imageUri.toString()
-            findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
-        } else {
-            Toast.makeText(requireView().context , "Please add a photo", Toast.LENGTH_SHORT).show()
+    private fun share() {
+        val imageUri = mCameraHelper.imageUri
+        if (imageUri != null) {
+            val uid = mFirebaseHelper.auth.currentUser!!.uid
+            mFirebaseHelper.uploadSharePhoto(imageUri) {
+                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.toString()
+                 it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                    mFirebaseHelper.database.child("Feed").child(uid)
+                        .push().setValue(mkFeed(uid, imageDownloadUrl)).addOnCompleteListener {
+                            mFirebaseHelper.addSharePhoto(it.toString()) {
+                                if (it.isSuccessful) {
+                                    findNavController().navigate(R.id.action_SharePhotoScreen_to_HomeFragment)
+                                }
+                        }
+                    }
+                }
+            }
         }
     }
 
+    private fun mkFeed(uid: String, imageDownloadUrl: String) = Feed(
+        uid = uid,
+        image = imageDownloadUrl,
+    //                            title = title.text.toString()
+    )
 
 
 //    private fun share() {
@@ -101,14 +117,14 @@ class ShareFragmentPhoto  : Fragment() {
 
             data class Feed(
                 val uid: String = "", val username: String = "", val image: String = "",
-                val title: String = "", val tutorial: String = "", val materals: Spinner,
-                val level: Spinner, val time: Int = 1, val likesCount: Int = 0,
+                val title: String = "", val tutorial: String = "", val materals: String ="",
+                val level: String="", val time: Int = 1, val likesCount: Int = 0,
                 val timestamp: Any = ServerValue.TIMESTAMP
             ) {
 
                 fun fimestampDate(): Date = Date(timestamp as Long)
             }
-        }
+}
 
 
 

@@ -6,50 +6,62 @@
     android:background="@color/background_day"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/userphoto"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_68sdp"
+        android:src="@drawable/ic_userphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/username_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black"
+        android:gravity="center"
         android:minHeight="0dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_weight="5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userphoto"
         tools:text="HarshBarash" />
 
-    <Button
-        android:id="@+id/addcontent"
-        android:layout_width="250dp"
+    <TextView
+        android:id="@+id/raiting"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/white_btn"
-        android:backgroundTint="@color/background_day"
-        android:text="Add Content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:minHeight="0dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+        app:layout_constraintTop_toBottomOf="@+id/username_text"
+        tools:text="#1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/images_recycler"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBaseline_toBottomOf="@id/addcontent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addcontent" />
+        app:layout_constraintTop_toBottomOf="@+id/raiting" />
 </androidx.constraintlayout.widget.ConstraintLayout>

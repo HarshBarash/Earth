@@ -17,13 +17,12 @@ import com.google.firebase.database.FirebaseDatabase
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.authscreen.LoginActivity
-import github.earth.authscreen.ValueEventListenerAdapter
 import github.earth.models.User
 import github.earth.utils.*
 import github.earth.views.PasswordDialog
 import java.util.*
 
-
+//TODO убрать лишние методы от Firease (Антон)
 class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListener {
 
     private lateinit var mUser: User

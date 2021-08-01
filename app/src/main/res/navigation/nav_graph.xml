@@ -10,7 +10,7 @@
     <include app:graph="@navigation/stats"/>
     <include app:graph="@navigation/home"/>
     <include app:graph="@navigation/places"/>
-    <include app:graph="@navigation/settings"/>
+    <include app:graph="@navigation/profile"/>
 
 
 </navigation>

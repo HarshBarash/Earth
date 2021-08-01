@@ -25,7 +25,7 @@
 <!--    Экраны на homefragment-->
     <fragment
         android:id="@+id/ProfileScreen"
-        android:name="github.earth.homescreen.ProfileFragment"
+        android:name="github.earth.settingsscreen.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action

@@ -19,6 +19,7 @@ import github.earth.MainActivity
 import github.earth.R
 import github.earth.models.User
 import github.earth.utils.LOG_REGISTER_ACTIVITY
+import github.earth.utils.showToast
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.*
 

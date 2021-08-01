@@ -20,7 +20,31 @@ class FirebaseHelper(private val activity: FragmentActivity?) {
     val storage: StorageReference =  FirebaseStorage.getInstance().reference
 
 
-  
+    fun uploadUserPhoto(photo: Uri, onSuccess: (UploadTask.TaskSnapshot) -> Unit) {
+        storage.child("users/${currentUid()!!}/photo").putFile(photo)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    it.result?.let { it1 -> onSuccess(it1) }
+                } else {
+                    if (activity != null) {
+                        activity.showToast(it.exception!!.message!!)
+                    }
+                }
+            }
+    }
+
+    fun updateUserPhoto(photoUrl: String, onSuccess: () -> Unit) {
+        database.child("users/${currentUid()!!}/photo").setValue(photoUrl)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    onSuccess()
+                } else {
+                    if (activity != null) {
+                        activity.showToast(it.exception!!.message!!)
+                    }
+                }
+            }
+    }
     
     fun updateUser(updates: Map<String, Any?>, onSuccess: () -> Unit) {
         database.child("users").child(currentUid()!!).updateChildren(updates)
@@ -93,7 +117,3 @@ class FirebaseHelper(private val activity: FragmentActivity?) {
 
 }
 
-
-fun Context.showToast(text: String, duration: Int = Toast.LENGTH_SHORT ){
-    Toast.makeText(this, text, duration).show()
-}

@@ -19,11 +19,21 @@
     <string name="signup" translatable="false">Signup</string>
     <string name="password">Password</string>
 
+    <string name="iconChangeWarning">Attention! This function is not stable,
+        if the application starts to work incorrectly or stops starting,
+        please reinstall it!</string>
+
+    <!-- Error -->
     <string name="oops">Oops…</string>
     <string name="error_joke">The earth is spinning too fast</string>
-    
+
+    <!-- Settings -->
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
     <string name="General">General</string>
-    <string name="Language">General</string>
-    <string name="Theme">General</string>
+    <string name="Language">Language</string>
+    <string name="Theme">Theme</string>
+    <string name="App_Icon">App Icon</string>
+    <string name="LogOut">Log Out</string>
 
 </resources>

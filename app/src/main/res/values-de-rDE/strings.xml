@@ -15,4 +15,14 @@
     <string name="password">Passwort</string>
     <string name="oops">oops</string>
     <string name="error_joke">Sieht so aus, als würde sich die Erde zu schnell drehen</string>
+    <string name="title_sharephoto">Foto teilen</string>
+    <string name="title_profile">Profil</string>
+    <string name="General">Allgemein</string>
+    <string name="Language">Sprache</string>
+    <string name="Theme">Thema</string>
+    <string name="App_Icon">App-Symbol</string>
+    <string name="LogOut">Ausloggen</string>
+    <string name="Username">Nutzername</string>
+    <string name="Email">Email</string>
+    <string name="iconChangeWarning">" Aufmerksamkeit! Diese Funktion ist nicht stabil, wenn die Anwendung nicht richtig funktioniert oder nicht mehr startet, installieren Sie sie bitte neu!"</string>
 </resources>

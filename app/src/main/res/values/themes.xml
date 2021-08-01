@@ -1,5 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
+
     <style name="Theme.Earth" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/splash_background</item>
@@ -13,7 +15,23 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">@color/background_day</item>
+        <item name="android:windowBackground">@color/background_day</item>
+
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
     </style>
+
+    <!-- Bottom Navigation -->
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <!-- Buttons -->
 
     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="iconPadding">0dp</item>
@@ -24,6 +42,8 @@
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
     </style>
+
+    <!-- Splash -->
 
     <style name="AppSplashTheme" parent="Theme.Earth">
         <item name="android:windowBackground">@drawable/splash_screen</item>

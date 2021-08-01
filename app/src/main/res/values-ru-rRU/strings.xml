@@ -15,4 +15,14 @@
     <string name="title_settings" translatable="false">Настройки</string>
     <string name="oops">Уупс…</string>
     <string name="error_joke">Похоже, земля вращается слишком быстро</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_sharephoto">Поделиться фото</string>
+    <string name="General">Общие</string>
+    <string name="Language">Язык</string>
+    <string name="Theme">Тема</string>
+    <string name="App_Icon">Значок приложения</string>
+    <string name="LogOut">Выйти</string>
+    <string name="Username">Имя пользователя</string>
+    <string name="Email">Эл. Почта</string>
+    <string name="iconChangeWarning">Внимание! Данная функция не является стабильной, если приложение начало неправильно работать или перестало запускаться, переустановите его!</string>
 </resources>

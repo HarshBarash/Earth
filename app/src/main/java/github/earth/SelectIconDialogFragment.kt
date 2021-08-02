@@ -13,24 +13,24 @@ import github.earth.utils.*
 
 class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
 
-    private lateinit var ivIcDef: ImageView
-    private lateinit var ivIcPurple: ImageView
-    private lateinit var ivIcPink: ImageView
-    private lateinit var ivIcGreen: ImageView
-    private lateinit var ivIcRed: ImageView
-    private lateinit var ivIcBeige: ImageView
-    private lateinit var ivIcLightPink: ImageView
-    private lateinit var ivIcYellow: ImageView
-    private lateinit var ivIcBlue: ImageView
-    private lateinit var ivIcGray: ImageView
-    private lateinit var ivIcOrange: ImageView
+    private lateinit var ivIcDef        : ImageView
+    private lateinit var ivIcPurple     : ImageView
+    private lateinit var ivIcPink       : ImageView
+    private lateinit var ivIcGreen      : ImageView
+    private lateinit var ivIcRed        : ImageView
+    private lateinit var ivIcBeige      : ImageView
+    private lateinit var ivIcLightPink  : ImageView
+    private lateinit var ivIcYellow     : ImageView
+    private lateinit var ivIcBlue       : ImageView
+    private lateinit var ivIcGray       : ImageView
+    private lateinit var ivIcOrange     : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView : View = inflater.inflate(R.layout.fragment_app_icon, container)
+        val rootView : View = inflater.inflate(R.layout.fragment_app_icon_dialog, container)
 
         ivIcDef = rootView.findViewById(R.id.ivIcDef)
         ivIcPurple = rootView.findViewById(R.id.ivIcPurple)
@@ -46,13 +46,11 @@ class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
 
         listenSetter()
 
-        //rootView.ivIcViolet.setOnClickListener { (activity as MainActivity).changeIcon(IC_VIOLET) }
-
         return rootView
     }
 
     override fun onClick(v: View?) {
-        Toast.makeText(requireContext(), "Good choice!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
         when (v?.id) {
             R.id.ivIcDef -> (activity as MainActivity).changeIcon(IC_DEFAULT)
             R.id.ivIcPurple -> (activity as MainActivity).changeIcon(IC_PURPLE)

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/_5sdp">
+
+    <TextView
+        android:id="@+id/tvDialogTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select new icon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App will be restarted after your choice"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDialogTittle" />
+
+    <TextView
+        android:id="@+id/tvWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/iconChangeWarning"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/themeDef"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_def"/>
+
+                <View
+                    android:id="@+id/themePurple"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_purple"/>
+
+                <View
+                    android:id="@+id/themePink"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_pink"/>
+
+                <View
+                    android:id="@+id/themeLightPink"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_light_pink"/>
+
+                <View
+                    android:id="@+id/themeYellow"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_yellow"/>
+
+                <View
+                    android:id="@+id/themeGray"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_gray"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/themeBlue"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_blue"/>
+
+                <View
+                    android:id="@+id/themeGreen"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_green"/>
+
+                <View
+                    android:id="@+id/themeBeige"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_beige"/>
+
+                <View
+                    android:id="@+id/themeRed"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_red"/>
+
+                <View
+                    android:id="@+id/themeOrange"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_orange"/>
+
+                <View
+                    android:id="@+id/themeLightBlue"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/main_light_blue"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

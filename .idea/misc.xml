@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-xxhdpi/bottom_sheet.xml" value="0.2348684210526316" />
         <entry key="app/src/main/res/drawable/bottom_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/bottom_sheet.xml" value="0.2348684210526316" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_top.xml" value="0.13289473684210526" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/edittext_background.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/edittext_for_changeuser.xml" value="0.2348684210526316" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_update_password.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_userchange.xml" value="0.22" />
         <entry key="app/src/main/res/layout/image_item.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.19427083333333334" />
       </map>
     </option>
   </component>

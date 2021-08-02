@@ -103,6 +103,7 @@ class SettingsFragment : Fragment(), PasswordDialog.Listener, View.OnClickListen
                 mUser = it.getValue(User::class.java)!!
                 etMail.setText(mUser.email, TextView.BufferType.EDITABLE)
                 etUsername.setText(mUser.username, TextView.BufferType.EDITABLE)
+
             })
 
         val spConfig = activity?.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE) ?: return

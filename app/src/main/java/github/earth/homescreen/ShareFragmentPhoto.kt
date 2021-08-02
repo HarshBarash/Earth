@@ -49,12 +49,12 @@ class ShareFragmentPhoto  : Fragment() {
 
         mFirebaseHelper = FirebaseHelper(activity)
         mCameraHelper = CameraHelper(requireActivity())
-        mCameraHelper.takeCameraPicture()
+//        mCameraHelper.takeCameraPicture()
 
-        view.continuebitn.setOnClickListener { share() }
+//        view.continuebitn.setOnClickListener { share() }
 
 
-        Glide.with(this).load(mCameraHelper.imageUri).centerCrop().into(imageView)
+//        Glide.with(this).load(mCameraHelper.imageUri).centerCrop().into(imageView)
 
 
 
@@ -64,25 +64,25 @@ class ShareFragmentPhoto  : Fragment() {
         return view
     }
 
-    private fun share() {
-        val imageUri = mCameraHelper.imageUri
-        if (imageUri != null) {
-            val uid = mFirebaseHelper.auth.currentUser!!.uid
-            mFirebaseHelper.uploadSharePhoto(imageUri) {
-                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.toString()
-                 it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-                    mFirebaseHelper.database.child("Feed").child(uid)
-                        .push().setValue(mkFeed(uid, imageDownloadUrl)).addOnCompleteListener {
-                            mFirebaseHelper.addSharePhoto(it.toString()) {
-                                if (it.isSuccessful) {
-                                    findNavController().navigate(R.id.action_SharePhotoScreen_to_HomeFragment)
-                                }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private fun share() {
+//        val imageUri = mCameraHelper.imageUri
+//        if (imageUri != null) {
+//            val uid = mFirebaseHelper.auth.currentUser!!.uid
+//            mFirebaseHelper.uploadSharePhoto(imageUri) {
+//                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.toString()
+//                 it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+//                    mFirebaseHelper.database.child("Feed").child(uid)
+//                        .push().setValue(mkFeed(uid, imageDownloadUrl)).addOnCompleteListener {
+//                            mFirebaseHelper.addSharePhoto(it.toString()) {
+//                                if (it.isSuccessful) {
+//                                    findNavController().navigate(R.id.action_SharePhotoScreen_to_HomeFragment)
+//                                }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private fun mkFeed(uid: String, imageDownloadUrl: String) = Feed(
         uid = uid,

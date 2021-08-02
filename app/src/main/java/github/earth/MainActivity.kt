@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    
+
     override fun onStart() {
         super.onStart()
         Log.v(LOG_MAIN_ACTIVITY, "onStart called")

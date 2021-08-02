@@ -22,7 +22,7 @@ import java.util.*
 class ShareInfoFragment : Fragment() {
 
     private lateinit var mCameraHelper: CameraHelper
-    private lateinit var mFirebaseHelper: FirebaseHelper
+//    private lateinit var mFirebaseHelper: FirebaseHelper
     private lateinit var mUser : User
     private var mImageUri: String? = null
 
@@ -36,21 +36,21 @@ class ShareInfoFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(github.earth.R.layout.fragment_sharephoto, container, false)
 
-        mFirebaseHelper = FirebaseHelper(activity)
-
-        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            it.getValue(User::class.java)!!
-        })
+//        mFirebaseHelper = FirebaseHelper(activity)
+//
+//        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
+//            it.getValue(User::class.java)!!
+//        })
         return view
     }
 
-    fun onNext(image: String, title: String, spinnerL: Spinner, spinnerM: Spinner, time :Int ) {
-        if (mCameraHelper.imageUri != null) {
-            mImageUri = mCameraHelper.imageUri.toString()
-            findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
-        } else {
-            Toast.makeText(requireView().context , "Please add a photo", Toast.LENGTH_SHORT).show()
-        }
-    }
+//    fun onNext(image: String, title: String, spinnerL: Spinner, spinnerM: Spinner, time :Int ) {
+//        if (mCameraHelper.imageUri != null) {
+//            mImageUri = mCameraHelper.imageUri.toString()
+//            findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
+//        } else {
+//            Toast.makeText(requireView().context , "Please add a photo", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
 }

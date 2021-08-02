@@ -18,6 +18,11 @@
         <action
             android:id="@+id/action_ProfileScreen_to_SettingsScreen"
             app:destination="@id/SettingsFragment"/>
+
+        <action
+            android:id="@+id/action_ProfileScreen_to_UserChangeScreen"
+            app:destination="@id/UserChange"/>
+
     </fragment>
 
 <!--    Экраны на profilefragment-->
@@ -25,5 +30,41 @@
         android:id="@+id/SettingsFragment"
         android:name="github.earth.settingsscreen.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_SettingsFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/UserChange"
+        android:name="github.earth.settingsscreen.UserChangeFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_userchange">
+        <action
+            android:id="@+id/action_UserChange_to_updatePasswordFragment"
+            app:destination="@id/updatePasswordFragment" />
+        <action
+            android:id="@+id/action_UserChange_to_updateEmailFragment"
+            app:destination="@id/updateEmailFragment" />
+        <action
+            android:id="@+id/action_UserChange_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/updatePasswordFragment"
+        android:name="github.earth.settingsscreen.UpdatePasswordFragment"
+        android:label="Update Password" tools:layout="@layout/fragment_update_password">
+
+        <action
+            android:id="@+id/action_updatePasswordFragment_to_UserChange"
+            app:destination="@id/UserChange" />
+    </fragment>
+
+    <fragment android:id="@+id/updateEmailFragment"
+        android:name="github.earth.settingsscreen.UpdateEmailFragment"
+        android:label="Update Email" tools:layout="@layout/fragment_update_email">
+        <action android:id="@+id/actionEmailUpdated"
+            app:destination="@id/UserChange"/>
+    </fragment>
 </navigation>

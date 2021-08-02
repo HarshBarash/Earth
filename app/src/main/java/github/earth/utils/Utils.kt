@@ -79,3 +79,5 @@ fun <T> task(block: (TaskCompletionSource<T>) -> Unit): Task<T> {
     return taskSource.task
 }
 
+fun DataSnapshot.asUser(): User? =
+    key?.let { getValue(User::class.java)?.copy(uid = it) }

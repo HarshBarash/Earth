@@ -17,7 +17,7 @@ import com.google.firebase.storage.UploadTask
 class FirebaseHelper(private val activity: FragmentActivity?) {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-    val storage: StorageReference =  FirebaseStorage.getInstance().reference
+    val storage: StorageReference = FirebaseStorage.getInstance().reference
 
 
     fun uploadUserPhoto(photo: Uri, onSuccess: (UploadTask.TaskSnapshot) -> Unit) {
@@ -33,6 +33,7 @@ class FirebaseHelper(private val activity: FragmentActivity?) {
             }
     }
 
+
     fun updateUserPhoto(photoUrl: String, onSuccess: () -> Unit) {
         database.child("users/${currentUid()!!}/photo").setValue(photoUrl)
             .addOnCompleteListener {
@@ -45,16 +46,16 @@ class FirebaseHelper(private val activity: FragmentActivity?) {
                 }
             }
     }
-    
+
     fun updateUser(updates: Map<String, Any?>, onSuccess: () -> Unit) {
         database.child("users").child(currentUid()!!).updateChildren(updates)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        onSuccess()
-                    } else {
-                        activity?.showToast(it.exception!!.message!!)
-                    }
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    onSuccess()
+                } else {
+                    activity?.showToast(it.exception!!.message!!)
                 }
+            }
     }
 
     fun updateEmail(email: String, onSuccess: () -> Unit) {
@@ -110,10 +111,10 @@ class FirebaseHelper(private val activity: FragmentActivity?) {
     }
 
     fun currentUserReference(): DatabaseReference =
-            database.child("users").child(currentUid()!!)
+        database.child("users").child(currentUid()!!)
 
     fun currentUid(): String? =
-            auth.currentUser?.uid
+        auth.currentUser?.uid
 
 }
 

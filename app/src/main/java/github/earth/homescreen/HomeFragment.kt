@@ -51,7 +51,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         btnPlusContent = rootView.findViewById(R.id.btnPlusContent)
         btnPlusContent.setOnClickListener(this)
         // Многоуважаемый Антон, из за синтетки здесь была ошибка
-        // Почему? Не знаю, мне насрать, делаю по своему
+        // Почему? Так как в большем кол-ве случаев юзер здесь, нежели в реге. Поэтому и линкаю сюда
 
         return rootView
     }

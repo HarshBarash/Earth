@@ -1,16 +1,14 @@
 package github.earth.settingsscreen
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.content.FileProvider
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +20,11 @@ import github.earth.R
 import github.earth.models.User
 import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
+
+import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.fragment_userchange.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -29,9 +32,15 @@ class ProfileFragment : Fragment() {
     private lateinit var mFirebaseHelper: FirebaseHelper
     private lateinit var mUser : User
     private lateinit var mPendingUser: User
-    private lateinit var mFirebase: FirebaseHelper
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
+
+    private val currentUser = FirebaseAuth.getInstance().currentUser
+
+
+    private lateinit var toChangeOne: TextView
+    private lateinit var toChangeTwo: ImageView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +51,9 @@ class ProfileFragment : Fragment() {
         mDatabase = FirebaseDatabase.getInstance().reference
         mFirebaseHelper = FirebaseHelper(activity)
 
+        mCameraHelper = CameraHelper(requireActivity())
+
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,29 +62,66 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         Log.d(LOG_PROFILE_FRAGMENT, "onCreate")
 
-        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            mUser = it.getValue(User::class.java)!!
-            username_text.text = mUser.username
-            userphoto.loadUserPhoto(mUser.photo)
-        })
+        toChangeOne = view.findViewById(R.id.username_text)
+        toChangeTwo = view.findViewById(R.id.user_photo)
 
-        images_recycler.layoutManager = GridLayoutManager(activity, 2)
-        mFirebaseHelper.database.child("images").child(mFirebaseHelper.auth.currentUser!!.uid)
+
+        // TODO: 02.08.2021 привести  все и зарефакторить
+        currentUser?.let { user ->
+            Glide.with(this)
+                .load(user.photoUrl)
+                .circleCrop()
+                .into(toChangeTwo)
+            mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
+            mUser = it.getValue(User::class.java)!!
+            view.username_text.text = mUser.username
+        })}
+
+
+//        view.userphoto.setOnClickListener({
+
+
+//        view.userphoto.setOnClickListener({
+//            (mCameraHelper.takeCameraPicture())
+//            if (mCameraHelper.imageUri!=null) {
+//                mFirebaseHelper.uploadUserPhoto(mCameraHelper.imageUri!!) {
+//                val photoUrl = it.metadata!!.reference!!.downloadUrl.toString()
+//                mFirebaseHelper.updateUserPhoto(photoUrl) {
+//                    mUser = mUser.copy(photo = photoUrl)
+//                    //метод - просто глайд снизу
+//                    Glide.with(this).load(photoUrl).into(userphoto)
+//                        //для дебага
+//                    Glide.with(this).load(photoUrl).into(userphoto)
+//
+//                        //так грузит, а с FB утянуть не может
+////                    Glide.with(this).load(mCameraHelper.imageUri).fallback(R.drawable.ic_userphoto).into(view.userphoto)
+//
+//                }}}})
+
+        view.images_recycler.layoutManager = GridLayoutManager(requireContext(), 2)
+        mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
             .addValueEventListener(ValueEventListenerAdapter {
-                val images = it.children.map { it.getValue((String::class.java)) }
-                images_recycler.adapter = ImagesAdapter(images)
+                val images = it.children.map { it.getValue(String::class.java)!! }
+                view.images_recycler.adapter = ImagesAdapter(images)
             })
 
-        mCameraHelper = CameraHelper(requireActivity())
 
+        toChangeOne.setOnClickListener({
+            Navigation.findNavController(view)
+                .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
 
-        userphoto.setOnClickListener({
-            (mCameraHelper.takeCameraPicture())
         })
 
-        return view
+        toChangeTwo.setOnClickListener({
+            Navigation.findNavController(view)
+                .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
+        })
+
+            return view
     }
 }
+
+
 
 
 class ImagesAdapter(private val images: List<String?>) :
@@ -96,9 +145,12 @@ class ImagesAdapter(private val images: List<String?>) :
     }
 }
 
+
 class SquareImageView(context: Context, attrs: AttributeSet) :
     androidx.appcompat.widget.AppCompatImageView (context, attrs) {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
     }
+
+

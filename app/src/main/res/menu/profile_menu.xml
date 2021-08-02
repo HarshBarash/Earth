@@ -4,14 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/sorting"
-        android:icon="@drawable/ic_baseline_edit_24"
-        android:title="@string/title_sorting"
-        app:showAsAction="ifRoom"
-        />
-    <item
-        android:id="@+id/stats"
-        android:title="@string/title_stats"
+        android:id="@+id/settings"
+        android:title=""
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_settings_24"/>
 

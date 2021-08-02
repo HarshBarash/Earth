@@ -25,4 +25,9 @@
     <string name="Username">Имя пользователя</string>
     <string name="Email">Эл. Почта</string>
     <string name="iconChangeWarning">Внимание! Данная функция не является стабильной, если приложение начало неправильно работать или перестало запускаться, переустановите его!</string>
+    <string name="choice">Отличный выбор!</string>
+    <string name="selectNewIcon">Выберите изображение</string>
+    <string name="newIconNotice">После выбора приложение будет перезапущено</string>
+    <string name="newThemeNotice">Изменения вступят в силу после сохранения</string>
+    <string name="selectNewTheme">Выберите тему</string>
 </resources>

@@ -52,17 +52,17 @@ class SelectThemeDialogFragment: DialogFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
         when (v?.id) {
-            R.id.themeDef       -> (activity as MainActivity).changeIcon(IC_DEFAULT)
-            R.id.themePurple    -> (activity as MainActivity).changeIcon(IC_PURPLE)
-            R.id.themePink      -> (activity as MainActivity).changeIcon(IC_PINK)
-            R.id.themeGreen     -> (activity as MainActivity).changeIcon(IC_GREEN)
-            R.id.themeBlue      -> (activity as MainActivity).changeIcon(IC_BLUE)
-            R.id.themeOrange    -> (activity as MainActivity).changeIcon(IC_ORANGE)
-            R.id.themeGray      -> (activity as MainActivity).changeIcon(IC_GRAY)
-            R.id.themeYellow    -> (activity as MainActivity).changeIcon(IC_YELLOW)
-            R.id.themeRed       -> (activity as MainActivity).changeIcon(IC_RED)
-            R.id.themeLightPink -> (activity as MainActivity).changeIcon(IC_LIGHT_PINK)
-            R.id.themeBeige     -> (activity as MainActivity).changeIcon(IC_BEIGE)
+            R.id.themeDef       -> {}
+            R.id.themePurple    -> {}
+            R.id.themePink      -> {}
+            R.id.themeGreen     -> {}
+            R.id.themeBlue      -> {}
+            R.id.themeOrange    -> {}
+            R.id.themeGray      -> {}
+            R.id.themeYellow    -> {}
+            R.id.themeRed       -> {}
+            R.id.themeLightPink -> {}
+            R.id.themeBeige     -> {}
             else -> Toast.makeText(requireContext(), "Nothing selected", Toast.LENGTH_SHORT).show()
         }
         dismiss()

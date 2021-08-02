@@ -45,90 +45,6 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardGeneral"
-                app:cardElevation="6dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_15sdp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_5sdp">
-
-                    <TextView
-                        android:id="@+id/tvCardProfileTittle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title_profile"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textSize="@dimen/_20ssp" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tfUsername"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
-                        app:boxCornerRadiusBottomStart="@dimen/_15sdp"
-                        app:boxCornerRadiusTopEnd="@dimen/_15sdp"
-                        app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                        app:endIconMode="clear_text"
-                        app:startIconDrawable="@drawable/ic_baseline_account_box_24">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etUsername"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/Username"
-                            android:inputType="textPersonName"
-                            android:textSize="@dimen/_16ssp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tfName"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_1sdp"
-                        app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
-                        app:boxCornerRadiusBottomStart="@dimen/_15sdp"
-                        app:boxCornerRadiusTopEnd="@dimen/_15sdp"
-                        app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                        app:endIconMode="clear_text"
-                        app:startIconDrawable="@drawable/ic_baseline_email_24">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etMail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/Email"
-                            android:inputType="textEmailAddress"
-                            android:textSize="@dimen/_16ssp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/btnLogOut"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="15dp"
-                        android:padding="5dp"
-                        android:text="@string/LogOut"
-                        android:textColor="@color/app_basic_light_blue_color"
-                        app:icon="@drawable/ic_logout"
-                        app:iconTint="@color/app_basic_light_blue_color" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardAdvanced"
                 app:cardElevation="6dp"
                 android:layout_width="match_parent"
@@ -198,20 +114,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <View
-                                android:id="@+id/vOtherSelectedByUserTheme"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:backgroundTint="@color/app_basic_light_green_color"
-                                android:visibility="gone"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/vBasicColorLightBlue"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                            </View>
-
-                            <View
-                                android:id="@+id/vBasicColorLightBlue"
+                                android:id="@+id/vSelectedTheme"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginEnd="16dp"
@@ -235,6 +138,7 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:layout_marginEnd="8dp"
+                                    android:backgroundTint="@color/main_orange"
                                     android:background="@drawable/circle"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs7"
                                     app:layout_constraintEnd_toStartOf="@+id/vClrs4"
@@ -245,6 +149,7 @@
                                     android:id="@+id/vClrs2"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
+                                    android:backgroundTint="@color/main_blue"
                                     android:background="@drawable/circle"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -256,6 +161,7 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:layout_marginEnd="8dp"
+                                    android:backgroundTint="@color/main_red"
                                     android:background="@drawable/circle"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs2"
                                     app:layout_constraintEnd_toStartOf="@+id/vClrs5"
@@ -268,6 +174,7 @@
                                     android:layout_height="14dp"
                                     android:layout_marginStart="8dp"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_green"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs7"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/vClrs1"
@@ -279,6 +186,7 @@
                                     android:layout_height="14dp"
                                     android:layout_marginStart="8dp"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_beige"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs2"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/vClrs3"
@@ -288,6 +196,7 @@
                                     android:id="@+id/vClrs6"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
+                                    android:backgroundTint="@color/main_yellow"
                                     android:background="@drawable/circle"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs7"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -298,6 +207,7 @@
                                     android:id="@+id/vClrs7"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
+                                    android:backgroundTint="@color/main_pink"
                                     android:background="@drawable/circle"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs2"
                                     app:layout_constraintEnd_toEndOf="parent"

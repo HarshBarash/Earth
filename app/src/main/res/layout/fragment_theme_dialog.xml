@@ -11,9 +11,11 @@
         android:id="@+id/tvDialogTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select new icon"
+        android:text="@string/selectNewTheme"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="@dimen/_20ssp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,17 +24,8 @@
         android:id="@+id/tvNotice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="App will be restarted after your choice"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDialogTittle" />
-
-    <TextView
-        android:id="@+id/tvWarning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/iconChangeWarning"
+        android:text="@string/newThemeNotice"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +55,7 @@
                     android:id="@+id/themeDef"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_def"/>
 
@@ -70,7 +63,7 @@
                     android:id="@+id/themePurple"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_purple"/>
 
@@ -78,7 +71,7 @@
                     android:id="@+id/themePink"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_pink"/>
 
@@ -86,7 +79,7 @@
                     android:id="@+id/themeLightPink"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_light_pink"/>
 
@@ -94,7 +87,7 @@
                     android:id="@+id/themeYellow"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_yellow"/>
 
@@ -102,7 +95,7 @@
                     android:id="@+id/themeGray"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_gray"/>
 
@@ -117,7 +110,7 @@
                     android:id="@+id/themeBlue"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_blue"/>
 
@@ -125,7 +118,7 @@
                     android:id="@+id/themeGreen"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_green"/>
 
@@ -133,7 +126,7 @@
                     android:id="@+id/themeBeige"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_beige"/>
 
@@ -141,7 +134,7 @@
                     android:id="@+id/themeRed"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_red"/>
 
@@ -149,7 +142,7 @@
                     android:id="@+id/themeOrange"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_orange"/>
 
@@ -157,7 +150,7 @@
                     android:id="@+id/themeLightBlue"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:padding="@dimen/_2sdp"
+                    android:layout_margin="@dimen/_2sdp"
                     android:background="@drawable/circle"
                     android:backgroundTint="@color/main_light_blue"/>
 

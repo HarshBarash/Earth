@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +41,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var toChangeOne: TextView
     private lateinit var toChangeTwo: ImageView
-
+    private lateinit var topAppBar: com.google.android.material.appbar.MaterialToolbar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +61,11 @@ class ProfileFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        Log.d(LOG_PROFILE_FRAGMENT, "onCreate")
+        Log.d(LOG_PROFILE_FRAGMENT, "onCreateView called")
 
         toChangeOne = view.findViewById(R.id.username_text)
         toChangeTwo = view.findViewById(R.id.user_photo)
-
+        topAppBar   = view.findViewById(R.id.topAppBar)
 
         // TODO: 02.08.2021 привести  все и зарефакторить
         currentUser?.let { user ->
@@ -97,6 +98,15 @@ class ProfileFragment : Fragment() {
 ////                    Glide.with(this).load(mCameraHelper.imageUri).fallback(R.drawable.ic_userphoto).into(view.userphoto)
 //
 //                }}}})
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.settings -> {
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_ProfileScreen_to_SettingsScreen)
+                    true
+                }
+                else -> false
+            } }
 
         view.images_recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
@@ -106,18 +116,17 @@ class ProfileFragment : Fragment() {
             })
 
 
-        toChangeOne.setOnClickListener({
+        toChangeOne.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
+        }
 
-        })
-
-        toChangeTwo.setOnClickListener({
+        toChangeTwo.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
-        })
+        }
 
-            return view
+        return view
     }
 }
 

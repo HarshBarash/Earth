@@ -25,4 +25,9 @@
     <string name="Username">Nutzername</string>
     <string name="Email">Email</string>
     <string name="iconChangeWarning">" Aufmerksamkeit! Diese Funktion ist nicht stabil, wenn die Anwendung nicht richtig funktioniert oder nicht mehr startet, installieren Sie sie bitte neu!"</string>
+    <string name="choice">" Gute Wahl!"</string>
+    <string name="selectNewIcon">Neues Symbol auswählen</string>
+    <string name="newIconNotice">" App wird nach Ihrer Wahl neu gestartet"</string>
+    <string name="newThemeNotice">Änderungen werden nach dem Speichern wirksam</string>
+    <string name="selectNewTheme">Neues Thema auswählen</string>
 </resources>

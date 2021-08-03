@@ -7,4 +7,5 @@
     android:ellipsize="end"
     android:textSize="@dimen/_16ssp"
     android:maxLines="1"
+    android:textColor="?android:attr/textColorSecondary"
     android:textAppearance="?attr/textAppearanceSubtitle1" />

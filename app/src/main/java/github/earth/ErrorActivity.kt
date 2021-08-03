@@ -31,7 +31,7 @@ class ErrorActivity : AppCompatActivity() {
         ivEarth = findViewById(R.id.ivEarth)
 
         val rotation = AnimationUtils.loadAnimation(
-                this, R.anim.earth_rotation);
+                this, R.anim.earth_rotation)
 
         ivEarth.startAnimation(rotation)
 

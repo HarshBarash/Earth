@@ -36,4 +36,11 @@
     <string name="App_Icon">App Icon</string>
     <string name="LogOut">Log Out</string>
 
+    <string name="choice">Good choice!</string>
+
+    <string name="selectNewIcon">Select new icon</string>
+    <string name="selectNewTheme">Select new theme</string>
+    <string name="newIconNotice">App will be restarted after your choice</string>
+    <string name="newThemeNotice">Changes will take effect after saving</string>
+
 </resources>

@@ -13,13 +13,17 @@
         <entry key="app/src/main/res/drawable/edittext_for_changeuser.xml" value="0.2348684210526316" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.2348684210526316" />
         <entry key="app/src/main/res/drawable/white_btn.xml" value="0.2348684210526316" />
+        <entry key="app/src/main/res/layout-sw600dp/activity_login.xml" value="0.266796875" />
         <entry key="app/src/main/res/layout-v23/fragment_update_email.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout-v23/fragment_update_password.xml" value="0.22467105263157894" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2995614035087719" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2995614035087719" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.22467105263157894" />
-        <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.6412825651302605" />
+        <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_sharelink.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.22467105263157894" />

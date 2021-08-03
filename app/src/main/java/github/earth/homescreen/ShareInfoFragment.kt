@@ -1,56 +1,74 @@
 package github.earth.homescreen
 
-import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import github.earth.R
 import github.earth.models.User
-import github.earth.utils.CameraHelper
-import github.earth.utils.FirebaseHelper
-import github.earth.utils.ValueEventListenerAdapter
-import java.text.SimpleDateFormat
-import java.util.*
+import github.earth.utils.*
+import kotlinx.android.synthetic.main.fragment_shareinfo.*
 
 class ShareInfoFragment : Fragment() {
 
-    private lateinit var mCameraHelper: CameraHelper
-//    private lateinit var mFirebaseHelper: FirebaseHelper
-    private lateinit var mUser : User
-    private var mImageUri: String? = null
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDatabase: DatabaseReference
 
-    var imageUri: Uri? = null
+    private lateinit var mFirebaseHelper: FirebaseHelper
+    private lateinit var mUser: User
 
-    private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.v(LOG_PROFILE_FRAGMENT, "onCreate called")
 
+        mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
+        mFirebaseHelper = FirebaseHelper(activity)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(github.earth.R.layout.fragment_sharephoto, container, false)
-
-//        mFirebaseHelper = FirebaseHelper(activity)
-//
-//        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-//            it.getValue(User::class.java)!!
-//        })
-        return view
+        mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
+            mUser = it.asUser()!!
+        })
     }
 
-//    fun onNext(image: String, title: String, spinnerL: Spinner, spinnerM: Spinner, time :Int ) {
-//        if (mCameraHelper.imageUri != null) {
-//            mImageUri = mCameraHelper.imageUri.toString()
-//            findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
-//        } else {
-//            Toast.makeText(requireView().context , "Please add a photo", Toast.LENGTH_SHORT).show()
-//        }
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_shareinfo, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bundle = Bundle()
+
+        nextbtntwo.setOnClickListener({
+            if (!TextUtils.isEmpty(etTitle.getText()) &&
+                !TextUtils.isEmpty(etMaterials.getText()) &&
+                !TextUtils.isEmpty(etTime.getText())) {
+                bundle.putString(
+                    "Title", etTitle.toString())
+                bundle.putString(
+                    "Materials", etMaterials.toString())
+                bundle.putString(
+                    "Time", etTime.toString()
+                    )
+                findNavController().navigate(R.id.action_shareInfoFragment_to_shareLinkFragment)
+            } else {
+                requireActivity().showToast("Please enter data")
+            }
+        })
+    }
 }
+

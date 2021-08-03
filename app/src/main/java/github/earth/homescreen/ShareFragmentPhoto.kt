@@ -1,11 +1,14 @@
 package github.earth.homescreen
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,78 +20,89 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.ServerValue
 import github.earth.R
 import github.earth.models.User
-import github.earth.utils.CameraHelper
-import github.earth.utils.FirebaseHelper
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ImageView
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import github.earth.utils.ValueEventListenerAdapter
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import github.earth.models.Feed
+import github.earth.utils.*
+import kotlinx.android.synthetic.main.fragment_sharephoto.*
 import kotlinx.android.synthetic.main.fragment_sharephoto.view.*
 
 
 class ShareFragmentPhoto  : Fragment() {
 
+
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDatabase: DatabaseReference
+
     private lateinit var mCameraHelper: CameraHelper
     private lateinit var mFirebaseHelper: FirebaseHelper
-    private lateinit var mUser : User
-    private var mImageUri: String? = null
+    private lateinit var mUser: User
 
-    var imageUri: Uri? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.v(LOG_SHARE_PHOTO_FRAGMENT, "onCreate called")
 
-    private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(github.earth.R.layout.fragment_sharephoto, container, false)
-
-        val imageView: ImageView = view.findViewById(github.earth.R.id.tutorial_image)
-
+        mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
         mFirebaseHelper = FirebaseHelper(activity)
+
         mCameraHelper = CameraHelper(requireActivity())
-//        mCameraHelper.takeCameraPicture()
-
-//        view.continuebitn.setOnClickListener { share() }
-
-
-//        Glide.with(this).load(mCameraHelper.imageUri).centerCrop().into(imageView)
-
+        mCameraHelper.takeCameraPicture()
 
 
         mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            it.getValue(User::class.java)!!
+            mUser = it.asUser()!!
         })
-        return view
     }
 
-//    private fun share() {
-//        val imageUri = mCameraHelper.imageUri
-//        if (imageUri != null) {
-//            val uid = mFirebaseHelper.auth.currentUser!!.uid
-//            mFirebaseHelper.uploadSharePhoto(imageUri) {
-//                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.toString()
-//                 it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-//                    mFirebaseHelper.database.child("Feed").child(uid)
-//                        .push().setValue(mkFeed(uid, imageDownloadUrl)).addOnCompleteListener {
-//                            mFirebaseHelper.addSharePhoto(it.toString()) {
-//                                if (it.isSuccessful) {
-//                                    findNavController().navigate(R.id.action_SharePhotoScreen_to_HomeFragment)
-//                                }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_sharephoto, container, false)
+    }
 
-    private fun mkFeed(uid: String, imageDownloadUrl: String) = Feed(
-        uid = uid,
-        image = imageDownloadUrl,
-    //                            title = title.text.toString()
-    )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val imageView: ImageView = view.findViewById(R.id.tutorial_image)
+        val bundle = Bundle()
+
+
+        imageView.setOnClickListener({ mCameraHelper.takeCameraPicture() })
+
+        Glide.with(this).load(mCameraHelper.imageUri).centerCrop()
+            .transform(
+                CenterCrop(),
+                RoundedCorners(15)
+            ).into(imageView)
+
+        nextbuttonone.setOnClickListener({
+            val ImageUri = mCameraHelper.imageUri
+            if (ImageUri != null) {
+                bundle.putString("ImageUri", ImageUri.toString())
+                findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
+            } else {
+                requireActivity().showToast("Please make photo")
+            }
+        })
+    }
+}
+
+
+
 
 
 //    private fun share() {
@@ -113,18 +127,6 @@ class ShareFragmentPhoto  : Fragment() {
 //        }
 //    }
 
-//занести spinner
-
-            data class Feed(
-                val uid: String = "", val username: String = "", val image: String = "",
-                val title: String = "", val tutorial: String = "", val materals: String ="",
-                val level: String="", val time: Int = 1, val likesCount: Int = 0,
-                val timestamp: Any = ServerValue.TIMESTAMP
-            ) {
-
-                fun fimestampDate(): Date = Date(timestamp as Long)
-            }
-}
 
 
 

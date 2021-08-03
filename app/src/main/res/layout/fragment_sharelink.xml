@@ -32,10 +32,10 @@
         android:layout_marginTop="24dp"
         android:text="Write down how to do this:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_23ssp"
+        android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletwo"
         tools:ignore="MissingConstraints">
@@ -43,16 +43,17 @@
     </TextView>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etTutorial"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_260sdp"
+        android:layout_height="@dimen/_225sdp"
         android:layout_margin="@dimen/_12sdp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/white_btn"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/TVTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVTitle"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp">
+        tools:ignore="MissingConstraints">
 
 
     </EditText>
@@ -63,18 +64,18 @@
         android:layout_height="wrap_content"
         android:text="Video from Youtube:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_26ssp"
+        android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="489dp">
+        app:layout_constraintTop_toBottomOf="@+id/etTutorial"
+        tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etTime"
+        android:id="@+id/etLink"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_49sdp"
         android:layout_margin="@dimen/_12sdp"
@@ -93,20 +94,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="@dimen/_12sdp"
-        android:layout_marginBottom="36dp"
         android:background="@drawable/white_btn"
         android:gravity="bottom|center"
         android:text="Publish"
         android:textColor="#000000"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTime"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/etLink" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

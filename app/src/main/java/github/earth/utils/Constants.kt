@@ -16,6 +16,19 @@ const val IC_ORANGE                 = "Orange"
 const val IC_GREEN                  = "Green"
 const val IC_BLUE                   = "Blue"
 
+const val THEME_DEFAULT             = "Default"
+const val THEME_PURPLE              = "Purple"
+const val THEME_BEIGE               = "Beige"
+const val THEME_GRAY                = "Gray"
+const val THEME_PINK                = "Pink"
+const val THEME_LIGHT_PINK          = "LightPink"
+const val THEME_RED                 = "Red"
+const val THEME_YELLOW              = "Yellow"
+const val THEME_ORANGE              = "Orange"
+const val THEME_GREEN               = "Green"
+const val THEME_BLUE                = "Blue"
+const val THEME_LIGHT_BLUE          = "LightBlue"
+
 const val IC_DEFAULT_LAUNCHER       = "github.earth.SplashScreen"
 const val IC_PURPLE_LAUNCHER        = "github.earth.SplashScreen.LauncherPurple"
 const val IC_BEIGE_LAUNCHER         = "github.earth.SplashScreen.LauncherBeige"
@@ -55,16 +68,18 @@ const val SETTINGS_LANGUAGE         = "Language"
 const val SETTINGS_THEME            = "Theme"
 const val SETTINGS_APP_ICON         = "AppIcon"
 
+/******************************************| .Languages |******************************************/
+
+const val ENGLISH                   = "en"
+const val RUSSIAN                   = "ru"
+const val GERMAN                    = "de"
+
 /********************************************| .Other |********************************************/
 
 const val LOG_VEL                   = "ValueEventListener"
 
 const val DISABLE                   = "Disable"
 const val ENABLE                    = "Enable"
-
-const val ENGLISH                   = "en"
-const val RUSSIAN                   = "ru"
-const val GERMAN                    = "de"
 
 
 /* Алексей призывает вас соблюдать чистату и порядок!

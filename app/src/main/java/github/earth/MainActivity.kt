@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setCustomTheme()
         super.onCreate(savedInstanceState)
         setLanguage()
         setContentView(R.layout.activity_main)
@@ -105,17 +107,17 @@ class MainActivity : AppCompatActivity() {
         sp.edit().putString(SETTINGS_APP_ICON, iconName).apply()
 
         when (iconName) {
-            IC_DEFAULT -> enableIcon(IC_DEFAULT_LAUNCHER, packageManager)
-            IC_PURPLE -> enableIcon(IC_PURPLE_LAUNCHER, packageManager)
-            IC_BEIGE -> enableIcon(IC_BEIGE_LAUNCHER, packageManager)
-            IC_GRAY -> enableIcon(IC_GRAY_LAUNCHER, packageManager)
-            IC_PINK -> enableIcon(IC_PINK_LAUNCHER, packageManager)
-            IC_LIGHT_PINK -> enableIcon(IC_LIGHT_PINK_LAUNCHER, packageManager)
-            IC_RED -> enableIcon(IC_RED_LAUNCHER, packageManager)
-            IC_YELLOW -> enableIcon(IC_YELLOW_LAUNCHER, packageManager)
-            IC_ORANGE -> enableIcon(IC_ORANGE_LAUNCHER, packageManager)
-            IC_GREEN -> enableIcon(IC_GREEN_LAUNCHER, packageManager)
-            IC_BLUE -> enableIcon(IC_BLUE_LAUNCHER, packageManager)
+            IC_DEFAULT      -> enableIcon(IC_DEFAULT_LAUNCHER, packageManager)
+            IC_PURPLE       -> enableIcon(IC_PURPLE_LAUNCHER, packageManager)
+            IC_BEIGE        -> enableIcon(IC_BEIGE_LAUNCHER, packageManager)
+            IC_GRAY         -> enableIcon(IC_GRAY_LAUNCHER, packageManager)
+            IC_PINK         -> enableIcon(IC_PINK_LAUNCHER, packageManager)
+            IC_LIGHT_PINK   -> enableIcon(IC_LIGHT_PINK_LAUNCHER, packageManager)
+            IC_RED          -> enableIcon(IC_RED_LAUNCHER, packageManager)
+            IC_YELLOW       -> enableIcon(IC_YELLOW_LAUNCHER, packageManager)
+            IC_ORANGE       -> enableIcon(IC_ORANGE_LAUNCHER, packageManager)
+            IC_GREEN        -> enableIcon(IC_GREEN_LAUNCHER, packageManager)
+            IC_BLUE         -> enableIcon(IC_BLUE_LAUNCHER, packageManager)
         }
     }
 
@@ -133,6 +135,31 @@ class MainActivity : AppCompatActivity() {
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP
             )
+        }
+
+        private fun setCustomTheme() {
+            val sp = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE)
+            val currentTheme = sp.getString(SETTINGS_THEME, THEME_DEFAULT)
+
+            if (currentTheme != THEME_DEFAULT) {
+                when (currentTheme) {
+                    THEME_GREEN         -> { setTheme(R.style.Theme_Earth_Green)        }
+                    THEME_PURPLE        -> { setTheme(R.style.Theme_Earth_Purple)       }
+                    THEME_BEIGE         -> { setTheme(R.style.Theme_Earth_Beige)        }
+                    THEME_ORANGE        -> { setTheme(R.style.Theme_Earth_Orange)       }
+                    THEME_YELLOW        -> { setTheme(R.style.Theme_Earth_Yellow)       }
+                    THEME_RED           -> { setTheme(R.style.Theme_Earth_Red)          }
+                    THEME_GRAY          -> { setTheme(R.style.Theme_Earth_Gray)         }
+                    THEME_PINK          -> { setTheme(R.style.Theme_Earth_Pink)         }
+                    THEME_LIGHT_PINK    -> { setTheme(R.style.Theme_Earth_LightPink)    }
+                    THEME_BLUE          -> { setTheme(R.style.Theme_Earth_Blue)         }
+                    THEME_LIGHT_BLUE    -> { setTheme(R.style.Theme_Earth_LightBlue)    }
+                }
+            }
+            else {
+                return
+            }
+
         }
 
         private fun setLanguage() {

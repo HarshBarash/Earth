@@ -42,5 +42,6 @@
     <string name="selectNewTheme">Select new theme</string>
     <string name="newIconNotice">App will be restarted after your choice</string>
     <string name="newThemeNotice">Changes will take effect after saving</string>
+    <string name="alreadySelectedIcon">You have already selected this icon</string>
 
 </resources>

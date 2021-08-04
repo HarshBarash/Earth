@@ -32,17 +32,17 @@ class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
     ): View? {
         val rootView : View = inflater.inflate(R.layout.fragment_app_icon_dialog, container)
 
-        ivIcDef = rootView.findViewById(R.id.ivIcDef)
-        ivIcPurple = rootView.findViewById(R.id.ivIcPurple)
-        ivIcPink = rootView.findViewById(R.id.ivIcPink)
-        ivIcGreen = rootView.findViewById(R.id.ivIcGreen)
-        ivIcBlue = rootView.findViewById(R.id.ivIcBlue)
-        ivIcBeige = rootView.findViewById(R.id.ivIcBeige)
-        ivIcLightPink = rootView.findViewById(R.id.ivIcLightPink)
-        ivIcRed = rootView.findViewById(R.id.ivIcRed)
-        ivIcYellow = rootView.findViewById(R.id.ivIcYellow)
-        ivIcGray = rootView.findViewById(R.id.ivIcGray)
-        ivIcOrange = rootView.findViewById(R.id.ivIcOrange)
+        ivIcDef         = rootView.findViewById(R.id.ivIcDef)
+        ivIcPurple      = rootView.findViewById(R.id.ivIcPurple)
+        ivIcPink        = rootView.findViewById(R.id.ivIcPink)
+        ivIcGreen       = rootView.findViewById(R.id.ivIcGreen)
+        ivIcBlue        = rootView.findViewById(R.id.ivIcBlue)
+        ivIcBeige       = rootView.findViewById(R.id.ivIcBeige)
+        ivIcLightPink   = rootView.findViewById(R.id.ivIcLightPink)
+        ivIcRed         = rootView.findViewById(R.id.ivIcRed)
+        ivIcYellow      = rootView.findViewById(R.id.ivIcYellow)
+        ivIcGray        = rootView.findViewById(R.id.ivIcGray)
+        ivIcOrange      = rootView.findViewById(R.id.ivIcOrange)
 
         listenSetter()
 
@@ -50,8 +50,9 @@ class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
         when (v?.id) {
+
             R.id.ivIcDef        -> (activity as MainActivity).changeIcon(IC_DEFAULT)
             R.id.ivIcPurple     -> (activity as MainActivity).changeIcon(IC_PURPLE)
             R.id.ivIcPink       -> (activity as MainActivity).changeIcon(IC_PINK)
@@ -63,6 +64,7 @@ class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
             R.id.ivIcRed        -> (activity as MainActivity).changeIcon(IC_RED)
             R.id.ivIcLightPink  -> (activity as MainActivity).changeIcon(IC_LIGHT_PINK)
             R.id.ivIcBeige      -> (activity as MainActivity).changeIcon(IC_BEIGE)
+
             else -> Toast.makeText(requireContext(), "Nothing selected", Toast.LENGTH_SHORT).show()
         }
         dismiss()

@@ -13,13 +13,12 @@
         android:name="github.earth.homescreen.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_home_to_profile"
-            app:destination="@id/ProfileScreen"/>
         <action
             android:id="@+id/action_HomeFragment_to_SharePhotoScreen"
             app:destination="@id/SharePhotoScreen" />
+        <action
+            android:id="@+id/action_HomeFragment_to_ProfileScreen"
+            app:destination="@id/ProfileScreen" />
     </fragment>
 
 <!--    Экраны на homefragment-->
@@ -27,11 +26,7 @@
         android:id="@+id/ProfileScreen"
         android:name="github.earth.settingsscreen.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_ProfileScreen_to_SharePhotoScreen"
-            app:destination="@id/SharePhotoScreen" />
-    </fragment>
+        tools:layout="@layout/fragment_profile"/>
 
     <fragment
         android:id="@+id/SharePhotoScreen"
@@ -44,6 +39,7 @@
         <action
             android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+        <argument android:name="ImageUri" />
     </fragment>
     <fragment
         android:id="@+id/shareInfoFragment"
@@ -56,6 +52,10 @@
         <action
             android:id="@+id/action_shareInfoFragment_to_SharePhotoScreen"
             app:destination="@id/SharePhotoScreen" />
+        <argument android:name="Title" />
+        <argument android:name="Level" />
+        <argument android:name="Materials" />
+        <argument android:name="Time" />
     </fragment>
 
     <fragment
@@ -67,7 +67,7 @@
             android:id="@+id/action_shareLinkFragment_to_shareInfoFragment"
             app:destination="@id/shareInfoFragment" />
         <action
-            android:id="@+id/action_shareLinkFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+            android:id="@+id/action_shareLinkFragment_to_ProfileScreen"
+            app:destination="@id/ProfileScreen" />
     </fragment>
 </navigation>

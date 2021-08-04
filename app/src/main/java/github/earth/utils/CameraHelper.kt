@@ -15,30 +15,29 @@ import java.util.*
 
 class CameraHelper(private val activity: Activity) {
 
-//    private val PICK_IMAGE_REQUEST = 71
-//    private var filePath: Uri? = null
-//    private var firebaseStore: FirebaseStorage? = null
-//    private var storageReference: StorageReference? = null
-//
-//    fun takeCameraPicture() {
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        if (intent.resolveActivity(activity.packageManager) != null) {
-//            val imageFile = createImageFile()
-//            imageUri = FileProvider.getUriForFile(activity,
-//                    "github.earth.fileprovider",
-//                    imageFile)
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-//            activity.startActivityForResult(intent, REQUEST_CODE)
-//        }
-//    }
-//
-//    private fun createImageFile(): File {
-//        val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//        return File.createTempFile(
-//                "JPEG_${simpleDateFormat.format(Date())}_",
-//                ".jpg",
-//                storageDir
-//        )
-//    }
+    var imageUri: Uri? = null
+    val REQUEST_CODE = 1
+    private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+
+    fun takeCameraPicture() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(activity.packageManager) != null) {
+            val imageFile = createImageFile()
+            imageUri = FileProvider.getUriForFile(activity,
+                "github.earth.fileprovider",
+                imageFile)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            activity.startActivityForResult(intent, REQUEST_CODE)
+        }
+    }
+
+    private fun createImageFile(): File {
+        val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${simpleDateFormat.format(Date())}_",
+            ".jpg",
+            storageDir
+        )
+    }
 
 }

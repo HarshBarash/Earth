@@ -44,4 +44,9 @@
     <string name="newThemeNotice">Changes will take effect after saving</string>
     <string name="alreadySelectedIcon">You have already selected this icon</string>
 
+    <!-- Notifications -->
+
+    <string name="contentTittle">Давно тебя не было в уличный гонках</string>
+    <string name="contentText">Заходи и получай ценные бонусы</string>
+
 </resources>

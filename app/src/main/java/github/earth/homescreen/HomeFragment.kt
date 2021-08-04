@@ -14,12 +14,17 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.R
 import github.earth.authscreen.LoginActivity
+import github.earth.models.Feed
+import github.earth.utils.FirebaseHelper
 import github.earth.utils.LOG_HOME_FRAGMENT
+import github.earth.utils.ValueEventListenerAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var mAuth: FirebaseAuth
+
+    private lateinit var mFirebase: FirebaseHelper
+//    private lateinit var mAuth: FirebaseAuth
     private lateinit var navController: NavController
 
     private lateinit var btnPlusContent: Button
@@ -28,14 +33,21 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         Log.v(LOG_HOME_FRAGMENT, "onCreate called")
 
-        mAuth = FirebaseAuth.getInstance()
+        mFirebase = FirebaseHelper(requireActivity())
+//        mAuth = FirebaseAuth.getInstance()
 
 
-        if (mAuth.currentUser == null) {
-            val intent_toLogin = Intent (activity, LoginActivity::class.java)
+        //Кто-нибудь, скажите Антону что это здесь не нужно
+        // нужно) Так как в большем кол-ве случаев юзер здесь, нежели в реге. Поэтому и линкаю сюда
+        if (mFirebase.auth.currentUser == null) {
+            val intent_toLogin = Intent(activity, LoginActivity::class.java)
             activity?.startActivity(intent_toLogin)
             activity?.finish()
-            //Кто-нибудь, скажите Антону что это здесь не нужно
+        } else {
+            mFirebase.database.child("Feed").child(mFirebase.auth.currentUser!!.uid)
+                .addValueEventListener(ValueEventListenerAdapter{
+                    val tutorials = it.children.map { it.getValue(Feed::class.java)!! }
+                })
         }
 
 
@@ -50,8 +62,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         btnPlusContent = rootView.findViewById(R.id.btnPlusContent)
         btnPlusContent.setOnClickListener(this)
-        // Многоуважаемый Антон, из за синтетки здесь была ошибка
-        // Почему? Так как в большем кол-ве случаев юзер здесь, нежели в реге. Поэтому и линкаю сюда
+
 
         return rootView
     }

@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.DialogTitle
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -17,6 +19,7 @@ import github.earth.R
 import github.earth.models.Feed
 import github.earth.models.User
 import github.earth.utils.*
+import kotlinx.android.synthetic.main.fragment_shareinfo.*
 import kotlinx.android.synthetic.main.fragment_sharelink.*
 
 class ShareLinkFragment : Fragment() {
@@ -35,6 +38,8 @@ class ShareLinkFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
         mCameraHelper = CameraHelper(requireActivity())
+        mFirebaseHelper = FirebaseHelper(requireActivity())
+
 
         mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
             mUser = it.asUser()!!
@@ -51,10 +56,10 @@ class ShareLinkFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val image = arguments?.getString("ImageUri")
-        val title = arguments?.getString("Title")
-        val materials = arguments?.getString("Matrials")
-        val time = arguments?.getString("Time")
+//        val image = arguments?.getString("ImageUri")
+//        val title = arguments?.getString("Title")
+//        val materials = arguments?.getString("Matrials")
+//        val time = arguments?.getString("Time")
 
 
         publish.setOnClickListener {
@@ -64,24 +69,43 @@ class ShareLinkFragment : Fragment() {
 
 
     private fun share() {
-        val imageUri = mCameraHelper.imageUri
-        if (imageUri != null) {
-            mFirebaseHelper.uploadSharePhoto(imageUri) {
+        val image = arguments?.getString("ImageUri")
+        val title = arguments?.getString("Title")
+        val materials = arguments?.getString("Matrials")
+        val time = arguments?.getString("Time")
+        val tutorial = etTutorial.text.toString()
+        val link = etLink.text.toString()
+        if (image != null && title != null && materials != null && time != null && tutorial != null) {
+            val uid = mFirebaseHelper.currentUid()!!
+            mFirebaseHelper.uploadSharePhoto(image.toString().toUri()) {
                 val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+
                 }
                 mFirebaseHelper.addSharePhoto(it.toString()) {
                     mFirebaseHelper.database.child("feed")
                         .child(mFirebaseHelper.auth.currentUser!!.uid).push()
                         .setValue(
-                            Feed(
-                                uid = mFirebaseHelper.auth.currentUser!!.uid, //uid
-                                image = imageDownloadUrl.toString()
-                                // title сюда захвачу предыдушие фрагменты
-
-                            )
-                        )
+                            mkFeed(uid, image.toString(), link, title, materials, time.toString() )).addOnCompleteListener({
+                            findNavController().navigate(R.id.action_shareLinkFragment_to_HomeFragment)
+                        })
                 }
-            }
+
             }
         }
     }
+
+    private fun mkFeed(uid: String, imageDownloadUrl: String, link: String, title: String, materials: String, time: String) : Feed {
+        return Feed(
+            uid = uid,
+            username = mUser.username,
+            photo = mUser.photo,
+            image = imageDownloadUrl,
+            link = etTutorial.text.toString(),
+            tutorial = etTutorial.text.toString(),
+            title = title,
+            materals = materials,
+            time = time.toInt()
+
+        )
+    }
+}

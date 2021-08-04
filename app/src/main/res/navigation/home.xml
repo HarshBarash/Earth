@@ -67,7 +67,7 @@
             android:id="@+id/action_shareLinkFragment_to_shareInfoFragment"
             app:destination="@id/shareInfoFragment" />
         <action
-            android:id="@+id/action_shareLinkFragment_to_ProfileScreen"
-            app:destination="@id/ProfileScreen" />
+            android:id="@+id/action_shareLinkFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>

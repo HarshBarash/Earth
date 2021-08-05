@@ -1,4 +1,4 @@
-package com.example.room.data
+package github.earth.room.stats_room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

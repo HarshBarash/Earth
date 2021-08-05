@@ -1,12 +1,9 @@
-package com.example.room.viewmodel
+package github.earth.room.stats_room
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.room.data.StatsDatabase
-import com.example.room.data.StatsRoom
-import com.example.room.repository.StatsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

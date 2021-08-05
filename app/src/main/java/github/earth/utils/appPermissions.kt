@@ -15,7 +15,7 @@ import java.lang.reflect.ReflectPermission
 
 const val CAMERA = Manifest.permission.CAMERA
 const val PERMISSION_REQUEST = 200
-
+/*
 fun checkPermission(permission: String): Boolean {
 
 
@@ -30,4 +30,6 @@ fun checkPermission(permission: String): Boolean {
         ActivityCompat.requestPermissions(APP_ACTIVITY, arrayOf(permission), PERMISSION_REQUEST)
         false
     } else true
-}
+
+
+} */

@@ -1,4 +1,4 @@
-package com.example.room.data
+package github.earth.room.stats_room
 
 import android.os.Parcelable
 import androidx.room.Entity

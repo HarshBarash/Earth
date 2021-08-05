@@ -1,4 +1,4 @@
-package com.example.room.data
+package github.earth.room.stats_room
 
 import android.content.Context
 import androidx.room.Database

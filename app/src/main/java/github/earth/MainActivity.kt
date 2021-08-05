@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import github.earth.services.ReminderService
 import github.earth.utils.*
 import java.util.*
 
@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
 
+        ReminderService.startService(this, "Message")
 
     }
-
     
 
     override fun onStart() {
@@ -79,28 +79,36 @@ class MainActivity : AppCompatActivity() {
         val packageManager = packageManager
 
         val sp = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE)
-        val currentIcon = sp.getString(SETTINGS_APP_ICON, IC_DEFAULT_LAUNCHER)
+        val currentIcon = sp.getString(SETTINGS_APP_ICON, IC_DEFAULT)
 
         Log.v(LOG_MAIN_ACTIVITY, "New Icon Name: $iconName\nOld Icon Name: $currentIcon")
 
         val currentIconPackage = when(currentIcon) {
-            IC_DEFAULT -> IC_DEFAULT_LAUNCHER
-            IC_PURPLE -> IC_PURPLE_LAUNCHER
-            IC_BEIGE -> IC_BEIGE_LAUNCHER
-            IC_GRAY -> IC_GRAY_LAUNCHER
-            IC_PINK -> IC_PINK_LAUNCHER
-            IC_LIGHT_PINK -> IC_LIGHT_PINK_LAUNCHER
-            IC_RED -> IC_RED_LAUNCHER
-            IC_YELLOW -> IC_YELLOW_LAUNCHER
-            IC_ORANGE -> IC_ORANGE_LAUNCHER
-            IC_GREEN -> IC_GREEN_LAUNCHER
-            IC_BLUE -> IC_BLUE_LAUNCHER
+            IC_DEFAULT      -> IC_DEFAULT_LAUNCHER
+            IC_PURPLE       -> IC_PURPLE_LAUNCHER
+            IC_BEIGE        -> IC_BEIGE_LAUNCHER
+            IC_GRAY         -> IC_GRAY_LAUNCHER
+            IC_PINK         -> IC_PINK_LAUNCHER
+            IC_LIGHT_PINK   -> IC_LIGHT_PINK_LAUNCHER
+            IC_RED          -> IC_RED_LAUNCHER
+            IC_YELLOW       -> IC_YELLOW_LAUNCHER
+            IC_ORANGE       -> IC_ORANGE_LAUNCHER
+            IC_GREEN        -> IC_GREEN_LAUNCHER
+            IC_BLUE         -> IC_BLUE_LAUNCHER
+
             else -> {
                 Toast.makeText(this, "Error! Operation cancelled", Toast.LENGTH_SHORT)
                 return
             }
         }
 
+
+        if (iconName == currentIcon) {
+            Toast.makeText(this, R.string.alreadySelectedIcon, Toast.LENGTH_SHORT).show()
+            return
+        } else {
+            Toast.makeText(this, R.string.choice, Toast.LENGTH_SHORT).show()
+        }
 
         disableIcon(currentIconPackage, packageManager)
         //Сохрание новой иконки

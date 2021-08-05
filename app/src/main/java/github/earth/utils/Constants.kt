@@ -2,7 +2,12 @@ package github.earth.utils
 
 /*****************************************| .Application |*****************************************/
 
+const val APP_NAME                  = "Earth"
 const val PACKAGE                   = "github.earth"
+
+const val NTF_REMINDER_CHANNEL      = "NtfReminderChannel"
+const val NTF_FRG_SERV_CHANNEL      = "NtfForegroundService"
+const val LOG_REMINDER_SERVICE      = "ReminderService"
 
 const val IC_DEFAULT                = "Default"
 const val IC_PURPLE                 = "Purple"
@@ -59,7 +64,6 @@ const val LOG_PROFILE_FRAGMENT      = "ProfileFragment"
 const val LOG_SHARE_PHOTO_FRAGMENT  = "SharePhotoFragment"
 const val LOG_SHARE_INFO_FRAGMENT   = "ShareInfoFragment"
 const val LOG_SHARE_LINK_FRAGMENT   = "ShareLinkFragment"
-
 
 /**************************************| Shared Preferences |**************************************/
 

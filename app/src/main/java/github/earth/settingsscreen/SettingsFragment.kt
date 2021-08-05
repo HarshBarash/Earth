@@ -49,6 +49,8 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     private var sIcon: String? = null
     private var sTheme: String? = null
 
+    private lateinit var fltClose: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(LOG_SETTINGS_FRAGMENT, "onCreate called")
@@ -68,6 +70,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         fltSave = view.findViewById(R.id.fltSave)
         clOtherColors = view.findViewById(R.id.clOtherColors)
         vSelectedTheme = view.findViewById(R.id.vSelectedTheme)
+        fltClose = view.findViewById(R.id.fltClose)
 
         val adapter = ArrayAdapter(requireContext(), layout.list_item, itemLanguages)
         spinLanguages.adapter = adapter
@@ -136,8 +139,11 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.fltSave ->         {
+            /*R.id.fltSave ->         {
                 saveUserSettings()
+            }*/
+            R.id.fltClose -> {
+                (activity as MainActivity).supportFragmentManager.popBackStack()
             }
             R.id.ivSelectedIcon ->  {
                 var dialog = SelectIconDialogFragment()
@@ -154,31 +160,9 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun saveUserSettings() {
-
-        val spConfig = activity?.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE) ?: return
-        with(spConfig.edit()) {
-
-            //if (newTheme != null)
-            //    putString(SETTINGS_THEME, newTheme)
-
-            //if (newAppIcon != null)
-            //    putString(SETTINGS_APP_ICON, newAppIcon)
-            Log.v(LOG_SETTINGS_FRAGMENT, "New Language: $newLanguage")
-
-            if (newLanguage != null)
-                putString(SETTINGS_LANGUAGE, newLanguage)
-
-            apply()
-        }
-        Toast.makeText(requireContext(), "What a save!", Toast.LENGTH_SHORT).show()
-        (activity as MainActivity?)?.finish()
-        startActivity(Intent(requireContext(),MainActivity::class.java))
-
-    }
-
     private fun listenSetter() {
 
+        fltClose.setOnClickListener(this)
         fltSave.setOnClickListener(this)
         ivSelectedIcon.setOnClickListener(this)
         clOtherColors.setOnClickListener(this)
@@ -204,8 +188,23 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
                 if (selectedLang == sLanguage)
                     return
-                else
+                else {
                     newLanguage = selectedLang.toString()
+
+                    val spConfig = activity?.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE) ?: return
+                    with(spConfig.edit()) {
+
+                        Log.v(LOG_SETTINGS_FRAGMENT, "New Language: $newLanguage")
+
+                        if (newLanguage != null)
+                            putString(SETTINGS_LANGUAGE, newLanguage)
+
+                        apply()
+                    }
+
+                    (activity as MainActivity?)?.finish()
+                    startActivity(Intent(requireContext(),MainActivity::class.java))
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 import androidx.navigation.Navigation
+import github.earth.MainActivity
 import kotlinx.android.synthetic.main.fragment_userchange.*
 
 

@@ -26,6 +26,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Earth">
+        <receiver
+            android:name=".widgets.UniversalAppWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/universal_app_widget_info" />
+        </receiver>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,12 +48,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
-
+            android:value="AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0" />
+        <!-- Спасибо Сане - AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0 -->
         <service
             android:name=".services.ReminderService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
 
         <activity android:name=".ErrorActivity" />
         <activity android:name=".authscreen.LoginActivity" />

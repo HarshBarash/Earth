@@ -47,5 +47,9 @@
     <color name="accent_light_blue">#B0DEFF</color>
     <color name="accent_beige">#FFC6AC</color>
     <color name="accent_green">#ABDFA7</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 
 </resources>

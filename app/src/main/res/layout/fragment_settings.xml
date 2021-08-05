@@ -1,73 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/colorSecondary">
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
+        android:background="@drawable/bottom_sheet_top"
+        android:backgroundTint="?attr/colorPrimary"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSecondary"
-            app:titleTextColor="?android:attr/titleTextColor"
-            app:titleCentered="true"
-            app:title="@string/title_settings" />
+            android:layout_height="match_parent">
 
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-        <LinearLayout
-            android:id="@+id/scrollViewContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardAdvanced"
-                app:cardElevation="6dp"
+            <LinearLayout
+                android:id="@+id/scrollViewContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_15sdp">
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="@dimen/_5sdp">
-
-                    <TextView
-                        android:id="@+id/tvCardGeneralTittle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:text="@string/General"
-                        android:gravity="center"
-                        android:textSize="@dimen/_20ssp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -79,10 +46,10 @@
                             android:id="@+id/tvLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/Language"
-                            android:textSize="@dimen/_16ssp"
                             android:paddingStart="10dp"
+                            android:text="@string/Language"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="@dimen/_16ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -104,17 +71,17 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_5sdp">
 
                             <TextView
                                 android:id="@+id/tvTheme"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/Theme"
                                 android:paddingStart="10dp"
-                                android:textSize="@dimen/_16ssp"
+                                android:text="@string/Theme"
                                 android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="@dimen/_16ssp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -133,10 +100,10 @@
                                 android:id="@+id/clOtherColors"
                                 android:layout_width="56dp"
                                 android:layout_height="56dp"
-                                android:padding="3dp"
-                                android:backgroundTint="@color/white"
                                 android:layout_marginEnd="8dp"
                                 android:background="@drawable/circle"
+                                android:backgroundTint="@color/white"
+                                android:padding="3dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -146,8 +113,8 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:layout_marginEnd="8dp"
-                                    android:backgroundTint="@color/main_orange"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_orange"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs7"
                                     app:layout_constraintEnd_toStartOf="@+id/vClrs4"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -157,8 +124,8 @@
                                     android:id="@+id/vClrs2"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
-                                    android:backgroundTint="@color/main_blue"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_blue"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -169,8 +136,8 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:layout_marginEnd="8dp"
-                                    android:backgroundTint="@color/main_red"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_red"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs2"
                                     app:layout_constraintEnd_toStartOf="@+id/vClrs5"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -204,8 +171,8 @@
                                     android:id="@+id/vClrs6"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
-                                    android:backgroundTint="@color/main_yellow"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_yellow"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs7"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -215,8 +182,8 @@
                                     android:id="@+id/vClrs7"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
-                                    android:backgroundTint="@color/main_pink"
                                     android:background="@drawable/circle"
+                                    android:backgroundTint="@color/main_pink"
                                     app:layout_constraintBottom_toTopOf="@+id/vClrs2"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -240,8 +207,8 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
                             android:text="@string/App_Icon"
-                            android:textSize="@dimen/_16ssp"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="@dimen/_16ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -259,19 +226,33 @@
 
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fltSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_32sdp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_baseline_save_24"
+                    tools:visibility="gone" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fltSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_32sdp"
-                app:srcCompat="@drawable/ic_baseline_save_24"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fltClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_up_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

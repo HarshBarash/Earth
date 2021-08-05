@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSecondary">
+    tools:context=".placesscreen.PlacesFragment">
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraTilt="30"
+        map:uiRotateGestures="true" />
+
+    <ImageView
+        android:id="@+id/circle_tag3"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_75sdp"
+        android:src="@drawable/circle"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:tint="#5F85B0" />
+
+    <ImageView
+        android:id="@+id/circle_tag2"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:src="@drawable/circle"
+        map:layout_constraintEnd_toEndOf="@+id/map"
+        map:layout_constraintTop_toTopOf="parent"
+        map:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_places_mark"
+        map:layout_constraintBottom_toBottomOf="@+id/circle_tag2"
+        map:layout_constraintEnd_toEndOf="@+id/circle_tag2"
+        map:layout_constraintStart_toStartOf="@+id/circle_tag2"
+        map:layout_constraintTop_toTopOf="@+id/circle_tag2"
+        map:tint="#5F85B0" />
+
+    <ImageView
+        android:id="@+id/hear_me"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:src="@drawable/ic_hear_me"
+        map:layout_constraintBottom_toBottomOf="@+id/circle_tag3"
+        map:layout_constraintEnd_toEndOf="@+id/circle_tag3"
+        map:layout_constraintStart_toStartOf="@+id/circle_tag3"
+        map:layout_constraintTop_toTopOf="@+id/circle_tag3"
+        map:tint="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

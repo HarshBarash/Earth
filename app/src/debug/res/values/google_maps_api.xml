@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=88:CE:2A:C6:B8:EE:29:AE:6B:85:58:4A:52:81:C7:DA:B2:C9:25:C6%3Bgithub.earth.placesscreen
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    github.earth.placesscreen
+
+    SHA-1 certificate fingerprint:
+    88:CE:2A:C6:B8:EE:29:AE:6B:85:58:4A:52:81:C7:DA:B2:C9:25:C6
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="MAPS_API_KEY" templateMergeStrategy="preserve" translatable="false">AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0</string>
+</resources>

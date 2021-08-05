@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSecondary">
+    android:background="?attr/colorSecondary"
+    android:layout_marginBottom="@dimen/_70sdp">
 
 
     <View
@@ -18,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnMchLrn"
+        android:id="@+id/btnMLrn"
         style="@style/Widget.App.Button.OutlinedButton.IconOnly"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -52,10 +53,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
+        android:maxHeight="@dimen/_265sdp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
 

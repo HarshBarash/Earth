@@ -16,7 +16,7 @@
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/ic_remind" />
+            android:src="@drawable/ic_remind" />
 
         <TextView
             android:layout_margin="8dp"

@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.earth.services.ReminderService
+import github.earth.settingsscreen.SettingsFragment
 import github.earth.utils.*
 import java.util.*
 
@@ -36,8 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         ReminderService.startService(this, "Message")
 
+
+
     }
-    
 
     override fun onStart() {
         super.onStart()

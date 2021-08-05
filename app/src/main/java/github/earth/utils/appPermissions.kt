@@ -21,7 +21,7 @@ fun checkPermission(permission: String): Boolean {
 
     /* Функция принимает разрешение и проверяет, если разрешение еще не было
     * предоставлено запускает окно с запросом пользователю */
-    return if (Build.VERSION.SDK_INT >= 23
+    /*return if (Build.VERSION.SDK_INT >= 23
         && ContextCompat.checkSelfPermission(
             APP_ACTIVITY,
             permission
@@ -29,5 +29,6 @@ fun checkPermission(permission: String): Boolean {
     ) {
         ActivityCompat.requestPermissions(APP_ACTIVITY, arrayOf(permission), PERMISSION_REQUEST)
         false
-    } else true
+    } else true*/
+    TODO("ANTON MOMENT")
 }

@@ -71,6 +71,7 @@ const val SETTINGS_FILE             = "SettingsFile"
 const val SETTINGS_LANGUAGE         = "Language"
 const val SETTINGS_THEME            = "Theme"
 const val SETTINGS_APP_ICON         = "AppIcon"
+const val SETTINGS_REMIND_TIME      = "RemindTime"
 
 /******************************************| .Languages |******************************************/
 

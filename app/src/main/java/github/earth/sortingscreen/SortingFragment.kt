@@ -1,10 +1,14 @@
 package github.earth.sortingscreen
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -12,11 +16,42 @@ import com.google.android.material.timepicker.TimeFormat
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.utils.LOG_SORTING_FRAGMENT
+import github.earth.utils.showToast
 import kotlinx.android.synthetic.main.fragment_sorting.view.*
 
 class SortingFragment : Fragment(), View.OnClickListener{
 
     private lateinit var fltNtf : FloatingActionButton
+
+    @SuppressLint("WrongConstant")
+    public fun checkandGetpermissions(){
+        if(PermissionChecker.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_DENIED){
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 100)
+        }
+        else{
+            requireActivity().showToast("Camera permission granted")
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 100){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                requireActivity().showToast("Camera permission granted")
+            }
+            else{
+                requireActivity().showToast("Permission Denied")
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

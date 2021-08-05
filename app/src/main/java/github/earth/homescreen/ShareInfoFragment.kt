@@ -64,7 +64,7 @@ class ShareInfoFragment : Fragment() {
         val level = arrayOf(R.string.easy, R.string.medium, R.string.hard)
 
 
-        int n = Integer.parseInt(x.getText().toString());
+//        int n = Integer.parseInt(x.getText().toString());
 
 
 //        val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(this, android.R.layout.simple_dropdown_item_1line, level)

@@ -40,6 +40,9 @@
             android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
             app:destination="@id/HomeFragment" />
         <argument android:name="ImageUri" />
+        <action
+            android:id="@+id/action_SharePhotoScreen_to_shareLinkFragment"
+            app:destination="@id/shareLinkFragment" />
     </fragment>
     <fragment
         android:id="@+id/shareInfoFragment"

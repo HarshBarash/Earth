@@ -73,13 +73,15 @@ class ShareLinkFragment : Fragment() {
         val title = arguments?.getString("Title")
         val materials = arguments?.getString("Matrials")
         val time = arguments?.getString("Time")
+
         val tutorial = etTutorial.text.toString()
         val link = etLink.text.toString()
         if (image != null && title != null && materials != null && time != null && tutorial != null) {
+
             val uid = mFirebaseHelper.currentUid()!!
             mFirebaseHelper.uploadSharePhoto(image.toString().toUri()) {
                 val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-
+                    jhgcfd.text = materials
                 }
                 mFirebaseHelper.addSharePhoto(it.toString()) {
                     mFirebaseHelper.database.child("feed")

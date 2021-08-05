@@ -24,7 +24,7 @@
 
 
             <ImageView
-                android:id="@+id/post_image"
+                android:id="@+id/tutorial_image"
                 android:layout_width="@dimen/_145sdp"
                 android:layout_height="@dimen/_120sdp"
                 android:layout_marginBottom="@dimen/_5sdp"

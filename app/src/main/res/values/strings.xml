@@ -43,4 +43,10 @@
     <string name="newIconNotice">App will be restarted after your choice</string>
     <string name="newThemeNotice">Changes will take effect after saving</string>
 
+
+    <!--    Level for Spinner -->
+    <string name="easy">easy</string>
+    <string name="medium">medium</string>
+    <string name="hard">hard</string>
+
 </resources>

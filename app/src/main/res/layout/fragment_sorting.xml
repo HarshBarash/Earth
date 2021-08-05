@@ -1,8 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSecondary">
+
+
+
+    <Button
+        android:id="@+id/machinelearning"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="@dimen/_165sdp"
+        android:layout_height="@dimen/_180sdp"
+        android:background="@drawable/bottom_sheet_left"
+        android:icon="@drawable/ic_ml"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/recycle"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/bottom_sheet_right"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howmany"
+        app:layout_constraintVertical_bias="0.27" />
+
+    <ImageButton
+        android:id="@+id/howmany"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/bottom_sheet_right"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+
+        <TextView
+            android:id="@+id/sorttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_77sdp"
+            android:layout_marginEnd="@dimen/_236sdp"
+            android:layout_marginBottom="@dimen/_170sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:maxWidth="@dimen/_130sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_28ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints"
+            tools:text="Plastic container" />
+
+        <TextView
+            android:id="@+id/sendto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_30ssp"
+            app:layout_constraintBottom_toTopOf="@+id/sorttext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints"
+            tools:text="We send it to:" />
+
+        <ImageView
+            android:layout_width="@dimen/_108sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ic_organic"
+            android:gravity="center"
+            android:minWidth="@dimen/_108sdp"
+            android:minHeight="@dimen/_150sdp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sendto"
+            tools:ignore="MissingConstraints"
+            tools:text="Plastic container" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

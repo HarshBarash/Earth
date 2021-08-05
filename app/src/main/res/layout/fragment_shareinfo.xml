@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_12sdp"
+        android:textColor="@color/black"
         android:background="@drawable/white_btn"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@+id/TVTitle"
@@ -103,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_12sdp"
+        android:textColor="@color/black"
         android:background="@drawable/white_btn"
         app:layout_constraintTop_toBottomOf="@+id/TVMaterials"
         tools:ignore="MissingConstraints"
@@ -151,6 +153,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/white_btn"
         android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVTime"
         tools:ignore="MissingConstraints" />

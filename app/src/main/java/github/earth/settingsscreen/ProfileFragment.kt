@@ -108,7 +108,7 @@ class ProfileFragment : Fragment() {
                 else -> false
             } }
 
-        view.images_recycler.layoutManager = GridLayoutManager(requireContext(), 2)
+        view.images_recycler.layoutManager = GridLayoutManager(view.context, 2)
         mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
             .addValueEventListener(ValueEventListenerAdapter {
                 val images = it.children.map { it.getValue(String::class.java)!! }
@@ -132,34 +132,28 @@ class ProfileFragment : Fragment() {
 
 
 
-
-class ImagesAdapter(private val images: List<String?>) :
+class ImagesAdapter(private val images: List<String>) :
     RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+
     class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val image = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false) as ImageView
+        val image = LayoutInflater.from(parent.context)
+            .inflate(R.layout.image_item, parent, false) as ImageView
         return ViewHolder(image)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.image.loadImage(images[position])
+    }
 
     override fun getItemCount(): Int = images.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        images[position]?.let { holder.image.loadImage(it) }
-    }
-
-    private fun ImageView.loadImage(image: String) {
-        Glide.with(this).load(image).centerCrop().into(this)
-    }
 }
 
-
-class SquareImageView(context: Context, attrs: AttributeSet) :
-    androidx.appcompat.widget.AppCompatImageView (context, attrs) {
+class SquareImageView(context: Context, attrs: AttributeSet) : androidx.appcompat.widget.AppCompatImageView(context, attrs) {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }
-    }
+}
 
 

@@ -88,6 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TVTime"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/publish"
         style="@android:style/Widget.Button"
@@ -106,6 +107,21 @@
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLink" />
+
+    <TextView
+        android:id="@+id/jhgcfd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="576dp"
+        android:text="Write down how to do this:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titletwo"
+        tools:ignore="MissingConstraints"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

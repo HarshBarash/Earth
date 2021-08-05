@@ -5,8 +5,11 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable-xxhdpi/bottom_sheet.xml" value="0.2348684210526316" />
+        <entry key="app/src/main/res/drawable-xxhdpi/bottom_sheet_right.xml" value="0.3131578947368421" />
         <entry key="app/src/main/res/drawable/bottom_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/bottom_sheet.xml" value="0.2348684210526316" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_left.xml" value="0.27890625" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_right.xml" value="0.3131578947368421" />
         <entry key="app/src/main/res/drawable/bottom_sheet_top.xml" value="0.13289473684210526" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/edittext_background.xml" value="0.35625" />
@@ -26,7 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_sharelink.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_update_email.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_update_password.xml" value="0.22467105263157894" />

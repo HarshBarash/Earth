@@ -93,7 +93,7 @@ class ShareFragmentPhoto  : Fragment() {
             val ImageUri = mCameraHelper.imageUri
             if (ImageUri != null) {
                 bundle.putString("ImageUri", ImageUri.toString())
-                findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment)
+                findNavController().navigate(R.id.action_SharePhotoScreen_to_shareInfoFragment, bundle)
             } else {
                 requireActivity().showToast("Please make photo")
             }

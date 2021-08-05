@@ -1,8 +1,6 @@
-package com.example.room.repository
+package github.earth.room.stats_room
 
 import androidx.lifecycle.LiveData
-import com.example.room.data.StatsDao
-import com.example.room.data.StatsRoom
 
 //методы для работы с данными в разных источниках.
 class StatsRepository(private val statsDao: StatsDao) {

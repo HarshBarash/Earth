@@ -9,9 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.room.adapters.StatsAdapter
-import com.example.room.data.StatsRoom
-import com.example.room.viewmodel.StatsViewModel
+import github.earth.room.stats_room.StatsAdapter
+import github.earth.room.stats_room.StatsRoom
+import github.earth.room.stats_room.StatsViewModel
 import github.earth.R
 
 

@@ -48,12 +48,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
-
+            android:value="AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0" />
+        <!-- Спасибо Сане - AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0 -->
         <service
             android:name=".services.ReminderService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"/>
 
         <activity android:name=".ErrorActivity" />
         <activity android:name=".authscreen.LoginActivity" />

@@ -28,7 +28,7 @@ class ReminderService : Service() {
     companion object {
 
         const val PAUSE_TIME = 60000L
-        const val NEED_TIME = "20:12" //Пока константа, потом поменяем
+        const val NEED_TIME = "20:00" //Пока константа, потом поменяем
 
         fun startService(context: Context, message: String) {
             val serviceIntent = Intent(context, ReminderService::class.java)

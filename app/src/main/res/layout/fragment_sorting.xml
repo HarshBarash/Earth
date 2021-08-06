@@ -11,22 +11,14 @@
 <!--    //нжно под Ml, фоточка юзер простым языком-->
     <ImageView
         android:id="@+id/img_view"
-        android:layout_width="224dp"
-        android:layout_height="224dp"
+        android:layout_width="@dimen/_224sdp"
+        android:layout_height="@dimen/_224sdp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnMLrn"
         app:layout_constraintEnd_toEndOf="@+id/machinelearning"
         app:layout_constraintTop_toTopOf="@+id/btnMLrn"
+        app:layout_constraintVertical_bias="0.471"
         tools:ignore="MissingConstraints" />
-
-    <View
-        android:id="@+id/machinelearning"
-        android:layout_width="@dimen/_165sdp"
-        android:layout_height="@dimen/_180sdp"
-        android:background="@drawable/bottom_sheet_left"
-        android:backgroundTint="?attr/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnMLrn"
@@ -42,6 +34,16 @@
         app:layout_constraintTop_toTopOf="@+id/machinelearning" />
 
 
+
+    <View
+        android:id="@+id/machinelearning"
+        android:layout_width="@dimen/_165sdp"
+        android:layout_height="@dimen/_180sdp"
+        android:background="@drawable/bottom_sheet_left"
+        android:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/recycle"

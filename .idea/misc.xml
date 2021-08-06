@@ -46,7 +46,7 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_sharelink.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_theme_dialog.xml" value="0.23715277777777777" />
@@ -56,6 +56,7 @@
         <entry key="app/src/main/res/layout/image_item.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/universal_app_widget.xml" value="0.23715277777777777" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.23715277777777777" />
       </map>
     </option>
   </component>

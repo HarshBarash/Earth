@@ -191,11 +191,12 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
 // Creates inputs for reference.
             val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-            inputFeature0.loadBuffer(byteBuffer)
+//            inputFeature0.loadBuffer(byteBuffer)
 
 // Runs model inference and gets result.
-            val outputs = model?.process(inputFeature0)
-            val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
+            val outputs = model.process(inputFeature0)
+            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
 
             var max = outputFeature0?.let { it1 -> getMax(it1.floatArray) }
 

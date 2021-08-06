@@ -3,6 +3,8 @@ package github.earth
 import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +13,10 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.earth.services.ReminderService
 import github.earth.settingsscreen.SettingsFragment
@@ -35,6 +41,22 @@ class MainActivity : AppCompatActivity() {
         // Setup the bottom navigation view with navController
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
+
+        //исправить под аву
+        val menu = navigationView.menu
+        val menuItem = menu.findItem(R.id.profile)
+        Glide.with(this)
+            .asBitmap()
+            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
+            .apply(
+                RequestOptions
+                .circleCropTransform()
+                .placeholder(R.drawable.ic_userphoto))
+            .into(object : SimpleTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    menuItem?.icon = BitmapDrawable(resources, resource)
+                }
+            })
 
         ReminderService.startService(this, "Message")
 

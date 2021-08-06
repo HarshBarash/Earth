@@ -40,4 +40,5 @@ class CameraHelper(private val activity: Activity) {
         )
     }
 
+
 }

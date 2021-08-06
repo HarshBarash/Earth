@@ -2,12 +2,15 @@ package github.earth.sortingscreen
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +28,11 @@ import github.earth.utils.LOG_SORTING_FRAGMENT
 import github.earth.utils.SETTINGS_FILE
 import github.earth.utils.SETTINGS_REMIND_TIME
 import github.earth.utils.showToast
+import kotlinx.android.synthetic.main.fragment_sorting.*
 import kotlinx.android.synthetic.main.fragment_sorting.view.*
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class SortingFragment : Fragment(), View.OnClickListener {
 

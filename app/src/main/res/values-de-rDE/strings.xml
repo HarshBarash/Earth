@@ -31,4 +31,6 @@
     <string name="newThemeNotice">Änderungen werden nach dem Speichern wirksam</string>
     <string name="selectNewTheme">Neues Thema auswählen</string>
     <string name="alreadySelectedIcon">Sie haben dieses Symbol bereits ausgewählt</string>
+    <string name="contentTittleSrvFrg">"Wir erinnern Sie an das Einsortieren "</string>
+    <string name="widgetText">"Nächste Sortierung bei "</string>
 </resources>

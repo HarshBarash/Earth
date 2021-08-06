@@ -2,15 +2,12 @@ package github.earth.sortingscreen
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
-import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,25 +21,19 @@ import com.google.android.material.timepicker.TimeFormat
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.ml.ModelUnquant
-import github.earth.utils.LOG_SETTINGS_FRAGMENT
 import github.earth.utils.LOG_SORTING_FRAGMENT
+import github.earth.utils.SETTINGS_FILE
+import github.earth.utils.SETTINGS_REMIND_TIME
 import github.earth.utils.showToast
-import kotlinx.android.synthetic.main.fragment_sorting.*
 import kotlinx.android.synthetic.main.fragment_sorting.view.*
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class SortingFragment : Fragment(), View.OnClickListener {
 
     private lateinit var fltNtf: FloatingActionButton
 
-
-    //ML
     lateinit var bitmap: Bitmap
     lateinit var appCtx: Application
     lateinit var btnMLrn : Button
-
 
     @SuppressLint("WrongConstant")
     public fun checkandGetpermissions() {
@@ -56,7 +47,6 @@ class SortingFragment : Fragment(), View.OnClickListener {
             requireActivity().showToast("Camera permission granted")
         }
     }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -92,23 +82,25 @@ class SortingFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_sorting, container, false)
 
-        btnMLrn = rootView.findViewById(R.id.btnMLrn) //здесь сюда срочно
-            //махнуть на assets
-
-
         //Навигация дальше
 //        view.findViewById<Button>(R.id.signup_btn).setOnClickListener {
 //            findNavController().navigate(R.id.action_register_to_registered)
 //        }
 
+        btnMLrn = rootView.findViewById(R.id.btnMLrn) //здесь сюда срочно
+        //махнуть на assets
+
         fltNtf = rootView.findViewById(R.id.fltNtf)
         fltNtf.setOnClickListener(this)
 
-        btnMLrn.setOnClickListener(View.OnClickListener {
-//            Log.d("mssg", "button pressed")
-//            var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-//            intent.type = "image/*"
+        val labels = appCtx.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
+
+
+        btnMLrn.setOnClickListener(View.OnClickListener {
+            //Log.d("mssg", "button pressed")
+            //var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+            //intent.type = "image/*"
 
             var camera : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(camera, 200)
@@ -129,15 +121,39 @@ class SortingFragment : Fragment(), View.OnClickListener {
             MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .setHour(12)
-                .setMinute(10)
+                .setMinute(0)
                 //.setTitle("Select Appointment time")
                 .build()
 
         picker.addOnPositiveButtonClickListener {
             Log.v(LOG_SORTING_FRAGMENT, "onPositiveButton callback")
             // call back code
-            val time = "${picker.hour}:${picker.minute}"
+            //val time = "${picker.hour}:${picker.minute}"
+
+            var pickMin = "00"
+            if (picker.minute < 10) {
+                when (picker.minute) {
+                    1 -> pickMin = "01"
+                    2 -> pickMin = "02"
+                    3 -> pickMin = "03"
+                    4 -> pickMin = "04"
+                    5 -> pickMin = "05"
+                    6 -> pickMin = "06"
+                    7 -> pickMin = "07"
+                    8 -> pickMin = "08"
+                    9 -> pickMin = "09"
+                }
+            } else {
+                pickMin = "${picker.minute}"
+            }
+
+            val time = "${picker.hour}:${pickMin}"
+
             Log.v(LOG_SORTING_FRAGMENT, "Returned time: $time")
+
+            updateRemindTime(time)
+            (activity as MainActivity).updateService()
+            (activity as MainActivity).updateWidgets()
         }
         picker.addOnNegativeButtonClickListener {
             // call back code
@@ -163,8 +179,17 @@ class SortingFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun updateRemindTime() {
-        //val sp = (activity as MainActivity)
+    private fun updateRemindTime(time: String) {
+        val sp =
+            (activity as MainActivity).getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE) ?: return
+        with(sp.edit()) {
+
+            putString(SETTINGS_REMIND_TIME, time)
+
+            apply()
+        }
+
+
     }
 
     //Для панели админа
@@ -210,15 +235,14 @@ class SortingFragment : Fragment(), View.OnClickListener {
             }
         }}
 
-
     fun getMax(arr: FloatArray): Int {
-        var ind = 0;
-        var min = 0.0f;
+        var ind = 0
+        var min = 0.0f
 
         for (i in 0..10) {
             if (arr[i] > min) {
                 min = arr[i]
-                ind = i;
+                ind = i
             }
         }
         return ind

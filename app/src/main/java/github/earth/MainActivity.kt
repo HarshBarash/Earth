@@ -1,6 +1,8 @@
 package github.earth
 
+import android.appwidget.AppWidgetManager
 import android.content.ComponentName
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
@@ -21,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.earth.services.ReminderService
 import github.earth.settingsscreen.SettingsFragment
 import github.earth.utils.*
+import github.earth.widgets.UniversalAppWidget
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -50,18 +53,44 @@ class MainActivity : AppCompatActivity() {
             .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
             .apply(
                 RequestOptions
-                .circleCropTransform()
-                .placeholder(R.drawable.ic_userphoto))
+                    .circleCropTransform()
+                    .placeholder(R.drawable.ic_userphoto))
             .into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     menuItem?.icon = BitmapDrawable(resources, resource)
                 }
             })
 
-        ReminderService.startService(this, "Message")
+        //ReminderService.startService(this, "Message")
+        updateService()
+        updateWidgets()
+    }
 
+    fun updateWidgets() {
+        val intent = Intent(this, UniversalAppWidget::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        val ids = AppWidgetManager
+            .getInstance(application)
+            .getAppWidgetIds(ComponentName(applicationContext,UniversalAppWidget::class.java))
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+        sendBroadcast(intent)
+    }
 
+    fun updateService() {
 
+        val needTime = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE).getString(
+            SETTINGS_REMIND_TIME, DEFAULT_RMD_TIME)
+
+        Log.i(LOG_MAIN_ACTIVITY,"Service run: ${ReminderService.isRunning()}")
+
+        if (needTime != null) {
+            if (ReminderService.isRunning()) {
+                ReminderService.stopService(this)
+                ReminderService.startService(this, needTime)
+            } else
+                ReminderService.startService(this, needTime)
+
+        }
     }
 
     override fun onStart() {

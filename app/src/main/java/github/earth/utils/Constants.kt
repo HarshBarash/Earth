@@ -8,6 +8,7 @@ const val PACKAGE                   = "github.earth"
 const val NTF_REMINDER_CHANNEL      = "NtfReminderChannel"
 const val NTF_FRG_SERV_CHANNEL      = "NtfForegroundService"
 const val LOG_REMINDER_SERVICE      = "ReminderService"
+const val DEFAULT_RMD_TIME          = "20:00"
 
 const val IC_DEFAULT                = "Default"
 const val IC_PURPLE                 = "Purple"
@@ -72,6 +73,7 @@ const val SETTINGS_LANGUAGE         = "Language"
 const val SETTINGS_THEME            = "Theme"
 const val SETTINGS_APP_ICON         = "AppIcon"
 const val SETTINGS_REMIND_TIME      = "RemindTime"
+const val SETTINGS_REMIND_TIME_STR  = "RemindTimeStr"
 
 /******************************************| .Languages |******************************************/
 

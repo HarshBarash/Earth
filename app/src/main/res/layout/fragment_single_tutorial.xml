@@ -99,7 +99,7 @@
         <ImageView
             android:id="@+id/ivPostImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_275sdp"
+            android:layout_height="@dimen/_225sdp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ball"

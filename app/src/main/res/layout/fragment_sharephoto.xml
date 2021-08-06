@@ -43,7 +43,7 @@
     </TextView>
 
     <ImageButton
-        android:id="@+id/tutorial_image_share"
+        android:id="@+id/ivTutorialImageShare"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_180sdp"
         android:layout_margin="40dp"

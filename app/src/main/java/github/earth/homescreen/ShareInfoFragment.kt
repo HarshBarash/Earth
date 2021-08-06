@@ -6,15 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -73,16 +66,16 @@ class ShareInfoFragment : Fragment() {
 //        spinnerLevel.setAdapter(arrayAdapter)
 //        spinnerLevel.setOnItemSelectedListener(this)
 
-        nextbtntwo.setOnClickListener({
-            if (!TextUtils.isEmpty(etTitle.getText()) &&
-                !TextUtils.isEmpty(etMaterials.getText()) &&
-                !TextUtils.isEmpty(etTime.getText())) {
+        btnContinue.setOnClickListener({
+            if (!TextUtils.isEmpty(etTutorialTitle.getText()) &&
+                !TextUtils.isEmpty(etTutorialMaterials.getText()) &&
+                !TextUtils.isEmpty(etTutorialTime.getText())) {
                 bundle.putString(
-                    "Title", etTitle.toString())
+                    "Title", etTutorialTitle.toString())
                 bundle.putString(
-                    "Materials", etMaterials.toString())
+                    "Materials", etTutorialMaterials.toString())
                 bundle.putString(
-                    "Time", etTime.toString()
+                    "Time", etTutorialTime.toString()
                     )
                 bundle.putString(
                     "ImageUri", image

@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
@@ -62,7 +61,7 @@ class ShareFragmentPhoto  : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_sharephoto, container, false)
 
-        val imageButton: ImageButton = rootView.findViewById(R.id.tutorial_image_share)
+        val imageButton: ImageButton = rootView.findViewById(R.id.ivTutorialImageShare)
         val bundle = Bundle()
 
 

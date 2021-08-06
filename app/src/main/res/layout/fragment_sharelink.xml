@@ -29,13 +29,12 @@
         android:id="@+id/TVTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="96dp"
         android:text="Write down how to do this:"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletwo"
         tools:ignore="MissingConstraints">
@@ -43,13 +42,17 @@
     </TextView>
 
     <EditText
-        android:id="@+id/etTutorial"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_225sdp"
-        android:layout_margin="@dimen/_12sdp"
-        android:layout_marginTop="6dp"
+        android:id="@+id/etTutorialDescription"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
         android:background="@drawable/white_btn"
-        android:inputType="text"
+        android:gravity="start"
+        android:hint="description"
+        android:inputType="textMultiLine"
+        android:maxLength="200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVTitle"
@@ -69,19 +72,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTutorial"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialDescription"
         tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etLink"
+        android:id="@+id/etTutorialLink"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_49sdp"
         android:layout_margin="@dimen/_12sdp"
         android:layout_marginTop="24dp"
         android:background="@drawable/white_btn"
+        android:ems="10"
+        android:hint="link"
         android:inputType="text"
+        android:maxLength="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,22 +112,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etLink" />
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialLink" />
 
-    <TextView
-        android:id="@+id/jhgcfd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="576dp"
-        android:text="Write down how to do this:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titletwo"
-        tools:ignore="MissingConstraints"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

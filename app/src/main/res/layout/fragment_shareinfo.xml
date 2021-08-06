@@ -29,13 +29,13 @@
         android:id="@+id/TVTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="Title:"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletwo"
         tools:ignore="MissingConstraints">
@@ -43,7 +43,7 @@
     </TextView>
 
     <EditText
-        android:id="@+id/etTitle"
+        android:id="@+id/etTutorialTitle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_12sdp"
@@ -56,34 +56,6 @@
     </EditText>
 
     <TextView
-        android:id="@+id/TVLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Level:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle"
-        tools:ignore="MissingConstraints">
-
-    </TextView>
-
-    <Spinner
-        android:id="@+id/spinnerLevel"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/_12sdp"
-        android:background="@drawable/white_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVLevel"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
-    <TextView
         android:id="@+id/TVMaterials"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,13 +66,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLevel"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialTitle"
         tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etMaterials"
+        android:id="@+id/etTutorialMaterials"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_12sdp"
@@ -122,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMaterials"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialMaterials"
         tools:ignore="MissingConstraints">
 
     </TextView>
@@ -138,14 +110,14 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/etTime"
-        app:layout_constraintTop_toBottomOf="@+id/etMaterials"
+        app:layout_constraintStart_toEndOf="@+id/etTutorialTime"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialMaterials"
         tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etTime"
+        android:id="@+id/etTutorialTime"
         android:layout_width="@dimen/_225sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_12sdp"
@@ -159,7 +131,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/nextbtntwo"
+        android:id="@+id/btnContinue"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTime" />
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialTime" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

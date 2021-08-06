@@ -107,7 +107,7 @@ class FeedAdapter(private val tutorials: List<Feed>)
         with(holder) {
             view.user_photo_image.loadImage(tutorial.photo)
             view.username_text.text = tutorial.username
-            view.tutorial_image.loadImage(tutorial.image)
+            view.ivTutorialImage.loadImage(tutorial.image)
             view.title_feed.text = tutorial.title
         }
     }

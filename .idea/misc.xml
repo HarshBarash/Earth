@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/layout-sw600dp/activity_login.xml" value="0.266796875" />
         <entry key="app/src/main/res/layout-v23/fragment_update_email.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout-v23/fragment_update_password.xml" value="0.22467105263157894" />
+        <entry key="app/src/main/res/layout/activity_error.xml" value="0.23715277777777777" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2995614035087719" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2995614035087719" />

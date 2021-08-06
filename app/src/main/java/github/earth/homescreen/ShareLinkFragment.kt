@@ -71,8 +71,8 @@ class ShareLinkFragment : Fragment() {
     private fun share() {
         val image = arguments?.getString("ImageUri")
         val title = arguments?.getString("Title")
-        val materials = arguments?.getString("Matrials")
-        val time = arguments?.getString("Time")
+        val materials = arguments?.getString("Materials")
+        val time = arguments?.getInt("Time")
 
         val tutorial = etTutorial.text.toString()
         val link = etLink.text.toString()
@@ -81,13 +81,12 @@ class ShareLinkFragment : Fragment() {
             val uid = mFirebaseHelper.currentUid()!!
             mFirebaseHelper.uploadSharePhoto(image.toString().toUri()) {
                 val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-                    jhgcfd.text = materials
                 }
                 mFirebaseHelper.addSharePhoto(it.toString()) {
                     mFirebaseHelper.database.child("feed")
                         .child(mFirebaseHelper.auth.currentUser!!.uid).push()
                         .setValue(
-                            mkFeed(uid, image.toString(), link, title, materials, time.toString() )).addOnCompleteListener({
+                            mkFeed(uid, image.toString(), link, title, materials, time )).addOnCompleteListener({
                             findNavController().navigate(R.id.action_shareLinkFragment_to_HomeFragment)
                         })
                 }
@@ -96,7 +95,7 @@ class ShareLinkFragment : Fragment() {
         }
     }
 
-    private fun mkFeed(uid: String, imageDownloadUrl: String, link: String, title: String, materials: String, time: String) : Feed {
+    private fun mkFeed(uid: String, imageDownloadUrl: String, link: String, title: String, materials: String, time: Int) : Feed {
         return Feed(
             uid = uid,
             username = mUser.username,
@@ -106,7 +105,7 @@ class ShareLinkFragment : Fragment() {
             tutorial = etTutorial.text.toString(),
             title = title,
             materals = materials,
-            time = time.toInt()
+            time = time
 
         )
     }

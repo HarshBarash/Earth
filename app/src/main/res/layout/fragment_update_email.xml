@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_top"
-        android:backgroundTint="#91BF8E"
+        android:backgroundTint="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
             android:id="@+id/layoutHead"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#91BF8E">
+            android:backgroundTint="?attr/colorPrimary">
 
             <ImageView
                 android:id="@+id/image_view"
@@ -54,8 +54,8 @@
                 android:layout_marginBottom="15dp"
                 android:text="To change email you need to enter your password again"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/white" />
 
 
             <EditText
@@ -63,8 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_54sdp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginRight="12dp"
                 android:background="@drawable/edittext_for_changeuser"
                 android:enabled="true"
@@ -93,8 +93,8 @@
                 android:id="@+id/progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -118,6 +118,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="12dp"
                 android:background="@drawable/edittext_for_changeuser"
+                android:backgroundTint="?attr/colorSecondary"
                 android:enabled="true"
                 android:fontFamily="@font/roboto_medium"
                 android:hint="@string/enter_your_email"

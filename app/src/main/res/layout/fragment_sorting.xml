@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSecondary">
+    android:background="?attr/colorSecondary"
+    android:layout_marginBottom="@dimen/_70sdp">
 
+
+<!--    //нжно под Ml, фоточка юзер простым языком-->
+    <ImageView
+        android:id="@+id/img_view"
+        android:layout_width="224dp"
+        android:layout_height="224dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMLrn"
+        app:layout_constraintEnd_toEndOf="@+id/machinelearning"
+        app:layout_constraintTop_toTopOf="@+id/btnMLrn"
+        tools:ignore="MissingConstraints" />
 
     <View
         android:id="@+id/machinelearning"
@@ -18,8 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnMchLrn"
-        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        android:id="@+id/btnMLrn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
@@ -31,16 +41,29 @@
         app:layout_constraintStart_toStartOf="@+id/machinelearning"
         app:layout_constraintTop_toTopOf="@+id/machinelearning" />
 
-    <ImageButton
+
+
+    <Button
         android:id="@+id/recycle"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_60sdp"
+        app:icon="@drawable/ic_recycle"
+        app:iconTint="@color/white"
         android:background="@drawable/bottom_sheet_right"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howmany" />
 
-    <ImageButton
+    <View
+        android:id="@+id/recycleimage"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycle"
+        app:layout_constraintEnd_toEndOf="@+id/recycle"
+        app:layout_constraintStart_toStartOf="@+id/recycle"
+        app:layout_constraintTop_toTopOf="@+id/recycle"/>
+
+    <EditText
         android:id="@+id/howmany"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_60sdp"
@@ -49,13 +72,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
+        android:backgroundTint="?attr/colorPrimary"
+        android:maxHeight="@dimen/_265sdp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
 

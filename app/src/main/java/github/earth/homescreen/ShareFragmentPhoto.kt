@@ -1,8 +1,11 @@
 package github.earth.homescreen
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.FileProvider
@@ -24,6 +28,7 @@ import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.ImageView
+import androidx.core.content.PermissionChecker
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
@@ -34,7 +39,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import github.earth.models.Feed
 import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_sharephoto.*
 import kotlinx.android.synthetic.main.fragment_sharephoto.view.*
@@ -58,8 +62,7 @@ class ShareFragmentPhoto  : Fragment() {
         mDatabase = FirebaseDatabase.getInstance().reference
         mFirebaseHelper = FirebaseHelper(activity)
 
-        mCameraHelper = CameraHelper(requireActivity())
-        mCameraHelper.takeCameraPicture()
+        checkandGetpermissions()
 
 
         mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
@@ -71,13 +74,11 @@ class ShareFragmentPhoto  : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sharephoto, container, false)
-    }
+        Log.v(LOG_SORTING_FRAGMENT, "onCreateView called")
+        // Inflate the layout for this fragment--
+        val rootView = inflater.inflate(R.layout.fragment_sharephoto, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val imageView: ImageView = view.findViewById(R.id.tutorial_image)
+        val imageView: ImageButton = rootView.findViewById(R.id.tutorial_image_share)
         val bundle = Bundle()
 
 
@@ -89,7 +90,7 @@ class ShareFragmentPhoto  : Fragment() {
                 RoundedCorners(15)
             ).into(imageView)
 
-        nextbuttonone.setOnClickListener({
+        rootView.nextbuttonone.setOnClickListener({
             val ImageUri = mCameraHelper.imageUri
             if (ImageUri != null) {
                 bundle.putString("ImageUri", ImageUri.toString())
@@ -98,36 +99,38 @@ class ShareFragmentPhoto  : Fragment() {
                 requireActivity().showToast("Please make photo")
             }
         })
+
+        return rootView
+    }
+
+
+@SuppressLint("WrongConstant")
+public fun checkandGetpermissions() {
+    if (PermissionChecker.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_DENIED
+    ) {
+        requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
+    } else {
+        requireActivity().showToast("Camera permission granted")
     }
 }
 
+override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == 100) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            requireActivity().showToast("Camera permission granted")
+        } else {
 
-
-
-
-//    private fun share() {
-//        val imageUri = mCameraHelper.imageUri
-//        if (imageUri != null) {
-//            mFirebaseHelper.uploadSharePhoto(imageUri) {
-//                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-//                }
-//                mFirebaseHelper.addSharePhoto(it.toString()) {
-//                    mFirebaseHelper.database.child("feed")
-//                        .child(mFirebaseHelper.auth.currentUser!!.uid).push()
-//                        .setValue(
-//                            Feed(
-//                                uid = mFirebaseHelper.auth.currentUser!!.uid, //uid
-//                                image = imageDownloadUrl.toString()
-//                                // title сюда захвачу предыдушие фрагменты
-//                }
-//                            )
-//                        )
-//                }
-//            }
-//        }
-//    }
-
-
-
-
+            requireActivity().showToast("Permission Denied")
+        }
+    }
+}
+}
 

@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -38,7 +39,6 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
 
     //ML
-
     lateinit var bitmap: Bitmap
     lateinit var appCtx: Application
     lateinit var btnMLrn : Button
@@ -51,7 +51,7 @@ class SortingFragment : Fragment(), View.OnClickListener {
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_DENIED
         ) {
-            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 100)
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
         } else {
             requireActivity().showToast("Camera permission granted")
         }
@@ -67,6 +67,7 @@ class SortingFragment : Fragment(), View.OnClickListener {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 requireActivity().showToast("Camera permission granted")
             } else {
+
                 requireActivity().showToast("Permission Denied")
             }
         }
@@ -91,7 +92,8 @@ class SortingFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_sorting, container, false)
 
-        btnMLrn = view?.findViewById(R.id.btnMLrn)!!
+        btnMLrn = rootView.findViewById(R.id.btnMLrn) //здесь сюда срочно
+            //махнуть на assets
 
 
         //Навигация дальше
@@ -102,40 +104,16 @@ class SortingFragment : Fragment(), View.OnClickListener {
         fltNtf = rootView.findViewById(R.id.fltNtf)
         fltNtf.setOnClickListener(this)
 
-        val labels = appCtx.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
-
-
-
         btnMLrn.setOnClickListener(View.OnClickListener {
-            Log.d("mssg", "button pressed")
-            var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-
-            startActivityForResult(intent, 250)
-
-            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = context?.let { it1 -> ModelUnquant.newInstance(it1) }
+//            Log.d("mssg", "button pressed")
+//            var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+//            intent.type = "image/*"
 
 
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
+            var camera : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(camera, 200)
 
-// Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
-            inputFeature0.loadBuffer(byteBuffer)
-
-// Runs model inference and gets result.
-            val outputs = model?.process(inputFeature0)
-            val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
-
-            var max = outputFeature0?.let { it1 -> getMax(it1?.floatArray) }
-
-            sorttext.setText(labels[max!!])
-
-// Releases model resources if no longer used.
-            if (model != null) {
-                model.close()
-            }
+//            startActivityForResult(intent, 250)
         })
 
         return rootView
@@ -190,26 +168,53 @@ class SortingFragment : Fragment(), View.OnClickListener {
     }
 
     //Для панели админа
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if(requestCode == 250){
-//            img_view.setImageURI(data?.data)
-//
-//            var uri : Uri?= data?.data
-//            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-//        }
-//        else if(requestCode == 200 && resultCode == Activity.RESULT_OK){
-//            bitmap = data?.extras?.get("data") as Bitmap
-//            img_view.setImageBitmap(bitmap)
-//        }}
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 250){
+
+            img_view.setImageURI(data?.data)
+
+            var uri : Uri?= data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+        }
+        else if(requestCode == 200 && resultCode == Activity.RESULT_OK){
+            bitmap = data?.extras?.get("data") as Bitmap
+            img_view.setImageBitmap(bitmap)
+
+            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+            val model = ModelUnquant.newInstance(requireActivity())
+
+
+            var tbuffer = TensorImage.fromBitmap(resized)
+            var byteBuffer = tbuffer.buffer
+
+// Creates inputs for reference.
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+            inputFeature0.loadBuffer(byteBuffer)
+
+// Runs model inference and gets result.
+            val outputs = model?.process(inputFeature0)
+            val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
+
+            var max = outputFeature0?.let { it1 -> getMax(it1.floatArray) }
+
+            val labels = appCtx.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
+
+            sorttext.setText(labels[max!!])
+
+// Releases model resources if no longer used.
+            if (model != null) {
+                model.close()
+            }
+        }}
 
 
     fun getMax(arr: FloatArray): Int {
         var ind = 0;
         var min = 0.0f;
 
-        for (i in 0..1000) {
+        for (i in 0..10) {
             if (arr[i] > min) {
                 min = arr[i]
                 ind = i;

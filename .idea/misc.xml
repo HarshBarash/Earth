@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/fragment_shareinfo.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_sharelink.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_sharephoto.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/fragment_sorting.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_update_email.xml" value="0.22467105263157894" />
         <entry key="app/src/main/res/layout/fragment_update_password.xml" value="0.22467105263157894" />

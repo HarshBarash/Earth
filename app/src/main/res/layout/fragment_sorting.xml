@@ -8,6 +8,15 @@
     android:layout_marginBottom="@dimen/_70sdp">
 
 
+    <ImageView
+        android:id="@+id/img_view"
+        android:layout_width="224dp"
+        android:layout_height="224dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMLrn"
+        app:layout_constraintEnd_toEndOf="@+id/machinelearning"
+        app:layout_constraintTop_toTopOf="@+id/btnMLrn"
+        tools:ignore="MissingConstraints" />
+
     <View
         android:id="@+id/machinelearning"
         android:layout_width="@dimen/_165sdp"

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,21 +19,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import github.earth.MainActivity
 import github.earth.R
+import github.earth.TutorialRecyclerViewAdapter
 import github.earth.authscreen.LoginActivity
-import github.earth.models.Feed
-import github.earth.utils.FirebaseHelper
-import github.earth.utils.LOG_HOME_FRAGMENT
-import github.earth.utils.ValueEventListenerAdapter
-import github.earth.utils.loadImage
-import kotlinx.android.synthetic.main.feed_item.view.*
+import github.earth.models.Tutorial
+import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
 
     private lateinit var mFirebase: FirebaseHelper
-//    private lateinit var mAuth: FirebaseAuth
+
+    //    private lateinit var mAuth: FirebaseAuth
     private lateinit var navController: NavController
+    private lateinit var tutorialAdapter: TutorialRecyclerViewAdapter //todo
 
     private lateinit var btnPlusContent: Button
 
@@ -52,13 +52,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             val intent_toLogin = Intent(activity, LoginActivity::class.java)
             activity?.startActivity(intent_toLogin)
             activity?.finish()
-        } else {
-            mFirebase.database.child("Feed").child(mFirebase.auth.currentUser!!.uid)
-                .addValueEventListener(ValueEventListenerAdapter {
-                    val tutorials = it.children.map { it.getValue(Feed::class.java)!! }
-                    feed_recycler.adapter = FeedAdapter(tutorials)
-                    feed_recycler.layoutManager = LinearLayoutManager(requireContext())
-                })
         }
 
 
@@ -68,63 +61,67 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).homeViewModel
 
-        setCurrentUserDetails()
+//        setCurrentUserDetails()
+//
+//        setAllTutorials()
 
-        setAllTutorials()
 
-
-
-        fabAddPost.setOnClickListener {
-            this.findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
-        }
+//        btnPlusContent.setOnClickListener {
+//            this.findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
+//        }
     }
 
-    private fun setAllPosts() {
-        viewModel.getPostsState.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Success -> {
-                    postsProgressBar.visibility = View.INVISIBLE
-                }
-                is Resource.Error -> {
-                    postsProgressBar.visibility = View.INVISIBLE
-                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
-                }
-                is Resource.Loading -> {
-                    postsProgressBar.visibility = View.VISIBLE
-                }
-            }
-        })
-
-        setupRecyclerView()
-
-        viewModel.postList.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Log.d(TAG, "setAllPosts: $it")
-                blogAdapter.differ.submitList(it)
-            }
-        })
-
-
-        //OnClickListener
-        blogAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putParcelable("post", it)
-            }
-            this.findNavController()
-                .navigate(R.id.action_homeFragment_to_singlePostFragment, bundle)
-        }
+    override fun onClick(v: View?) {
+        TODO("Not yet implemented")
     }
+} //временно
 
-    private fun setupRecyclerView() {
-        blogAdapter = BlogRecyclerViewAdapter()
-        rvPosts.apply {
-            adapter = blogAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
-    }
+//    private fun setAllPosts() {
+//        viewModel.getPostsState.observe(viewLifecycleOwner, Observer {
+//            when (it) {
+//                is Resource.Success -> {
+//                    tutorialsProgressBar.visibility = View.INVISIBLE
+//                }
+//                is Resource.Error -> {
+//                    tutorialsProgressBar.visibility = View.INVISIBLE
+//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+//                }
+//                is Resource.Loading -> {
+//                    tutorialsProgressBar.visibility = View.VISIBLE
+//                }
+//            }
+//        })
 
-
-}
+//        setupRecyclerView()
+//
+//        viewModel.tutorialList.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                Log.d(TAG, "setAllPosts: $it")
+//                tutorialAdapter.differ.submitList(it)
+//            }
+//        })
+//
+//
+//        //OnClickListener
+//        tutorialAdapter.setOnItemClickListener {
+//            val bundle = Bundle().apply {
+//                putParcelable("tutorial", it)
+//            }
+//            this.findNavController()
+//                .navigate(R.id.action_homeFragment_to_singlePostFragment, bundle)
+//        }
+//    }
+//
+//    private fun setupRecyclerView() {
+//        tutorialAdapter = BlogRecyclerViewAdapter()
+//        rvPosts.apply {
+//            adapter = tutorialAdapter
+//            layoutManager = LinearLayoutManager(activity)
+//        }
+//    }
+//
+//
+//}
 
 
 

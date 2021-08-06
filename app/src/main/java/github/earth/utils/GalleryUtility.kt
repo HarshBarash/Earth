@@ -2,6 +2,7 @@ package github.earth.utils
 
 import android.Manifest
 import android.content.Context
+import pub.devrel.easypermissions.EasyPermissions
 
 object GalleryUtility {
 

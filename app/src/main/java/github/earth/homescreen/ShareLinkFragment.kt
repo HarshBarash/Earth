@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import github.earth.R
-import github.earth.models.Feed
 import github.earth.models.User
 import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_shareinfo.*
@@ -63,50 +62,50 @@ class ShareLinkFragment : Fragment() {
 
 
         publish.setOnClickListener {
-        share()
+//        share()
         }
     }
 
-
-    private fun share() {
-        val image = arguments?.getString("ImageUri")
-        val title = arguments?.getString("Title")
-        val materials = arguments?.getString("Materials")
-        val time = arguments?.getInt("Time")
-
-        val tutorial = etTutorial.text.toString()
-        val link = etLink.text.toString()
-        if (image != null && title != null && materials != null && time != null && tutorial != null) {
-
-            val uid = mFirebaseHelper.currentUid()!!
-            mFirebaseHelper.uploadSharePhoto(image.toString().toUri()) {
-                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-                }
-                mFirebaseHelper.addSharePhoto(it.toString()) {
-                    mFirebaseHelper.database.child("feed")
-                        .child(mFirebaseHelper.auth.currentUser!!.uid).push()
-                        .setValue(
-                            mkFeed(uid, image.toString(), link, title, materials, time )).addOnCompleteListener({
-                            findNavController().navigate(R.id.action_shareLinkFragment_to_HomeFragment)
-                        })
-                }
-
-            }
-        }
-    }
-
-    private fun mkFeed(uid: String, imageDownloadUrl: String, link: String, title: String, materials: String, time: Int) : Feed {
-        return Feed(
-            uid = uid,
-            username = mUser.username,
-            photo = mUser.photo,
-            image = imageDownloadUrl,
-            link = etTutorial.text.toString(),
-            tutorial = etTutorial.text.toString(),
-            title = title,
-            materals = materials,
-            time = time
-
-        )
-    }
+//
+//    private fun share() {
+//        val image = arguments?.getString("ImageUri")
+//        val title = arguments?.getString("Title")
+//        val materials = arguments?.getString("Materials")
+//        val time = arguments?.getInt("Time")
+//
+//        val tutorial = etTutorial.text.toString()
+//        val link = etLink.text.toString()
+//        if (image != null && title != null && materials != null && time != null && tutorial != null) {
+//
+//            val uid = mFirebaseHelper.currentUid()!!
+//            mFirebaseHelper.uploadSharePhoto(image.toString().toUri()) {
+//                val imageDownloadUrl = it.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+//                }
+//                mFirebaseHelper.addSharePhoto(it.toString()) {
+//                    mFirebaseHelper.database.child("feed")
+//                        .child(mFirebaseHelper.auth.currentUser!!.uid).push()
+//                        .setValue(
+//                            mkFeed(uid, image.toString(), link, title, materials, time )).addOnCompleteListener({
+//                            findNavController().navigate(R.id.action_shareLinkFragment_to_HomeFragment)
+//                        })
+//                }
+//
+//            }
+//        }
+//    }
+//
+//    private fun mkFeed(uid: String, imageDownloadUrl: String, link: String, title: String, materials: String, time: Int) : Feed {
+//        return Feed(
+//            uid = uid,
+//            username = mUser.username,
+//            photo = mUser.photo,
+//            image = imageDownloadUrl,
+//            link = etTutorial.text.toString(),
+//            tutorial = etTutorial.text.toString(),
+//            title = title,
+//            materals = materials,
+//            time = time
+//
+//        )
+//    }
 }

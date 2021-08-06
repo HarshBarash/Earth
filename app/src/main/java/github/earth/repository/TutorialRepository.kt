@@ -57,23 +57,23 @@ class TutorialRepository(
 
     suspend fun uploadTutorialImage(uri: Uri): Uri {
         val filename = UUID.randomUUID().toString()
-        val ref = storageRef.child("postImages/$filename")
+        val ref = storageRef.child("tutorialImages/$filename")
         ref.putFile(uri)
             .await()
         return ref.downloadUrl.await()
     }
 
     suspend fun saveTutorialToFirestore(tutorial: Tutorial) {
-        val postCollectionRef = firestoreRef.collection("posts")
-        postCollectionRef.add(tutorial).await()
+        val tutorialCollectionRef = firestoreRef.collection("tutorials")
+        tutorialCollectionRef.add(tutorial).await()
     }
 
     fun getAllTutorials(): MutableLiveData<ArrayList<Tutorial>> {
-        val postCollectionRef = firestoreRef.collection("posts")
+        val tutorialCollectionRef = firestoreRef.collection("tutorials")
             .orderBy("timestamp", Query.Direction.DESCENDING)
-        val _posts = MutableLiveData<ArrayList<Tutorial>>()
+        val _tutorials = MutableLiveData<ArrayList<Tutorial>>()
 
-        postCollectionRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        tutorialCollectionRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             firebaseFirestoreException?.let {
                 throw it
             }

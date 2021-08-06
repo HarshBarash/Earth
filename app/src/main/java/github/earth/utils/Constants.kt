@@ -1,5 +1,11 @@
 package github.earth.utils
 
+
+object Constants {
+    const val REQUEST_CODE_STORAGE_PERMISSION = 0
+    const val IMAGE_PICK_CODE = 1
+}
+
 /*****************************************| .Application |*****************************************/
 
 const val APP_NAME                  = "Earth"

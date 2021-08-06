@@ -94,9 +94,7 @@
         <argument
             android:name="tutorial"
             app:argType="github.earth.models.Tutorial" />
-        <action
-            android:id="@+id/action_singleTutorialFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+
     </fragment>
 
 </navigation>

@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
         navigationView.setupWithNavController(navController)
 
         //home
-        val homeViewModelProviderFactory = HomeViewModelProviderFactory(blogRepository)
-        homeViewModel =
-            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
+//        val homeViewModelProviderFactory = HomeViewModelProviderFactory(tutorialRepository)
+//        homeViewModel =
+//            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
 
         //исправить под аву
         val menu = navigationView.menu

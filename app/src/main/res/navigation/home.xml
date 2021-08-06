@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_ProfileScreen"
             app:destination="@id/ProfileScreen" />
+        <action
+            android:id="@+id/action_HomeFragment_to_singleTutorialFragment"
+            app:destination="@id/singleTutorialFragment" />
     </fragment>
 
 <!--    Экраны на homefragment-->
@@ -73,4 +76,27 @@
             android:id="@+id/action_shareLinkFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/singleTutorialFragment"
+        android:name="github.earth.homescreen.SingleTutorialFragment"
+        android:label="SingleTutorialFragment"
+        tools:layout="@layout/fragment_single_tutorial">
+        <action
+            android:id="@+id/action_singleTutorialFragment_to_homeFragment"
+            app:destination="@id/HomeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/HomeFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="tutorial"
+            app:argType="github.earth.models.Tutorial" />
+        <action
+            android:id="@+id/action_singleTutorialFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
 </navigation>

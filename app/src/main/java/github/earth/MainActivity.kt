@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -20,6 +21,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.StorageReference
+import github.earth.homescreen.HomeViewModel
+import github.earth.homescreen.HomeViewModelProviderFactory
 import github.earth.services.ReminderService
 import github.earth.settingsscreen.SettingsFragment
 import github.earth.utils.*
@@ -28,7 +33,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var homeViewModel: HomeViewModel
     private lateinit var navController: NavController
+
+    lateinit var storageRef: StorageReference
+    lateinit var firestoreRef: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setCustomTheme()
@@ -44,6 +53,11 @@ class MainActivity : AppCompatActivity() {
         // Setup the bottom navigation view with navController
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
+
+        //home
+        val homeViewModelProviderFactory = HomeViewModelProviderFactory(blogRepository)
+        homeViewModel =
+            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
 
         //исправить под аву
         val menu = navigationView.menu

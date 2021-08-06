@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
+            app:layout_constraintTop_toBottomOf="@+id/ivTutorialImage" />
 
         <ImageView
             android:id="@+id/ivTranslate"
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ivPlay"
             app:layout_constraintHorizontal_bias="0.866"
             app:layout_constraintStart_toEndOf="@+id/tvUsername"
-            app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
+            app:layout_constraintTop_toBottomOf="@+id/ivTutorialImage" />
 
         <ImageView
             android:id="@+id/ivPlay"
@@ -57,7 +57,7 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_play"
             app:layout_constraintEnd_toStartOf="@+id/ivTime"
-            app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
+            app:layout_constraintTop_toBottomOf="@+id/ivTutorialImage" />
 
         <ImageView
             android:id="@+id/ivTime"
@@ -67,7 +67,7 @@
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
+            app:layout_constraintTop_toBottomOf="@+id/ivTutorialImage" />
 
         <TextView
             android:id="@+id/tvUsername"
@@ -79,7 +79,7 @@
             android:fontFamily="@font/roboto_medium"
             android:textSize="@dimen/_16ssp"
             app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-            app:layout_constraintTop_toBottomOf="@+id/ivPostImage"
+            app:layout_constraintTop_toBottomOf="@+id/ivTutorialImage"
             tools:text="Username" />
 
         <TextView
@@ -97,7 +97,7 @@
 
 <!--        TODO загруглить края -->
         <ImageView
-            android:id="@+id/ivPostImage"
+            android:id="@+id/ivTutorialImage"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_225sdp"
             android:adjustViewBounds="true"
@@ -186,7 +186,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
-            tools:text="Post Title" />
+            tools:text="Tutorial Title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

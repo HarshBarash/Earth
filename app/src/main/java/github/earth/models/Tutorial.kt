@@ -10,7 +10,7 @@ data class Tutorial(
     val description: String = "",
     val time: Int = 1,
     val link: String = "",
-    val postImageUrl: String = "",
+    val tutorialImageUrl: String = "",
     val username: String = "",
     val profileImageUrl: String = "",
     val timestamp: Long = -1

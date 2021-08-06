@@ -31,4 +31,6 @@
     <string name="newThemeNotice">Изменения вступят в силу после сохранения</string>
     <string name="selectNewTheme">Выберите тему</string>
     <string name="alreadySelectedIcon">Вы уже выбрали этот значок</string>
+    <string name="contentTittleSrvFrg">"Мы напомним о сортировке в "</string>
+    <string name="widgetText">"След. сортировка в "</string>
 </resources>

@@ -7,12 +7,22 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!--
+         The API key for Google Maps-based APIs is defined as a string resource.
+         (See the file "res/values/google_maps_api.xml").
+         Note that the API key is linked to the encryption key used to sign the APK.
+         You need a different API key for each encryption key, including the release key that is used to
+         sign the APK for publishing.
+         You can define the keys for the debug and release targets in src/debug/ and src/release/.
+    -->
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -26,6 +36,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Earth">
+
+        <!-- Broadcast Receivers -->
+
         <receiver
             android:name=".widgets.UniversalAppWidget"
             android:exported="true">
@@ -38,36 +51,60 @@
                 android:resource="@xml/universal_app_widget_info" />
         </receiver>
 
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0" />
         <!-- Спасибо Сане - AIzaSyD777P50EiSOfattBUFe_Ulpe1diITF4V0 -->
+
+        <!-- Services -->
+
         <service
             android:name=".services.ReminderService"
             android:enabled="true"
             android:exported="true"/>
 
-        <activity android:name=".ErrorActivity" />
-        <activity android:name=".authscreen.LoginActivity" />
-        <activity android:name=".authscreen.RegisterActivity" />
-        <activity android:name=".authscreen.ResetActivity" /> <!-- Activities -->
+        <!-- Activities -->
+
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Icons :) -->
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Earth">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ErrorActivity" />
+
+        <activity android:name=".authscreen.LoginActivity" />
+
+        <activity android:name=".authscreen.RegisterActivity" />
+
+        <activity android:name=".authscreen.ResetActivity" />
+
+        <!-- Content providers -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="github.earth.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Icons :) or Activity-alias -->
+
         <activity-alias
             android:name=".SplashScreen.LauncherPurple"
             android:enabled="false"
@@ -198,24 +235,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.Earth">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="github.earth.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
     </application>
-
 </manifest>

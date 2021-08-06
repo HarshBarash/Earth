@@ -30,7 +30,7 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="Next remind in 20:00" />
+            android:text="@string/widgetText" />
     </LinearLayout>
 
 

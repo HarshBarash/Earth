@@ -31,11 +31,11 @@
         <action
             android:id="@+id/action_SharePhotoScreen_to_shareLinkFragment"
             app:destination="@id/shareLinkFragment" />
-        <argument android:name="Title" />
-        <argument android:name="Materials" />
-        <argument android:name="Time" android:defaultValue="1" />
-        <argument android:name="Description" />
-        <argument android:name="Link" />
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time" android:defaultValue="1" />
+        <argument android:name="description" />
+        <argument android:name="link" />
 
         <action
             android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
@@ -52,14 +52,14 @@
         <action
             android:id="@+id/action_shareInfoFragment_to_shareLinkFragment"
             app:destination="@id/shareLinkFragment">
-        <argument android:name="Title" />
-        <argument android:name="Materials" />
-        <argument android:name="Time"  android:defaultValue="1" />
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time"  android:defaultValue="1" />
         </action>
         <argument android:name="title" />
-        <argument android:name="Materials" />
+        <argument android:name="materials" />
         <argument
-            android:name="Time"
+            android:name="time"
             app:argType="integer"
             android:defaultValue="1" />
 
@@ -77,11 +77,11 @@
         <action
             android:id="@+id/action_shareLinkFragment_to_SharePhotoScreen"
             app:destination="@id/SharePhotoScreen" />
-        <argument android:name="Title" />
-        <argument android:name="Materials" />
-        <argument android:name="Time" android:defaultValue="1" />
-        <argument android:name="Description" />
-        <argument android:name="Link" />
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time" android:defaultValue="1" />
+
+
     </fragment>
 
     <fragment

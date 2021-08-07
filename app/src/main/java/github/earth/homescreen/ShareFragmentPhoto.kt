@@ -76,7 +76,7 @@ class ShareFragmentPhoto  : Fragment(R.layout.fragment_sharephoto) {
 
     private fun uploadTutorial() {
 
-        val args: ShareLinkFragmentArgs by navArgs()
+        val args: ShareFragmentPhotoArgs by navArgs()
         val title = args.title
         val materials = args.materials
         val time = args.time

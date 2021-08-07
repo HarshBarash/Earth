@@ -42,19 +42,19 @@ class ShareLinkFragment : Fragment(R.layout.fragment_sharelink) {
 
             val args: ShareLinkFragmentArgs by navArgs()
             val title = args.title
-            val materials = args.materials
-            val time = args.time
+            val Materials = args.materials
+            val Time = args.time
 
-            val description = etTutorialDescription.text.toString()
-            val link = etTutorialLink.text.toString()
+            val Description = etTutorialDescription.text.toString()
+            val Link = etTutorialLink.text.toString()
 
 
             val action = ShareLinkFragmentDirections.actionShareLinkFragmentToSharePhotoScreen(
                 title,
-                materials,
-                time,
-                description,
-                link
+                Materials,
+                Time,
+                Description,
+                Link
             )
 
             findNavController().navigate(action)

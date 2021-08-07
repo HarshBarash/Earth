@@ -95,6 +95,12 @@
 
         <activity android:name=".authscreen.ResetActivity" />
 
+<!--        ML-->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ica" />
+        <!-- To use multiple models: android:value="ica,model2,model3" -->
+
         <!-- Content providers -->
 
         <provider

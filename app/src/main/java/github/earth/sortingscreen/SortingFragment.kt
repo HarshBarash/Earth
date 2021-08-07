@@ -3,81 +3,77 @@ package github.earth.sortingscreen
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Application
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
+import android.os.storage.StorageManager
+import android.provider.Contacts.Intents.Insert.ACTION
+import android.provider.ContactsContract.Intents.Insert.ACTION
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabeler
+import com.google.mlkit.vision.label.ImageLabeling
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import github.earth.MainActivity
 import github.earth.R
-import github.earth.ml.ModelUnquant
+
 import github.earth.utils.LOG_SORTING_FRAGMENT
 import github.earth.utils.SETTINGS_FILE
 import github.earth.utils.SETTINGS_REMIND_TIME
 import github.earth.utils.showToast
 import kotlinx.android.synthetic.main.fragment_sorting.*
 import kotlinx.android.synthetic.main.fragment_sorting.view.*
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.lang.Exception
+
 
 class SortingFragment : Fragment(), View.OnClickListener {
 
+    lateinit var ivPicture: ImageView
+    lateinit var tvResult: TextView
+    lateinit var btnChoosePicture: Button
+    private val CAMERA_PERMISSION_CODE=123
+    private val STORAGE_PERMISSION_CODE=113
+
+
     private lateinit var fltNtf: FloatingActionButton
 
-    lateinit var bitmap: Bitmap
-    lateinit var appCtx: Application
-    lateinit var btnMLrn : Button
+    private lateinit var cameraLauncher:ActivityResultLauncher<Intent>
+    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
 
-    @SuppressLint("WrongConstant")
-    public fun checkandGetpermissions() {
-        if (PermissionChecker.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_DENIED
-        ) {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
-        } else {
-            requireActivity().showToast("Camera permission granted")
-        }
-    }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 100) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                requireActivity().showToast("Camera permission granted")
-            } else {
+    lateinit var inputImage: InputImage
 
-                requireActivity().showToast("Permission Denied")
-            }
-        }
-    }
+    lateinit var imageLabeler: ImageLabeler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(LOG_SORTING_FRAGMENT, "onCreate called")
 
-        // handling permissions
-        checkandGetpermissions()
-
-        appCtx = requireActivity().application
 
     }
 
@@ -94,34 +90,137 @@ class SortingFragment : Fragment(), View.OnClickListener {
 //            findNavController().navigate(R.id.action_register_to_registered)
 //        }
 
-        btnMLrn = rootView.findViewById(R.id.btnMLrn) //здесь сюда срочно
-        //махнуть на assets
 
         fltNtf = rootView.findViewById(R.id.fltNtf)
         fltNtf.setOnClickListener(this)
 
-        val labels = appCtx.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
+        ivPicture = rootView.findViewById(R.id.img_view)
+        tvResult = rootView.findViewById(R.id.sorttext)
+        btnChoosePicture = rootView.findViewById(R.id.btnMLrn)
 
+        imageLabeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
 
+        btnChoosePicture.setOnClickListener {
+            val options = arrayOf("Camera", "Gallery")
+            val builder = AlertDialog.Builder(requireContext())
 
-        btnMLrn.setOnClickListener(View.OnClickListener {
-            //Log.d("mssg", "button pressed")
-            //var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            //intent.type = "image/*"
+            builder.setTitle("Pick a option")
 
-            var camera : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(camera, 200)
+            builder.setItems(options, DialogInterface.OnClickListener{
+                    dialog, which ->
+                if (which== 0) {
+                    val camerIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    cameraLauncher.launch(camerIntent)
+                } else {
+                    val storageIntent = Intent()
+                    storageIntent.setType("image/*")
+                    storageIntent.setAction(Intent.ACTION_GET_CONTENT)
+                    galleryLauncher.launch(storageIntent)
 
-//            startActivityForResult(intent, 250)
-        })
+                }
+            })
+
+            builder.show()
+
+        }
+
+        cameraLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            object : ActivityResultCallback<ActivityResult>{
+                override fun onActivityResult(result: ActivityResult?) {
+                    val data=result?.data
+                    try {
+                        val photo = data?.extras?.get("data") as Bitmap
+                        ivPicture.setImageBitmap(photo)
+                        inputImage = InputImage.fromBitmap(photo, 0)
+                        processImage()
+
+                    }catch (e: Exception) {
+                        Log.d(LOG_SORTING_FRAGMENT, "onActivityResult: ${e.message}" )
+                    }
+                }
+            }
+        )
+
+        galleryLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            object : ActivityResultCallback<ActivityResult>{
+                override fun onActivityResult(result: ActivityResult?) {
+                    val data=result?.data
+                    try {
+                      inputImage = InputImage.fromFilePath(requireActivity(), data?.data)
+                      ivPicture.setImageURI(data?.data)
+                      processImage()
+                    }catch (e: Exception) {
+
+                    }
+                }
+            }
+        )
 
         return rootView
     }
 
+    //ML здесь
+    private fun processImage() {
+        imageLabeler.process(inputImage)
+            .addOnSuccessListener {
+
+                var result = ""
+
+                for (label in it) {
+                    val text = label.text
+                    result = result + "\n" + label.text
+                }
+
+                tvResult.text=result
+            }.addOnFailureListener{
+                Log.d(LOG_SORTING_FRAGMENT, "processImage: ${it.message}")
+            }
+    }
+
+
     override fun onStart() {
         super.onStart()
-
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    private fun checkPermission(permission:String, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_DENIED) {
+
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(permission), requestCode)
+        } else {
+            activity?.showToast("Permission Granted already")
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode==CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+                activity?.showToast("Camera Permission Granted")
+            } else {
+                activity?.showToast("Camera Permission Denied")
+
+            }
+        } else if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+                activity?.showToast("Storage Permission Granted")
+            } else {
+                activity?.showToast("Storag Permission Denied")
+
+            }
+        }
+    }
+
 
     private fun pickTime() {
         val picker =
@@ -199,59 +298,4 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
     }
 
-    //Для панели админа
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 250){
-
-            img_view.setImageURI(data?.data)
-
-            var uri : Uri?= data?.data
-            bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
-        }
-        else if(requestCode == 200 && resultCode == Activity.RESULT_OK){
-            bitmap = data?.extras?.get("data") as Bitmap
-            img_view.setImageBitmap(bitmap)
-
-            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = ModelUnquant.newInstance(requireActivity())
-
-
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
-
-// Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-//            inputFeature0.loadBuffer(byteBuffer)
-
-// Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-
-            var max = outputFeature0?.let { it1 -> getMax(it1.floatArray) }
-
-            val labels = appCtx.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
-
-            sorttext.setText(labels[max!!])
-
-// Releases model resources if no longer used.
-            if (model != null) {
-                model.close()
-            }
-        }}
-
-    fun getMax(arr: FloatArray): Int {
-        var ind = 0
-        var min = 0.0f
-
-        for (i in 0..10) {
-            if (arr[i] > min) {
-                min = arr[i]
-                ind = i
-            }
-        }
-        return ind
-    }
 }

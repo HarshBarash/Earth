@@ -33,4 +33,10 @@
     <string name="alreadySelectedIcon">Вы уже выбрали этот значок</string>
     <string name="contentTittleSrvFrg">"Мы напомним о сортировке в "</string>
     <string name="widgetText">"След. сортировка в "</string>
+    <string name="proceed">Продолжить</string>
+    <string name="cancel">Отмена</string>
+    <string name="widgetTextDis">Сервис уведомлений выключен :(</string>
+    <string name="сonfirmation">Подтверждение</string>
+    <string name="u_selected_icon">Вы выбрали новую иконку, приложение будет перезапущено если вы продолжите.</string>
+    <string name="u_selected_theme">Вы выбрали новую тему, приложение будет быстро перезапущено если вы продолжите.</string>
 </resources>

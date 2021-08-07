@@ -235,13 +235,13 @@
                                         android:background="@drawable/circle"
                                         android:backgroundTint="@color/main_yellow"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/vOrangePink"
+                                        app:layout_constraintEnd_toStartOf="@+id/vOrangeTheme"
                                         app:layout_constraintHorizontal_bias="0.5"
                                         app:layout_constraintStart_toEndOf="@+id/vPinkTheme"
                                         app:layout_constraintTop_toTopOf="parent" />
 
                                     <View
-                                        android:id="@+id/vOrangePink"
+                                        android:id="@+id/vOrangeTheme"
                                         android:layout_width="@dimen/_35sdp"
                                         android:layout_height="@dimen/_35sdp"
                                         android:background="@drawable/circle"
@@ -399,7 +399,7 @@
                                     app:srcCompat="@mipmap/ic_launcher_gray" />
 
                                 <ImageView
-                                    android:id="@+id/ivIcBlue"
+                                    android:id="@+id/ivIcLightBlue"
                                     android:layout_width="@dimen/_75sdp"
                                     android:layout_height="@dimen/_75sdp"
                                     android:padding="@dimen/_2sdp"

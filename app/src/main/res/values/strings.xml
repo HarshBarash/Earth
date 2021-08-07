@@ -49,6 +49,7 @@
     <string name="contentTittleSrvFrg">We will remind you about sorting in </string>
 
     <string name="widgetText">Next sorting at </string>
+    <string name="widgetTextDis">Remind service disabled :(</string>
     
     <!--    Level for Spinner -->
     <string name="easy">easy</string>

@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSecondary"
-    android:layout_marginBottom="@dimen/_70sdp">
+    android:layout_height="match_parent">
 
 
 <!--    //нжно под Ml, фоточка юзер простым языком-->
@@ -102,8 +100,8 @@
             android:layout_marginBottom="@dimen/_170sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:textColor="?android:attr/titleTextColor"
             android:maxWidth="@dimen/_130sdp"
-            android:textColor="@color/black"
             android:textSize="@dimen/_28ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +114,7 @@
 
         <TextView
             android:id="@+id/sendto"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -124,11 +122,10 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:textColor="@color/black"
             android:textSize="@dimen/_30ssp"
+            android:textColor="?android:attr/titleTextColor"
             app:layout_constraintBottom_toTopOf="@+id/sorttext"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -165,6 +162,8 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:elevation="4dp"
+        app:tint="?attr/iconTint"
         app:srcCompat="@drawable/ic_baseline_notifications_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

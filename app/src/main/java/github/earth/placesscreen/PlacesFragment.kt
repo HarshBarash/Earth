@@ -2,6 +2,7 @@ package github.earth.placesscreen
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -29,6 +30,9 @@ import github.earth.placesscreen.dialogs.map_edit_dialog
 import github.earth.dialog_fragments.map_info_dialog
 import github.earth.room.data.places_data.PlacesRoom
 import github.earth.room.places_room.PlacesViewModel
+import github.earth.room.stats_room.StatsViewModel
+import github.earth.statsscreen.StatsFragment
+import kotlinx.coroutines.InternalCoroutinesApi
 import java.util.*
 
 //internal — любой клиент внутри модуля, который видит объявленный класс, видит и его internal члены
@@ -40,6 +44,7 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var mPlacesViewModel: PlacesViewModel
+    private lateinit var mStatsViewModel: StatsViewModel
 
 
     override fun onCreateView(
@@ -58,9 +63,10 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
 
     }
 
+    @InternalCoroutinesApi
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
-
+        mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
         mPlacesViewModel = ViewModelProvider(this).get(PlacesViewModel::class.java)
         var hear_me: ImageView? = view?.findViewById(R.id.hear_me)
         mMap = googleMap
@@ -76,12 +82,13 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
                     marker.tag = "marker_confirm"
                     marker.isDraggable = false
 
-                    updateItem(marker.id.replace("m", "").toInt(),
+                    val dialog = showConfirmDialog(marker,
+                        marker.id.replace("m", "").toInt(),
                         marker.position.latitude,
-                        marker.position.longitude,
-                        marker.title,
-                        marker.snippet)
-                    showConfirmDialog()
+                        marker.position.longitude)
+                    dialog.show()
+
+
                 }
 
                 override fun onMarkerDrag(marker: Marker) {}
@@ -112,11 +119,11 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
         }
 
         mMap.setOnInfoWindowClickListener { marker ->
-            deletePlace(marker.id.replace("m", "").toInt(),
+            val dialog = showEditDialog(marker,
+                marker.id.replace("m", "").toInt(),
                 marker.position.latitude,
                 marker.position.longitude)
-            marker.remove()
-            showEditDialog(marker)
+            dialog.show()
         }
 
         val fine_status =
@@ -151,20 +158,21 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
             insertMarkersToDatabase(marker.id.replace("m", "").toInt(),
                 marker.position.latitude,
                 marker.position.longitude)
+            marker.remove()
 
         }
         try {
-            var listPlaces = listOf(mPlacesViewModel.readAllData)
-            listPlaces.forEach { liveData ->
-                for (i in 0..listPlaces.size) {
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(LatLng(liveData.value!![i].lattitude,
-                                liveData.value!![i].longtitude))
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+            mPlacesViewModel.readAllData.observe(this, androidx.lifecycle.Observer { places ->
+                places.forEach{
+                    mMap.addMarker(MarkerOptions()
+                        .position(LatLng(it.lattitude, it.longtitude))
+                        .title("Место")
+                        .snippet("Улица")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                     )
                 }
-            }
+
+            })
         } catch (ex: Exception) {
             Toast.makeText(requireContext(), "eror: " + ex.message, Toast.LENGTH_SHORT).show()
         }
@@ -174,52 +182,52 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
         mMap.setOnMyLocationClickListener(this)
         var my_latitude = 55.45
         var my_longtitude = 37.36
+        var myLocation = LatLng(my_latitude, my_longtitude)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
+            .addOnSuccessListener { location ->
                 if (location != null) {
                     my_latitude = location.latitude
                 }
                 if (location != null) {
                     my_longtitude = location.longitude
                 }
-                var myLocation = LatLng(my_latitude, my_longtitude)
-                mMap.addMarker(
-                    MarkerOptions()
-                        .position(myLocation)
-                        .draggable(true)
-                        .title("Моё место")
-                        .snippet("musor")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                )
-
+                myLocation = LatLng(my_latitude, my_longtitude)
+                mMap.setMinZoomPreference(15f)
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
 
-                //получить точную геопозицию (таймер стоит чтобы обновлять координаты)
-                hear_me?.setOnClickListener {
-                    val timer = Timer()
-                    timer.scheduleAtFixedRate(object : TimerTask() {
-                        override fun run() {
-                            requireActivity().runOnUiThread {
-                                fusedLocationClient.lastLocation
-                                    .addOnSuccessListener { location: Location? ->
-                                        if (location != null) {
-                                            my_latitude = location.latitude
-                                        }
-                                        if (location != null) {
-                                            my_longtitude = location.longitude
-                                        }
-                                        myLocation = LatLng(my_latitude, my_longtitude)
-                                    }
-                            }
-                        }
-                    }, 0, 1000)
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
-
-                }
-
-
             }
+        //получить точную геопозицию (таймер стоит чтобы обновлять координаты)
+        hear_me?.setOnClickListener {
+            if (fine_status == PackageManager.PERMISSION_GRANTED &&
+                coarse_status == PackageManager.PERMISSION_GRANTED
+            ) {
+                val timer = Timer()
+                timer.scheduleAtFixedRate(object : TimerTask() {
+                    override fun run() {
+                        kotlinx.coroutines.internal.synchronized(this) {
+                            fusedLocationClient.lastLocation
+                                .addOnSuccessListener { location ->
+                                    if (location != null) {
+                                        my_latitude = location.latitude
+                                    }
+                                    if (location != null) {
+                                        my_longtitude = location.longitude
+                                    }
+                                    myLocation = LatLng(my_latitude, my_longtitude)
+                                }
+                        }
+                    }
+                }, 0, 1000)
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
+            } else {
+                ActivityCompat.requestPermissions(requireActivity(),
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION),
+                    targetRequestCode)
+            }
+
+        }
 
 
         /*
@@ -265,7 +273,10 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
 
     override fun onMarkerDragEnd(marker: Marker) {
         marker.snippet = marker.position.latitude.toString()
-        showConfirmDialog()
+        showConfirmDialog(marker,
+            marker.id.replace("m", "").toInt(),
+            marker.position.latitude,
+            marker.position.longitude)
 
     }
 
@@ -274,22 +285,91 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
     }
 
     override fun onInfoWindowClick(marker: Marker) {
-        showConfirmDialog()
+        showConfirmDialog(marker,
+            marker.id.replace("m", "").toInt(),
+            marker.position.latitude,
+            marker.position.longitude)
     }
 
-    fun showConfirmDialog() {
+    fun showConfirmDialog(
+        marker: Marker,
+        marker_id: Int,
+        latitude: Double,
+        longitude: Double,
+    ): AlertDialog {
 
+        /*
         val dialogFragment = map_info_dialog()
         val manager = fragmentManager
         dialogFragment.show(manager!!, "map_info_dialog")
+        */
+        return activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder
+                .setMessage("Если да, вам придется добавить фото с этой точки")
+                .setTitle("Вы уверены что здесь есть мусор?")
+                .setPositiveButton("Да"
+                ) { dialog, id ->
+                    updateItem(marker.id.replace("m", "").toInt(),
+                        marker.position.latitude,
+                        marker.position.longitude)
+                    dialog.cancel()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Нет"
+                ) { dialog, id ->
+                    updateItem(marker.id.replace("m", "").toInt(),
+                        marker.position.latitude,
+                        marker.position.longitude)
+                    deletePlace(marker.id.replace("m", "").toInt(),
+                        latitude,
+                        longitude)
+                    marker.remove()
+                    dialog.cancel()
+                    dialog.dismiss()
+                }
+            builder.create()
+        } ?: throw IllegalStateException("Activity cannot be null")
+
 
     }
 
-    fun showEditDialog(marker: Marker) {
+    fun showEditDialog(
+        marker: Marker,
+        marker_id: Int,
+        latitude: Double,
+        longitude: Double,
+    ): AlertDialog {
 
-        val dialogFragment = map_edit_dialog()
-        val manager = fragmentManager
-        dialogFragment.show(manager!!, "map_edit_dialog")
+        return activity?.let { it ->
+            val builder = AlertDialog.Builder(it)
+            builder
+                .setMessage("Если вы ошиблись с местом то можете удалить маркер")
+                .setTitle("Здесь прибрано?")
+                .setPositiveButton("Да"
+                ) { dialog, id ->
+                    deletePlace(marker_id, latitude, longitude)
+                    StatsFragment().readItemAndUpdate(this)
+                    marker.remove()
+                    dialog.cancel()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Нет"
+                ) { dialog, id ->
+                    dialog.cancel()
+                    dialog.dismiss()
+                }
+                .setNeutralButton("Удалить"
+                ) { dialog, id ->
+                    deletePlace(marker.id.replace("m", "").toInt(),
+                        latitude,
+                        longitude)
+                    marker.remove()
+                    dialog.cancel()
+                    dialog.dismiss()
+                }
+            builder.create()
+        } ?: throw IllegalStateException("Activity cannot be null")
     }
 
     //geocoding
@@ -322,8 +402,6 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
         id: Int,
         latitude: Double,
         longitude: Double,
-        title: String,
-        snippets: String,
     ) {
         //create stats object
         val updatePlaces = PlacesRoom(
@@ -337,7 +415,7 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
     }
 
 
-    fun deleteAllStats() {
+    fun deleteAllPlaces() {
         mPlacesViewModel.deleteAllPlaces() //удалить всё
     }
 

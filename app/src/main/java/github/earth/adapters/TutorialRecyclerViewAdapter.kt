@@ -48,7 +48,7 @@ class TutorialRecyclerViewAdapter : RecyclerView.Adapter<TutorialRecyclerViewAda
             Glide.with(this).load(tutorial.profileImageUrl)
                 .into(ivProfileImage)
             tvUsername.text = tutorial.username
-            tvTimestamp.text = convertedDate(tutorial.timestamp)
+//            tvTimestamp.text = convertedDate(tutorial.timestamp)
             Glide.with(this).load(tutorial.tutorialImageUrl).placeholder(R.color.colorPrimary)
                 .into(ivTutorialImage)
             tvTitle.text = tutorial.title

@@ -21,8 +21,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import github.earth.homescreen.HomeViewModel
 import github.earth.homescreen.HomeViewModelProviderFactory
 import github.earth.services.ReminderService
@@ -36,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
     private lateinit var navController: NavController
 
+    lateinit var auth: FirebaseAuth
     lateinit var storageRef: StorageReference
     lateinit var firestoreRef: FirebaseFirestore
 
@@ -44,6 +49,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setLanguage()
         setContentView(R.layout.activity_main)
+
+        auth = FirebaseAuth.getInstance()
+        storageRef = Firebase.storage.reference
+        firestoreRef = Firebase.firestore
+        firestoreRef.clearPersistence()
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.nav_host_container
@@ -54,10 +64,12 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
 
+        val tutorialRepository = TutorialRepository( storageRef, firestoreRef)
+
         //home
-//        val homeViewModelProviderFactory = HomeViewModelProviderFactory(tutorialRepository)
-//        homeViewModel =
-//            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
+        val homeViewModelProviderFactory = HomeViewModelProviderFactory(tutorialRepository)
+        homeViewModel =
+            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
 
         //исправить под аву
         val menu = navigationView.menu

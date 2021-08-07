@@ -25,7 +25,7 @@ import github.earth.models.Tutorial
 import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(), View.OnClickListener {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private lateinit var mFirebase: FirebaseHelper
@@ -34,7 +34,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var navController: NavController
     private lateinit var tutorialAdapter: TutorialRecyclerViewAdapter //todo
 
-    private lateinit var btnPlusContent: Button
 
     private lateinit var viewModel: HomeViewModel
 
@@ -63,65 +62,61 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
 //        setCurrentUserDetails()
 //
-//        setAllTutorials()
+        setAllTutorials()
 
 
-//        btnPlusContent.setOnClickListener {
-//            this.findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
-//        }
+        btnPlusContent.setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_SharePhotoScreen)
+        }
     }
 
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+
+    private fun setAllTutorials() {
+        viewModel.getTutorialsState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    tutorialsProgressBar.visibility = View.INVISIBLE
+                }
+                is Resource.Error -> {
+                    tutorialsProgressBar.visibility = View.INVISIBLE
+                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Loading -> {
+                    tutorialsProgressBar.visibility = View.VISIBLE
+                }
+            }
+        })
+
+        setupRecyclerView()
+
+        viewModel.tutorialList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Log.d(LOG_HOMEVIEWMODEL, "setAllTutorials: $it")
+                tutorialAdapter.differ.submitList(it)
+            }
+        })
+
+
+        //OnClickListener
+        tutorialAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putParcelable("tutorial", it)
+            }
+            this.findNavController()
+                .navigate(R.id.action_HomeFragment_to_singleTutorialFragment, bundle)
+        }
     }
-} //временно
 
-//    private fun setAllPosts() {
-//        viewModel.getPostsState.observe(viewLifecycleOwner, Observer {
-//            when (it) {
-//                is Resource.Success -> {
-//                    tutorialsProgressBar.visibility = View.INVISIBLE
-//                }
-//                is Resource.Error -> {
-//                    tutorialsProgressBar.visibility = View.INVISIBLE
-//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
-//                }
-//                is Resource.Loading -> {
-//                    tutorialsProgressBar.visibility = View.VISIBLE
-//                }
-//            }
-//        })
+    private fun setupRecyclerView() {
+        tutorialAdapter = TutorialRecyclerViewAdapter()
+        rvPosts.apply {
+            adapter = tutorialAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
 
-//        setupRecyclerView()
-//
-//        viewModel.tutorialList.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                Log.d(TAG, "setAllPosts: $it")
-//                tutorialAdapter.differ.submitList(it)
-//            }
-//        })
-//
-//
-//        //OnClickListener
-//        tutorialAdapter.setOnItemClickListener {
-//            val bundle = Bundle().apply {
-//                putParcelable("tutorial", it)
-//            }
-//            this.findNavController()
-//                .navigate(R.id.action_homeFragment_to_singlePostFragment, bundle)
-//        }
-//    }
-//
-//    private fun setupRecyclerView() {
-//        tutorialAdapter = BlogRecyclerViewAdapter()
-//        rvPosts.apply {
-//            adapter = tutorialAdapter
-//            layoutManager = LinearLayoutManager(activity)
-//        }
-//    }
-//
-//
-//}
+
+}
 
 
 

@@ -41,58 +41,7 @@
 
     </TextView>
 
-    <EditText
-        android:id="@+id/etTutorialDescription"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:background="@drawable/white_btn"
-        android:gravity="start"
-        android:hint="description"
-        android:inputType="textMultiLine"
-        android:maxLength="200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVTitle"
-        tools:ignore="MissingConstraints">
 
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/TVTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Video from Youtube:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTutorialDescription"
-        tools:ignore="MissingConstraints">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/etTutorialLink"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_49sdp"
-        android:layout_margin="@dimen/_12sdp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/white_btn"
-        android:ems="10"
-        android:hint="link"
-        android:inputType="text"
-        android:maxLength="50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVTime"
-        tools:ignore="MissingConstraints" />
 
 
     <Button

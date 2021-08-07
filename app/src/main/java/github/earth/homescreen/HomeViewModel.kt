@@ -22,10 +22,10 @@ class HomeViewModel(
     private lateinit var mFirebaseHelper: FirebaseHelper
     private lateinit var mUser : User
 
-    val uploadTutorialState = MutableLiveData<github.earth.utils.Resource>()
+    val uploadTutorialState = MutableLiveData<github.earth.utils.Resource?>()
     val getTutorialsState = MutableLiveData<github.earth.utils.Resource>()
 
-    val tutorialImageUri = MutableLiveData<Uri>()
+    val tutorialImageUri = MutableLiveData<Uri?>()
     val username = MutableLiveData<String>()
     private val email = MutableLiveData<String>()
     val profileImageUri = MutableLiveData<String>()
@@ -37,18 +37,18 @@ class HomeViewModel(
 
 
 
-    fun getCurrentUserDetails() = viewModelScope.launch {
-        try {
-            val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
-            username.postValue(mUser.username)
-            email.postValue(mUser.email)
-            if (mUser.photo != null) {
-                profileImageUri.postValue(mUser.photo!!)
-            }
-        } catch (e: Exception) {
-            Log.d(LOG_HOMEVIEWMODEL, "getCurrentUserDetails: ${e.message}")
-        }
-    }
+//    fun getCurrentUserDetails() = viewModelScope.launch {
+//        try {
+//            val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
+//            username.postValue(mUser.username)
+//            email.postValue(mUser.email)
+//            if (mUser.photo != null) {
+//                profileImageUri.postValue(mUser.photo!!)
+//            }
+//        } catch (e: Exception) {
+//            Log.d(LOG_HOMEVIEWMODEL, "getCurrentUserDetails: ${e.message}")
+//        }
+//    }
 
     fun uploadTutorialDetailsToFirestore(title: String, materials: String, time: Int, description: String, link: String) {
         uploadTutorialState.postValue(github.earth.utils.Resource.Loading())

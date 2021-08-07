@@ -18,6 +18,10 @@ const val NTF_FRG_SERV_CHANNEL      = "NtfForegroundService"
 const val LOG_REMINDER_SERVICE      = "ReminderService"
 const val DEFAULT_RMD_TIME          = "20:00"
 
+const val TYPE_THEME                = "Theme"
+const val TYPE_ICON                 = "Icon"
+const val TYPE_LANGUAGE             = "Language"
+
 const val IC_DEFAULT                = "Default"
 const val IC_PURPLE                 = "Purple"
 const val IC_BEIGE                  = "Beige"
@@ -76,7 +80,7 @@ const val LOG_SHARE_LINK_FRAGMENT   = "ShareLinkFragment"
 
 /******************************************| .ViewModels |******************************************/
 
-const val LOG_HOMEVIEWMODEL        = "HomeViewModel"
+const val LOG_HOME_VIEW_MODEL       = "HomeViewModel"
 
 /**************************************| Shared Preferences |**************************************/
 
@@ -99,6 +103,7 @@ const val LOG_VEL                   = "ValueEventListener"
 
 const val DISABLE                   = "Disable"
 const val ENABLE                    = "Enable"
+
 
 
 /* Алексей призывает вас соблюдать чистату и порядок!

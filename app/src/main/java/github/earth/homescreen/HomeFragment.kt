@@ -1,28 +1,19 @@
 package github.earth.homescreen
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.TutorialRecyclerViewAdapter
 import github.earth.authscreen.LoginActivity
-import github.earth.models.Tutorial
 import github.earth.utils.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -92,7 +83,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.tutorialList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Log.d(LOG_HOMEVIEWMODEL, "setAllTutorials: $it")
+                Log.d(LOG_HOME_VIEW_MODEL, "setAllTutorials: $it")
                 tutorialAdapter.differ.submitList(it)
             }
         })

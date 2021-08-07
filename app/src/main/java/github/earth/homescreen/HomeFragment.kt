@@ -67,7 +67,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
         btnPlusContent.setOnClickListener {
-            findNavController().navigate(R.id.action_HomeFragment_to_SharePhotoScreen)
+            findNavController().navigate(R.id.action_HomeFragment_to_shareInfoFragment)
         }
     }
 

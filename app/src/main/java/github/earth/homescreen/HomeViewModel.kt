@@ -1,17 +1,13 @@
 package github.earth.homescreen
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import github.earth.TutorialRepository
 import github.earth.models.Tutorial
-import kotlinx.coroutines.launch
 import github.earth.models.User
 import github.earth.utils.FirebaseHelper
-import github.earth.utils.LOG_HOMEVIEWMODEL
-
 import kotlinx.coroutines.launch
 
 
@@ -36,7 +32,6 @@ class HomeViewModel(
     }
 
 
-
 //    fun getCurrentUserDetails() = viewModelScope.launch {
 //        try {
 //            val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
@@ -53,7 +48,7 @@ class HomeViewModel(
     fun uploadTutorialDetailsToFirestore(title: String, materials: String, time: Int, description: String, link: String) {
         uploadTutorialState.postValue(github.earth.utils.Resource.Loading())
         try {
-            if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null) {
+            if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null && link.isNotEmpty() && time > 0) {
                 uploadTutorialImageToFirebaseStorage(title, materials, description, time, link)
             } else {
                 uploadTutorialState.postValue(github.earth.utils.Resource.Error("Please Fill the Details or Select Image"))

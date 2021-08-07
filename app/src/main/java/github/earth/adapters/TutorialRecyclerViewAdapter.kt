@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import github.earth.models.Tutorial
-import github.earth.utils.convertedDate
-import kotlinx.android.synthetic.main.fragment_single_tutorial.view.*
 import kotlinx.android.synthetic.main.tutorial_item.view.ivProfileImage
 import kotlinx.android.synthetic.main.tutorial_item.view.ivTutorialImage
 import kotlinx.android.synthetic.main.tutorial_item.view.tvTitle

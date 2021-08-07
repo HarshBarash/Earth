@@ -104,7 +104,7 @@
         tools:layout_editor_absoluteX="15dp" />
 
     <Button
-        android:id="@+id/publish"
+        android:id="@+id/nextbuttonsecond"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

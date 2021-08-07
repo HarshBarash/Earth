@@ -13,9 +13,6 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_HomeFragment_to_ProfileScreen"
-            app:destination="@id/ProfileScreen" />
-        <action
             android:id="@+id/action_HomeFragment_to_singleTutorialFragment"
             app:destination="@id/singleTutorialFragment" />
         <action
@@ -24,11 +21,6 @@
     </fragment>
 
     <!--    Экраны на homefragment-->
-    <fragment
-        android:id="@+id/ProfileScreen"
-        android:name="github.earth.settingsscreen.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/SharePhotoScreen"
@@ -36,13 +28,19 @@
         android:label="@string/title_sharephoto"
         tools:layout="@layout/fragment_sharephoto">
 
-        <argument android:name="ImageUri" />
         <action
             android:id="@+id/action_SharePhotoScreen_to_shareLinkFragment"
             app:destination="@id/shareLinkFragment" />
+        <argument android:name="Title" />
+        <argument android:name="Materials" />
+        <argument android:name="Time" android:defaultValue="1" />
+        <argument android:name="Description" />
+        <argument android:name="Link" />
+
         <action
             android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+
 
 
     </fragment>
@@ -57,10 +55,8 @@
         <argument android:name="Title" />
         <argument android:name="Materials" />
         <argument android:name="Time"  android:defaultValue="1" />
-        <argument android:name="ImageUri" />
         </action>
         <argument android:name="title" />
-        <argument android:name="ImageUri" />
         <argument android:name="Materials" />
         <argument
             android:name="Time"
@@ -81,6 +77,11 @@
         <action
             android:id="@+id/action_shareLinkFragment_to_SharePhotoScreen"
             app:destination="@id/SharePhotoScreen" />
+        <argument android:name="Title" />
+        <argument android:name="Materials" />
+        <argument android:name="Time" android:defaultValue="1" />
+        <argument android:name="Description" />
+        <argument android:name="Link" />
     </fragment>
 
     <fragment

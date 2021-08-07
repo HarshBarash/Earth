@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text" />
 
     <Button
-        android:id="@+id/nextbuttonone"
+        android:id="@+id/publish"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         android:layout_marginBottom="@dimen/_80sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
-        android:text="Continue"
+        android:text="Publish"
         android:textColor="#000000"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
@@ -78,6 +78,15 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
+    <ProgressBar
+        android:id="@+id/createProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/publish"
+        app:layout_constraintStart_toStartOf="@+id/publish"
+        app:layout_constraintTop_toTopOf="@+id/publish" />
 
 <!--    debug-->
     <!--        <TextView-->

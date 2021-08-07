@@ -1,14 +1,14 @@
-package github.earth
+package github.earth.dialogs
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import github.earth.MainActivity
+import github.earth.R
 import github.earth.utils.*
 
 class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
@@ -53,17 +53,17 @@ class SelectIconDialogFragment: DialogFragment(), View.OnClickListener {
         //Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
         when (v?.id) {
 
-            R.id.ivIcDef        -> (activity as MainActivity).changeIcon(IC_DEFAULT)
-            R.id.ivIcPurple     -> (activity as MainActivity).changeIcon(IC_PURPLE)
-            R.id.ivIcPink       -> (activity as MainActivity).changeIcon(IC_PINK)
-            R.id.ivIcGreen      -> (activity as MainActivity).changeIcon(IC_GREEN)
-            R.id.ivIcBlue       -> (activity as MainActivity).changeIcon(IC_BLUE)
-            R.id.ivIcOrange     -> (activity as MainActivity).changeIcon(IC_ORANGE)
-            R.id.ivIcGray       -> (activity as MainActivity).changeIcon(IC_GRAY)
-            R.id.ivIcYellow     -> (activity as MainActivity).changeIcon(IC_YELLOW)
-            R.id.ivIcRed        -> (activity as MainActivity).changeIcon(IC_RED)
-            R.id.ivIcLightPink  -> (activity as MainActivity).changeIcon(IC_LIGHT_PINK)
-            R.id.ivIcBeige      -> (activity as MainActivity).changeIcon(IC_BEIGE)
+            R.id.ivIcDef -> (activity as MainActivity).changeIcon(IC_DEFAULT)
+            R.id.ivIcPurple -> (activity as MainActivity).changeIcon(IC_PURPLE)
+            R.id.ivIcPink -> (activity as MainActivity).changeIcon(IC_PINK)
+            R.id.ivIcGreen -> (activity as MainActivity).changeIcon(IC_GREEN)
+            R.id.ivIcBlue -> (activity as MainActivity).changeIcon(IC_BLUE)
+            R.id.ivIcOrange -> (activity as MainActivity).changeIcon(IC_ORANGE)
+            R.id.ivIcGray -> (activity as MainActivity).changeIcon(IC_GRAY)
+            R.id.ivIcYellow -> (activity as MainActivity).changeIcon(IC_YELLOW)
+            R.id.ivIcRed -> (activity as MainActivity).changeIcon(IC_RED)
+            R.id.ivIcLightPink -> (activity as MainActivity).changeIcon(IC_LIGHT_PINK)
+            R.id.ivIcBeige -> (activity as MainActivity).changeIcon(IC_BEIGE)
 
             else -> Toast.makeText(requireContext(), "Nothing selected", Toast.LENGTH_SHORT).show()
         }

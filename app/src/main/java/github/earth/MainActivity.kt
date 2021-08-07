@@ -107,15 +107,22 @@ class MainActivity : AppCompatActivity() {
         val needTime = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE).getString(
             SETTINGS_REMIND_TIME, DEFAULT_RMD_TIME)
 
+        val rmdStatus = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE).getBoolean(
+            SETTINGS_REMIND_SWITCH, true)
+
         Log.i(LOG_MAIN_ACTIVITY,"Service run: ${ReminderService.isRunning()}")
 
         if (needTime != null) {
             if (ReminderService.isRunning()) {
                 ReminderService.stopService(this)
-                ReminderService.startService(this, needTime)
-            } else
-                ReminderService.startService(this, needTime)
-
+                if (rmdStatus) {
+                    ReminderService.startService(this, needTime)
+                }
+            } else {
+                if (rmdStatus) {
+                    ReminderService.startService(this, needTime)
+                }
+            }
         }
     }
 

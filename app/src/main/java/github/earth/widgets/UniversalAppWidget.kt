@@ -9,6 +9,7 @@ import android.widget.RemoteViews
 import github.earth.R
 import github.earth.utils.DEFAULT_RMD_TIME
 import github.earth.utils.SETTINGS_FILE
+import github.earth.utils.SETTINGS_REMIND_SWITCH
 import github.earth.utils.SETTINGS_REMIND_TIME
 
 /**
@@ -68,10 +69,18 @@ internal fun updateAppWidget(
     val sp = context.getSharedPreferences(SETTINGS_FILE, 0) //0 = MODE_PRIVATE
 
     val remindTime = sp.getString(SETTINGS_REMIND_TIME, DEFAULT_RMD_TIME)
+    val isSwt = sp.getBoolean(SETTINGS_REMIND_SWITCH, true)
 
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.universal_app_widget)
-    views.setTextViewText(R.id.tvRmd, "${context.getString(R.string.widgetText)} $remindTime")
+
+    if (isSwt) {
+        views.setTextViewText(R.id.tvRmd, "${context.getString(R.string.widgetText)} $remindTime")
+    } else {
+        views.setTextViewText(R.id.tvRmd, context.getString(R.string.widgetTextDis))
+    }
+
+
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)

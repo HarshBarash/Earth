@@ -85,7 +85,7 @@ const val SETTINGS_LANGUAGE         = "Language"
 const val SETTINGS_THEME            = "Theme"
 const val SETTINGS_APP_ICON         = "AppIcon"
 const val SETTINGS_REMIND_TIME      = "RemindTime"
-const val SETTINGS_REMIND_TIME_STR  = "RemindTimeStr"
+const val SETTINGS_REMIND_SWITCH    = "RemindSwitch"
 
 /******************************************| .Languages |******************************************/
 

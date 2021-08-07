@@ -42,6 +42,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_16ssp"
                         android:paddingStart="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:textColor="?android:attr/textColor"
                         android:text="Remind service" />

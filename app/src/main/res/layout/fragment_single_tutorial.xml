@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             tools:ignore="MissingConstraints"
-            tools:text="Timestamp" />
+            android:text="Timestamp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

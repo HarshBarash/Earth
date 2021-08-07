@@ -1,5 +1,7 @@
 package github.earth.utils
 
+import com.google.android.gms.common.api.Api
+
 
 object Constants {
     const val REQUEST_CODE_STORAGE_PERMISSION = 0
@@ -71,6 +73,10 @@ const val LOG_PROFILE_FRAGMENT      = "ProfileFragment"
 const val LOG_SHARE_PHOTO_FRAGMENT  = "SharePhotoFragment"
 const val LOG_SHARE_INFO_FRAGMENT   = "ShareInfoFragment"
 const val LOG_SHARE_LINK_FRAGMENT   = "ShareLinkFragment"
+
+/******************************************| .ViewModels |******************************************/
+
+const val LOG_HOMEVIEWMODEL        = "HomeViewModel"
 
 /**************************************| Shared Preferences |**************************************/
 

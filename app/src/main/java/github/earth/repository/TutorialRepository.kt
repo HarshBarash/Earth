@@ -21,8 +21,6 @@ class TutorialRepository(
     private val firestoreRef: FirebaseFirestore
 ) {
 
-    suspend fun loginUser(email: String, password: String): AuthResult =
-        auth.signInWithEmailAndPassword(email, password).await()
 
     suspend fun registerUser(email: String, password: String): AuthResult =
         auth.createUserWithEmailAndPassword(email, password).await()

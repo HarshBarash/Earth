@@ -93,7 +93,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTutorial"
             tools:ignore="MissingConstraints"
-            tools:text="Timestamp" />
+            android:text="Timestamp" />
 
 <!--        TODO загруглить края -->
         <ImageView
@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:ignore="MissingConstraints"
-            tools:text="Materials" />
+            android:text="Materials" />
 
         <TextView
             android:id="@+id/tvTutorial"
@@ -157,7 +157,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMaterials"
             tools:ignore="MissingConstraints"
-            tools:text="Tutorial" />
+            android:text="Tutorial" />
 
         <TextView
             android:layout_margin="@dimen/_8sdp"

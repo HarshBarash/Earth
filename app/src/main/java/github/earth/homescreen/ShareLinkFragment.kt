@@ -19,10 +19,7 @@ import kotlinx.android.synthetic.main.fragment_sharelink.ivBackBtn
 class ShareLinkFragment : Fragment(R.layout.fragment_sharelink) {
 
 
-    class ShareInfoFragment  : Fragment(R.layout.fragment_shareinfo) {
-
-
-        private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: HomeViewModel
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
@@ -60,4 +57,3 @@ class ShareLinkFragment : Fragment(R.layout.fragment_sharelink) {
             findNavController().navigate(action)
         }
     }
-}

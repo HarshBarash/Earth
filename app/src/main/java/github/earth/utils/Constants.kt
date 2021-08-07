@@ -1,5 +1,13 @@
 package github.earth.utils
 
+import com.google.android.gms.common.api.Api
+
+
+object Constants {
+    const val REQUEST_CODE_STORAGE_PERMISSION = 0
+    const val IMAGE_PICK_CODE = 1
+}
+
 /*****************************************| .Application |*****************************************/
 
 const val APP_NAME                  = "Earth"
@@ -8,6 +16,11 @@ const val PACKAGE                   = "github.earth"
 const val NTF_REMINDER_CHANNEL      = "NtfReminderChannel"
 const val NTF_FRG_SERV_CHANNEL      = "NtfForegroundService"
 const val LOG_REMINDER_SERVICE      = "ReminderService"
+const val DEFAULT_RMD_TIME          = "20:00"
+
+const val TYPE_THEME                = "Theme"
+const val TYPE_ICON                 = "Icon"
+const val TYPE_LANGUAGE             = "Language"
 
 const val IC_DEFAULT                = "Default"
 const val IC_PURPLE                 = "Purple"
@@ -65,12 +78,18 @@ const val LOG_SHARE_PHOTO_FRAGMENT  = "SharePhotoFragment"
 const val LOG_SHARE_INFO_FRAGMENT   = "ShareInfoFragment"
 const val LOG_SHARE_LINK_FRAGMENT   = "ShareLinkFragment"
 
+/******************************************| .ViewModels |******************************************/
+
+const val LOG_HOME_VIEW_MODEL       = "HomeViewModel"
+
 /**************************************| Shared Preferences |**************************************/
 
 const val SETTINGS_FILE             = "SettingsFile"
 const val SETTINGS_LANGUAGE         = "Language"
 const val SETTINGS_THEME            = "Theme"
 const val SETTINGS_APP_ICON         = "AppIcon"
+const val SETTINGS_REMIND_TIME      = "RemindTime"
+const val SETTINGS_REMIND_SWITCH    = "RemindSwitch"
 
 /******************************************| .Languages |******************************************/
 
@@ -84,6 +103,7 @@ const val LOG_VEL                   = "ValueEventListener"
 
 const val DISABLE                   = "Disable"
 const val ENABLE                    = "Enable"
+
 
 
 /* Алексей призывает вас соблюдать чистату и порядок!

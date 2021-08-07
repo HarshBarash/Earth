@@ -9,13 +9,13 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/_145sdp"
         android:layout_height="@dimen/_170sdp"
-        android:layout_margin="10dp"
+        android:layout_marginRight="@dimen/_7sdp"
+        android:layout_marginLeft="@dimen/_7sdp"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp">
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
 
 
             <ImageView
-                android:id="@+id/tutorial_image"
+                android:id="@+id/ivTutorialImage"
                 android:layout_width="@dimen/_145sdp"
                 android:layout_height="@dimen/_120sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
@@ -37,7 +37,7 @@
 
 
         <TextView
-            android:id="@+id/title_feed"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
             android:textColor="@color/black"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_photo_image"
+            android:id="@+id/ivProfileImage"
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_above="@+id/username_text"
@@ -63,7 +63,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/username_text"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

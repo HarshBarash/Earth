@@ -1,29 +1,59 @@
 package github.earth
 
+import android.appwidget.AppWidgetManager
 import android.content.ComponentName
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import github.earth.homescreen.HomeViewModel
+import github.earth.homescreen.HomeViewModelProviderFactory
 import github.earth.services.ReminderService
+import github.earth.settingsscreen.SettingsFragment
 import github.earth.utils.*
+import github.earth.widgets.UniversalAppWidget
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var homeViewModel: HomeViewModel
     private lateinit var navController: NavController
+
+    lateinit var auth: FirebaseAuth
+    lateinit var storageRef: StorageReference
+    lateinit var firestoreRef: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setCustomTheme()
         super.onCreate(savedInstanceState)
         setLanguage()
         setContentView(R.layout.activity_main)
+
+        auth = FirebaseAuth.getInstance()
+        storageRef = Firebase.storage.reference
+        firestoreRef = Firebase.firestore
+        firestoreRef.clearPersistence()
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.nav_host_container
@@ -34,10 +64,67 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
 
-        ReminderService.startService(this, "Message")
+        val tutorialRepository = TutorialRepository( storageRef, firestoreRef)
 
+        //home
+        val homeViewModelProviderFactory = HomeViewModelProviderFactory(tutorialRepository)
+        homeViewModel =
+            ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
+
+        //исправить под аву
+        val menu = navigationView.menu
+        val menuItem = menu.findItem(R.id.profile)
+        Glide.with(this)
+            .asBitmap()
+            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
+            .apply(
+                RequestOptions
+                    .circleCropTransform()
+                    .placeholder(R.drawable.ic_userphoto))
+            .into(object : SimpleTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    menuItem?.icon = BitmapDrawable(resources, resource)
+                }
+            })
+
+        //ReminderService.startService(this, "Message")
+        updateService()
+        updateWidgets()
     }
-    
+
+    fun updateWidgets() {
+        val intent = Intent(this, UniversalAppWidget::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        val ids = AppWidgetManager
+            .getInstance(application)
+            .getAppWidgetIds(ComponentName(applicationContext,UniversalAppWidget::class.java))
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+        sendBroadcast(intent)
+    }
+
+    fun updateService() {
+
+        val needTime = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE).getString(
+            SETTINGS_REMIND_TIME, DEFAULT_RMD_TIME)
+
+        val rmdStatus = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE).getBoolean(
+            SETTINGS_REMIND_SWITCH, true)
+
+        Log.i(LOG_MAIN_ACTIVITY,"Service run: ${ReminderService.isRunning()}")
+
+        if (needTime != null) {
+            if (ReminderService.isRunning()) {
+                ReminderService.stopService(this)
+                if (rmdStatus) {
+                    ReminderService.startService(this, needTime)
+                }
+            } else {
+                if (rmdStatus) {
+                    ReminderService.startService(this, needTime)
+                }
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()

@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 import androidx.navigation.Navigation
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import github.earth.MainActivity
 import kotlinx.android.synthetic.main.fragment_userchange.*
 
 
@@ -38,6 +40,7 @@ class ProfileFragment : Fragment() {
 
     private val currentUser = FirebaseAuth.getInstance().currentUser
 
+    private lateinit var fabSettings : FloatingActionButton
 
     private lateinit var toChangeOne: TextView
     private lateinit var toChangeTwo: ImageView
@@ -65,7 +68,7 @@ class ProfileFragment : Fragment() {
 
         toChangeOne = view.findViewById(R.id.username_text)
         toChangeTwo = view.findViewById(R.id.user_photo)
-        topAppBar   = view.findViewById(R.id.topAppBar)
+        fabSettings = view.findViewById(R.id.fabSettings)
 
         // TODO: 02.08.2021 привести  все и зарефакторить
         currentUser?.let { user ->
@@ -98,7 +101,7 @@ class ProfileFragment : Fragment() {
 ////                    Glide.with(this).load(mCameraHelper.imageUri).fallback(R.drawable.ic_userphoto).into(view.userphoto)
 //
 //                }}}})
-        topAppBar.setOnMenuItemClickListener { menuItem ->
+        /*topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.settings -> {
                     Navigation.findNavController(view)
@@ -106,7 +109,7 @@ class ProfileFragment : Fragment() {
                     true
                 }
                 else -> false
-            } }
+            } }*/
 
         view.images_recycler.layoutManager = GridLayoutManager(view.context, 2)
         mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
@@ -124,6 +127,11 @@ class ProfileFragment : Fragment() {
         toChangeTwo.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
+        }
+
+        fabSettings.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_ProfileScreen_to_SettingsScreen)
         }
 
         return view

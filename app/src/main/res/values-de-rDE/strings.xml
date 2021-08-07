@@ -31,4 +31,12 @@
     <string name="newThemeNotice">Änderungen werden nach dem Speichern wirksam</string>
     <string name="selectNewTheme">Neues Thema auswählen</string>
     <string name="alreadySelectedIcon">Sie haben dieses Symbol bereits ausgewählt</string>
+    <string name="contentTittleSrvFrg">"Wir erinnern Sie an das Einsortieren "</string>
+    <string name="widgetText">"Nächste Sortierung bei "</string>
+    <string name="proceed">Vorgehen</string>
+    <string name="cancel">Stornieren</string>
+    <string name="widgetTextDis">Erinnerungsdienst deaktiviert :(</string>
+    <string name="сonfirmation">Bestätigung</string>
+    <string name="u_selected_icon">Sie haben ein neues Symbol ausgewählt, die App wird neu gestartet, wenn Sie fortfahren.</string>
+    <string name="u_selected_theme">" Sie haben ein neues Thema ausgewählt, die App wird schnell neu gestartet, wenn Sie fortfahren."</string>
 </resources>

@@ -6,41 +6,19 @@
     android:background="?attr/colorSecondary"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutStats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBarStats"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSecondary"
-            app:title="@string/title_stats"
-            app:titleTextColor="?android:attr/titleTextColor"
-            app:titleCentered="true" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fltAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
-
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toStartOf="@+id/fltGlobal"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/appBarLayoutStats"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
-        app:srcCompat="@drawable/ic_account" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account"
+        app:tint="?attr/iconTint" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -48,33 +26,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fltAcc"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
-        app:srcCompat="@drawable/ic_global" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_global"
+        app:tint="?attr/iconTint" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
-        android:layout_marginBottom="@dimen/_100sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@+id/cardPurpose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutStats"
         tools:listitem="@layout/custom_row" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPurpose"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_70sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package github.earth
+package github.earth.dialogs
 
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import github.earth.MainActivity
+import github.earth.R
 import github.earth.utils.*
 
 class SelectThemeDialogFragment: DialogFragment(), View.OnClickListener {
@@ -58,24 +58,24 @@ class SelectThemeDialogFragment: DialogFragment(), View.OnClickListener {
 
         Toast.makeText(requireContext(), R.string.choice, Toast.LENGTH_SHORT).show()
         when (v?.id) {
-            R.id.themeDef       -> { editor.putString(SETTINGS_THEME, THEME_DEFAULT) }
-            R.id.themePurple    -> { editor.putString(SETTINGS_THEME, THEME_PURPLE) }
-            R.id.themePink      -> { editor.putString(SETTINGS_THEME, THEME_PINK) }
-            R.id.themeGreen     -> { editor.putString(SETTINGS_THEME, THEME_GREEN) }
-            R.id.themeBlue      -> { editor.putString(SETTINGS_THEME, THEME_BLUE) }
+            R.id.themeDef -> { editor.putString(SETTINGS_THEME, THEME_DEFAULT) }
+            R.id.themePurple -> { editor.putString(SETTINGS_THEME, THEME_PURPLE) }
+            R.id.themePink -> { editor.putString(SETTINGS_THEME, THEME_PINK) }
+            R.id.themeGreen -> { editor.putString(SETTINGS_THEME, THEME_GREEN) }
+            R.id.themeBlue -> { editor.putString(SETTINGS_THEME, THEME_BLUE) }
             R.id.themeLightBlue -> { editor.putString(SETTINGS_THEME, THEME_LIGHT_BLUE) }
-            R.id.themeOrange    -> { editor.putString(SETTINGS_THEME, THEME_ORANGE) }
-            R.id.themeGray      -> { editor.putString(SETTINGS_THEME, THEME_GRAY) }
-            R.id.themeYellow    -> { editor.putString(SETTINGS_THEME, THEME_YELLOW) }
-            R.id.themeRed       -> { editor.putString(SETTINGS_THEME, THEME_RED) }
+            R.id.themeOrange -> { editor.putString(SETTINGS_THEME, THEME_ORANGE) }
+            R.id.themeGray -> { editor.putString(SETTINGS_THEME, THEME_GRAY) }
+            R.id.themeYellow -> { editor.putString(SETTINGS_THEME, THEME_YELLOW) }
+            R.id.themeRed -> { editor.putString(SETTINGS_THEME, THEME_RED) }
             R.id.themeLightPink -> { editor.putString(SETTINGS_THEME, THEME_LIGHT_PINK) }
-            R.id.themeBeige     -> { editor.putString(SETTINGS_THEME, THEME_BEIGE) }
+            R.id.themeBeige -> { editor.putString(SETTINGS_THEME, THEME_BEIGE) }
             else -> Toast.makeText(requireContext(), "Nothing selected", Toast.LENGTH_SHORT).show()
         }
         editor.apply()
         dismiss()
         (activity as MainActivity?)?.finish()
-        startActivity(Intent(requireContext(),MainActivity::class.java))
+        startActivity(Intent(requireContext(), MainActivity::class.java))
     }
 
     private fun listenSetter() {

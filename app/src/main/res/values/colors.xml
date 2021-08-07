@@ -22,20 +22,20 @@
 
     <color name="splash_background">#FF9DD0F4</color>
 
-    <color name="main_def">#5BB146</color>
-    <color name="main_purple">#9DA5F4</color>
-    <color name="main_pink">#F7A7FF</color>
-    <color name="main_blue">#066EE3</color>
-    <color name="main_red">#D14646</color>
-    <color name="main_orange">#F15A2A</color>
-    <color name="main_yellow">#FFAE10</color>
-    <color name="main_light_pink">#F49D9D</color>
-    <color name="main_gray">#A1A1A1</color>
-    <color name="main_light_blue">#51B7FF</color>
-    <color name="main_beige">#E6A182</color>
-    <color name="main_green">#91BF8E</color>
+    <color name="main_def">#7FBF49</color>          <!-- 5BB146 -->
+    <color name="main_purple">#9DA5F4</color>       <!-- -->
+    <color name="main_pink">#F7A7FF</color>         <!-- -->
+    <color name="main_blue">#066EE3</color>         <!-- -->
+    <color name="main_red">#D14646</color>          <!-- -->
+    <color name="main_orange">#F15A2A</color>       <!-- -->
+    <color name="main_yellow">#FFAE10</color>       <!-- -->
+    <color name="main_light_pink">#F49D9D</color>   <!-- -->
+    <color name="main_gray">#A1A1A1</color>         <!-- -->
+    <color name="main_light_blue">#51B7FF</color>   <!-- -->
+    <color name="main_beige">#E6A182</color>        <!-- -->
+    <color name="main_green">#91BF8E</color>        <!-- -->
 
-    <color name="accent_def">#254366</color>
+    <color name="accent_def">#497FBF</color>        <!-- 254366 -->
     <color name="accent_purple">#B1B9FF</color>
     <color name="accent_pink">#FAC7FF</color>
     <color name="accent_blue">#034EA2</color>
@@ -47,5 +47,9 @@
     <color name="accent_light_blue">#B0DEFF</color>
     <color name="accent_beige">#FFC6AC</color>
     <color name="accent_green">#ABDFA7</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 
 </resources>

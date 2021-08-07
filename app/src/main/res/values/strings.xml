@@ -27,6 +27,13 @@
     <string name="oops">Oops…</string>
     <string name="error_joke">The earth is spinning too fast</string>
 
+    <!-- Dialogs -->
+    <string name="сonfirmation">Confirmation</string>
+    <string name="proceed">Proceed</string>
+    <string name="cancel">Cancel</string>
+    <string name="u_selected_icon">You selected new Icon, app will be restarted if you continue.</string>
+    <string name="u_selected_theme">You selected new Theme, app will be quick restarted if you continue.</string>
+
     <!-- Settings -->
     <string name="Username">Username</string>
     <string name="Email">Email</string>
@@ -46,13 +53,18 @@
 
     <!-- Notifications -->
 
-    <string name="contentTittle">Давно тебя не было в уличный гонках</string>
-    <string name="contentText">Заходи и получай ценные бонусы</string>
+    <string name="contentTittleSrvFrg">We will remind you about sorting in </string>
 
-
+    <string name="widgetText">Next sorting at </string>
+    <string name="widgetTextDis">Remind service disabled :(</string>
+    
     <!--    Level for Spinner -->
     <string name="easy">easy</string>
     <string name="medium">medium</string>
     <string name="hard">hard</string>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 
 </resources>

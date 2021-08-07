@@ -1,62 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSecondary">
+    android:layout_height="match_parent">
 
 
+<!--    //нжно под Ml, фоточка юзер простым языком-->
+    <ImageView
+        android:id="@+id/img_view"
+        android:layout_width="@dimen/_224sdp"
+        android:layout_height="@dimen/_224sdp"
+        android:layout_marginEnd="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMLrn"
+        app:layout_constraintEnd_toEndOf="@+id/machinelearning"
+        app:layout_constraintTop_toTopOf="@+id/btnMLrn"
+        app:layout_constraintVertical_bias="0.471"
+        tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/btnMLrn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:icon="@drawable/ic_photo"
+        app:iconTint="@color/white"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/machinelearning"
+        app:layout_constraintEnd_toEndOf="@+id/machinelearning"
+        app:layout_constraintStart_toStartOf="@+id/machinelearning"
+        app:layout_constraintTop_toTopOf="@+id/machinelearning" />
+
+
+
+    <View
         android:id="@+id/machinelearning"
-        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_width="@dimen/_165sdp"
         android:layout_height="@dimen/_180sdp"
         android:background="@drawable/bottom_sheet_left"
-        android:icon="@drawable/ic_ml"
+        android:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageButton
+    <Button
         android:id="@+id/recycle"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_60sdp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="@dimen/_10sdp"
+        app:icon="@drawable/ic_recycle"
+        app:iconTint="@color/white"
         android:background="@drawable/bottom_sheet_right"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.988"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/howmany"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintTop_toBottomOf="@+id/howmany" />
 
-    <ImageButton
+    <View
+        android:id="@+id/recycleimage"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycle"
+        app:layout_constraintEnd_toEndOf="@+id/recycle"
+        app:layout_constraintStart_toStartOf="@+id/recycle"
+        app:layout_constraintTop_toTopOf="@+id/recycle"/>
+
+    <EditText
         android:id="@+id/howmany"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_60sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/bottom_sheet_right"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/recycle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.988"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.303" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
+        android:backgroundTint="?attr/colorPrimary"
+        android:maxHeight="@dimen/_265sdp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <TextView
@@ -72,8 +100,8 @@
             android:layout_marginBottom="@dimen/_170sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
+            android:textColor="?android:attr/titleTextColor"
             android:maxWidth="@dimen/_130sdp"
-            android:textColor="@color/black"
             android:textSize="@dimen/_28ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +114,7 @@
 
         <TextView
             android:id="@+id/sendto"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -94,11 +122,10 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:textColor="@color/black"
             android:textSize="@dimen/_30ssp"
+            android:textColor="?android:attr/titleTextColor"
             app:layout_constraintBottom_toTopOf="@+id/sorttext"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -127,5 +154,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fltNtf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-24dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:elevation="4dp"
+        app:tint="?attr/iconTint"
+        app:srcCompat="@drawable/ic_baseline_notifications_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

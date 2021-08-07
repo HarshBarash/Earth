@@ -5,7 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_day">
+    android:background="?attr/colorSecondary">
+
+    <ImageView
+        android:id="@+id/ivBackBtn"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -17,25 +27,24 @@
         android:textSize="@dimen/_24ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toEndOf="@+id/ivBackBtn"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteY="25dp">
 
     </TextView>
-
 
     <TextView
         android:id="@+id/TVTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/_58sdp"
         android:text="Title:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletwo"
         tools:ignore="MissingConstraints">
@@ -43,10 +52,11 @@
     </TextView>
 
     <EditText
-        android:id="@+id/etTitle"
+        android:id="@+id/etTutorialTitle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_margin="@dimen/_12sdp"
+        android:maxLength="50"
         android:textColor="@color/black"
         android:background="@drawable/white_btn"
         android:inputType="text"
@@ -56,53 +66,26 @@
     </EditText>
 
     <TextView
-        android:id="@+id/TVLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Level:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle"
-        tools:ignore="MissingConstraints">
-
-    </TextView>
-
-    <Spinner
-        android:id="@+id/spinnerLevel"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/_12sdp"
-        android:background="@drawable/white_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVLevel"
-        tools:ignore="DuplicateIds,MissingConstraints" />
-
-    <TextView
         android:id="@+id/TVMaterials"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
         android:text="Materials:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLevel"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialTitle"
         tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etMaterials"
+        android:id="@+id/etTutorialMaterials"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_margin="@dimen/_12sdp"
         android:textColor="@color/black"
         android:background="@drawable/white_btn"
@@ -114,15 +97,15 @@
         android:id="@+id/TVTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:text="Time:"
         android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMaterials"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialMaterials"
         tools:ignore="MissingConstraints">
 
     </TextView>
@@ -131,51 +114,52 @@
         android:id="@+id/min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="@dimen/_65sdp"
         android:text="min"
         android:textColor="@color/black"
         android:textSize="@dimen/_26ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/etTime"
-        app:layout_constraintTop_toBottomOf="@+id/etMaterials"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/etTutorialTime"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialMaterials"
         tools:ignore="MissingConstraints">
 
     </TextView>
 
     <EditText
-        android:id="@+id/etTime"
+        android:id="@+id/etTutorialTime"
         android:layout_width="@dimen/_225sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_margin="@dimen/_12sdp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_28sdp"
         android:background="@drawable/white_btn"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVTime"
         tools:ignore="MissingConstraints" />
 
+
     <Button
-        android:id="@+id/nextbtntwo"
+        android:id="@+id/nextbuttonfirst"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="28dp"
-        android:layout_marginRight="@dimen/_12sdp"
         android:background="@drawable/white_btn"
-        android:gravity="bottom|center"
+        android:gravity="center|bottom"
+        android:layout_marginBottom="@dimen/_80sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:text="Continue"
         android:textColor="#000000"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTime" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

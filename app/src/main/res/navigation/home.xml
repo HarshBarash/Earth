@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
@@ -14,35 +13,36 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_HomeFragment_to_SharePhotoScreen"
-            app:destination="@id/SharePhotoScreen" />
+            android:id="@+id/action_HomeFragment_to_singleTutorialFragment"
+            app:destination="@id/singleTutorialFragment" />
         <action
-            android:id="@+id/action_HomeFragment_to_ProfileScreen"
-            app:destination="@id/ProfileScreen" />
+            android:id="@+id/action_HomeFragment_to_shareInfoFragment"
+            app:destination="@id/shareInfoFragment" />
     </fragment>
 
-<!--    Экраны на homefragment-->
-    <fragment
-        android:id="@+id/ProfileScreen"
-        android:name="github.earth.settingsscreen.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+    <!--    Экраны на homefragment-->
 
     <fragment
         android:id="@+id/SharePhotoScreen"
         android:name="github.earth.homescreen.ShareFragmentPhoto"
         android:label="@string/title_sharephoto"
         tools:layout="@layout/fragment_sharephoto">
-        <action
-            android:id="@+id/action_SharePhotoScreen_to_shareInfoFragment"
-            app:destination="@id/shareInfoFragment" />
-        <action
-            android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
-        <argument android:name="ImageUri" />
+
         <action
             android:id="@+id/action_SharePhotoScreen_to_shareLinkFragment"
             app:destination="@id/shareLinkFragment" />
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time" android:defaultValue="1" />
+        <argument android:name="description" />
+        <argument android:name="link" />
+
+        <action
+            android:id="@+id/action_SharePhotoScreen_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+
+
+
     </fragment>
     <fragment
         android:id="@+id/shareInfoFragment"
@@ -51,14 +51,19 @@
         tools:layout="@layout/fragment_shareinfo">
         <action
             android:id="@+id/action_shareInfoFragment_to_shareLinkFragment"
-            app:destination="@id/shareLinkFragment" />
-        <action
-            android:id="@+id/action_shareInfoFragment_to_SharePhotoScreen"
-            app:destination="@id/SharePhotoScreen" />
-        <argument android:name="Title" />
-        <argument android:name="Level" />
-        <argument android:name="Materials" />
-        <argument android:name="Time" />
+            app:destination="@id/shareLinkFragment">
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time"  android:defaultValue="1" />
+        </action>
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument
+            android:name="time"
+            app:argType="integer"
+            android:defaultValue="1" />
+
+
     </fragment>
 
     <fragment
@@ -70,7 +75,33 @@
             android:id="@+id/action_shareLinkFragment_to_shareInfoFragment"
             app:destination="@id/shareInfoFragment" />
         <action
-            android:id="@+id/action_shareLinkFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+            android:id="@+id/action_shareLinkFragment_to_SharePhotoScreen"
+            app:destination="@id/SharePhotoScreen" />
+        <argument android:name="title" />
+        <argument android:name="materials" />
+        <argument android:name="time" android:defaultValue="1" />
+
+
     </fragment>
+
+    <fragment
+        android:id="@+id/singleTutorialFragment"
+        android:name="github.earth.homescreen.SingleTutorialFragment"
+        android:label="SingleTutorialFragment"
+        tools:layout="@layout/fragment_single_tutorial">
+        <action
+            android:id="@+id/action_singleTutorialFragment_to_homeFragment"
+            app:destination="@id/HomeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/HomeFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="tutorial"
+            app:argType="github.earth.models.Tutorial" />
+
+    </fragment>
+
 </navigation>

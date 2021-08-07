@@ -25,14 +25,14 @@ import java.util.*
 
 class ReminderService : Service() {
 
+
     companion object {
-
+        private var running = false
         const val PAUSE_TIME = 60000L
-        const val NEED_TIME = "20:00" //Пока константа, потом поменяем
-
-        fun startService(context: Context, message: String) {
+        //const val NEED_TIME = "20:00" //Пока константа, потом поменяем
+        fun startService(context: Context, time: String) {
             val serviceIntent = Intent(context, ReminderService::class.java)
-            serviceIntent.putExtra("inputExtra", message)
+            serviceIntent.putExtra("inputTime", time)
             ContextCompat.startForegroundService(context, serviceIntent)
             //context.startService(serviceIntent)
         }
@@ -40,7 +40,9 @@ class ReminderService : Service() {
             val serviceIntent = Intent(context, ReminderService::class.java)
             context.stopService(serviceIntent)
         }
+        fun isRunning(): Boolean = running
     }
+
 
     override fun onBind(intent: Intent): IBinder? {
         Log.i(LOG_REMINDER_SERVICE, "Service onBind")
@@ -55,21 +57,34 @@ class ReminderService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i(LOG_REMINDER_SERVICE, "Service onStartCommand")
 
+        running = true
+
         createNotificationsChannel()
 
-        val input = intent?.getStringExtra("inputExtra")
+        val inputTime = intent?.getStringExtra("inputTime")
+
         var cont = false
 
         CoroutineScope(Dispatchers.Default).launch {
 
             while (!cont) {
+
                 val currentDate = Date()
                 val timeFormat: DateFormat = SimpleDateFormat("HH:mm", Locale.getDefault()) //"HH:mm:ss"
+
+                //val timeFormatMin: DateFormat = SimpleDateFormat("mm", Locale.getDefault()) //"HH:mm:ss"
+                //val timeFormatHrs: DateFormat = SimpleDateFormat("HH", Locale.getDefault()) //"HH:mm:ss"
+
+                //val currentTimeMin : String = timeFormatMin.format(currentDate)
+                //val currentTimeHrs : String = timeFormatHrs.format(currentDate)
+
+                //val currentTimeIntToString = "${currentTimeHrs.toInt()}:${currentTimeMin.toInt()}"
+
                 val currentTime : String = timeFormat.format(currentDate)
 
-                Log.i(LOG_REMINDER_SERVICE, "Need Time: $NEED_TIME\nCurrent Time: $currentTime")
+                Log.i(LOG_REMINDER_SERVICE, "Need Time: $inputTime\nCurrent Time: $currentTime")
 
-                if (currentTime == NEED_TIME) {
+                if (currentTime == inputTime) {
                     sendNotification()
                 } else {
                     Log.i(LOG_REMINDER_SERVICE, "Time does not match, starting pause...")
@@ -80,7 +95,7 @@ class ReminderService : Service() {
         }
 
         val ntfFrgServ = NotificationCompat.Builder(applicationContext, NTF_FRG_SERV_CHANNEL)
-            .setContentTitle("We will remind you about sorting in $NEED_TIME"/*R.string.contentTittle.toString()*/)
+            .setContentTitle("${applicationContext.getString(R.string.contentTittleSrvFrg)} $inputTime")//We will remind you about sorting in $inputTime"/*R.string.contentTittle.toString()*/)
             //.setContentText("Жду тебя на помойке"/*R.string.contentText.toString()*/) // или input
             .setSmallIcon(R.drawable.ic_ntf_earth)
             //.setLargeIcon()
@@ -100,7 +115,7 @@ class ReminderService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i(LOG_REMINDER_SERVICE, "Service onDestroy")
-
+        running = false
     }
 
     private fun createNotificationsChannel() {
@@ -134,8 +149,8 @@ class ReminderService : Service() {
         val pendingIntent = PendingIntent.getActivity(applicationContext,0,ntfIntent,0)
 
         val ntf = NotificationCompat.Builder(applicationContext, NTF_REMINDER_CHANNEL)
-            .setContentTitle("Пора сортировать мусор, ублюдок"/*R.string.contentTittle.toString()*/)
-            .setContentText("Жду тебя на помойке"/*R.string.contentText.toString()*/) // или input
+            .setContentTitle("Yo, sorting time"/*R.string.contentTittle.toString()*/)
+            //.setContentText("Yo, sorting time"/*R.string.contentText.toString()*/) // или input
             .setSmallIcon(R.drawable.ic_ntf_earth)
             //.setLargeIcon()
             .setContentIntent(pendingIntent)

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -111,7 +112,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         tutorialAdapter = TutorialRecyclerViewAdapter()
         rvPosts.apply {
             adapter = tutorialAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = GridLayoutManager(activity, 2)
+
         }
     }
 

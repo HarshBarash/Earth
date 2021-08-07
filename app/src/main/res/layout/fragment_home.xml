@@ -61,6 +61,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/rvPosts"
         tools:listitem="@layout/tutorial_item"
         android:layout_width="match_parent"

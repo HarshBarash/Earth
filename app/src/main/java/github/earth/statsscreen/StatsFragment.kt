@@ -19,13 +19,15 @@ class StatsFragment : Fragment() {
 
     private lateinit var mStatsViewModel: StatsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_stats, container, false)
         mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
-        insertDataToDatabase()
+        insertDataToDatabase(0, 0, 120)
 
         //RecyclerView
         val adapter = StatsAdapter()
@@ -41,35 +43,56 @@ class StatsFragment : Fragment() {
 
         return view
     }
-    private fun insertDataToDatabase() {
+
+    fun insertDataToDatabase(collected_waste: Int, visited_places: Int, rank: Int) {
 
         //create user object
         val stats = StatsRoom(
             1,
-            0,
-            0,
-            120)
+            collected_waste,
+            visited_places,
+            rank)
 
         //add data to db
+        mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
         mStatsViewModel.addStats(stats)
 
     }
 
-    private fun updateItem() {
+    fun updateItem(fragment: Fragment, collected_waste: Int, visited_places: Int, rank: Int) {
         //create stats object
         val updateStats = StatsRoom(
             1,
-            20,
-            20,
-            22
+            collected_waste,
+            visited_places,
+            rank
         )
         //update stats
+        mStatsViewModel = ViewModelProvider(fragment).get(StatsViewModel::class.java)
         mStatsViewModel.updateStats(updateStats)
 
     }
 
+    fun readItemAndUpdate(fragment: Fragment) {
+        mStatsViewModel = ViewModelProvider(fragment).get(StatsViewModel::class.java)
+        mStatsViewModel.readAllData.observe(fragment, Observer { stats ->
+            stats.forEach { stats ->
+                var collected_waste = stats.collected_waste
+                var visited_places = stats.visited_places
+                var rank = stats.rank
+                if (rank > 1) {
+                    updateItem(fragment, collected_waste + 1, visited_places + 1, rank - 1)
+                }else{
+                    updateItem(fragment, collected_waste + 1, visited_places + 1, rank)
+                }
+            }
+        })
 
-    private fun deleteAllStats() {
+
+    }
+
+    fun deleteAllStats() {
+        mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
         mStatsViewModel.deleteAllStats() //удалить всё
     }
 

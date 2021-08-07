@@ -19,6 +19,7 @@ interface StatsDao {
     @Query("DELETE FROM stats_table")
     suspend fun deleteAllStats()
 
+    @Transaction
     @Query("SELECT * FROM stats_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<StatsRoom>>
 }

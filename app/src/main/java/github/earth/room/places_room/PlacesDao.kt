@@ -18,6 +18,7 @@ interface PlacesDao {
     @Query("DELETE FROM places_table")
     suspend fun deleteAllPlaces()
 
+    @Transaction
     @Query("SELECT * FROM places_table ORDER BY id ASC")
     fun readAllPlaces(): LiveData<List<PlacesRoom>>
 

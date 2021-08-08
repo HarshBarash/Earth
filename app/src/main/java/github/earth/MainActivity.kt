@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -43,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
     lateinit var profileViewModel: ProfileViewModel
 
-
     private lateinit var navController: NavController
 
     lateinit var auth: FirebaseAuth
@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setLanguage()
         setContentView(R.layout.activity_main)
+
 
         auth = FirebaseAuth.getInstance()
         storageRef = Firebase.storage.reference
@@ -69,6 +70,16 @@ class MainActivity : AppCompatActivity() {
         // Setup the bottom navigation view with navController
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment || destination.id == R.id.registerFragment) {
+                navigationView.visibility = View.GONE
+            } else {
+                navigationView.visibility = View.VISIBLE
+            }
+        }
+
+
 
         val tutorialRepository = TutorialRepository(auth, storageRef, firestoreRef)
 

@@ -5,7 +5,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.MainActivity
 import github.earth.R
@@ -16,14 +19,20 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var viewModel: AuthViewModel
 
+    private lateinit var navController: NavController
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         verifyUserIsLoggedIn()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).authViewModel
+
+
 
         btnLogin.setOnClickListener {
             val email = etLoginEmail.text.toString()

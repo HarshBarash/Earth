@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 
 import github.earth.TutorialRepository
 import github.earth.models.User
@@ -21,6 +22,11 @@ class ProfileViewModel(
     val profileImageUri = MutableLiveData<String?>()
     val profileUsername = MutableLiveData<String?>()
     val updateState = MutableLiveData<Resource?>()
+
+    fun userLogout() {
+        val auth = FirebaseAuth.getInstance()
+        auth.signOut()
+    }
 
     fun getCurrentUserDetails() = viewModelScope.launch {
         try {

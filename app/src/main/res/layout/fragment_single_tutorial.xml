@@ -26,7 +26,7 @@
         android:layout_height="@dimen/_225sdp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:src="@drawable/ball"
+        tools:src="@drawable/ball"
         android:background="#2B2B2B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -16,8 +16,7 @@ import github.earth.utils.showToast
 import kotlinx.android.synthetic.main.fragment_update_email.*
 
 
-
-
+//ФРАГМЕНТ НА РЕКОНСТРУКЦИИ (8.08-12.08)
 class UpdateEmailFragment : Fragment() {
 
     private val currentUser = FirebaseAuth.getInstance().currentUser
@@ -90,10 +89,10 @@ class UpdateEmailFragment : Fragment() {
                 user.updateEmail(email)
                     .addOnCompleteListener { task ->
                         progressbar.visibility = View.GONE
-                        if(task.isSuccessful){
+                        if (task.isSuccessful) {
                             Navigation.findNavController(view).navigate(R.id.actionEmailUpdated)
 
-                        }else{
+                        } else {
                             context?.showToast(task.exception?.message!!)
                         }
                     }

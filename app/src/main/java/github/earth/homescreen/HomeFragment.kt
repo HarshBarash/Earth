@@ -26,7 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     //    private lateinit var mAuth: FirebaseAuth
     private lateinit var navController: NavController
-    private lateinit var tutorialAdapter: TutorialRecyclerViewAdapter //todo
+    private lateinit var tutorialAdapter: TutorialRecyclerViewAdapter
 
 
     private lateinit var viewModel: HomeViewModel
@@ -61,8 +61,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).homeViewModel
 
+            //вывлдим спасибо юзеру
 //        setCurrentUserDetails()
-//
+
         setAllTutorials()
 
 

@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_userchange.*
 import kotlinx.android.synthetic.main.fragment_userchange.view.*
 import java.io.ByteArrayOutputStream
 
+//ФРАГМЕНТ НА РЕКОНСТРУКЦИИ (8.08-12.08)
 class UserChangeFragment : Fragment() {
 
     private val DEFAULT_IMAGE_URL = "https://picsum.photos/200"

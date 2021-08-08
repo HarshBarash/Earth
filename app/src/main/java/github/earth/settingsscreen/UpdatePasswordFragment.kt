@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_update_password.*
 
 
 
-
+//ФРАГМЕНТ НА РЕКОНСТРУКЦИИ (8.08-12.08)
 class UpdatePasswordFragment : Fragment() {
 
     private val currentUser = FirebaseAuth.getInstance().currentUser

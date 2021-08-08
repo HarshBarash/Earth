@@ -1,38 +1,20 @@
 package github.earth.settingsscreen
 
 import android.app.Activity
-import android.content.Context
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import github.earth.R
-import github.earth.models.User
-import github.earth.utils.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
-
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.bumptech.glide.Glide
 import github.earth.MainActivity
-import kotlinx.android.synthetic.main.fragment_userchange.*
-
+import github.earth.R
+import github.earth.utils.Constants
+import github.earth.utils.Resource
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -45,22 +27,25 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         setImageAndUsername()
 
-//        viewModel.updateState.observe(viewLifecycleOwner, Observer {
-//            when (it) {
-//                is Resource.Success -> {
-//                    hideProgressBar()
-//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
-//                }
-//                is Resource.Error -> {
-//                    hideProgressBar()
-//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
-//                }
-//                is Resource.Loading -> {
-//                    showProgressBar()
-//                }
-//            }
-//            viewModel.doneUpdateState()
-//        })
+
+
+
+        viewModel.updateState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
+            viewModel.doneUpdateState()
+        })
 
         ivProfileImage.setOnClickListener {
             pickImageFromGallery()
@@ -68,9 +53,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
             //todo закинем дальше
-//        btnUpdate.setOnClickListener {
-//            updateProfile()
-//        }
+        btnUpdate.setOnClickListener {
+            updateProfile()
+        }
     }
 
     private fun pickImageFromGallery() {
@@ -100,21 +85,36 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         })
     }
 
-    //дальше
-//    private fun updateProfile() {
-//        val username = etProfileUsername.text.toString()
-//        viewModel.updateProfile(username)
-//    }
+    private fun confirmLogout() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Logout")
+            .setMessage("Are you sure you want to Logout")
+            .setPositiveButton("Logout") { dialog, _ ->
+                viewModel.userLogout()
+                this.findNavController().navigate(R.id.action_HomeFragment_to_loginFragment)
+                dialog.cancel()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+    }
 
-//    private fun showProgressBar() {
-//        btnUpdate.visibility = View.INVISIBLE
-//        updateProgressBar.visibility = View.VISIBLE
-//    }
-//
-//    private fun hideProgressBar() {
-//        btnUpdate.visibility = View.VISIBLE
-//        updateProgressBar.visibility = View.INVISIBLE
-//    }
+    //дальше
+    private fun updateProfile() {
+        val username = username_text.text.toString()
+        viewModel.updateProfile(username)
+    }
+
+    private fun showProgressBar() {
+        btnUpdate.visibility = View.INVISIBLE
+        updateProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        btnUpdate.visibility = View.VISIBLE
+        updateProgressBar.visibility = View.INVISIBLE
+    }
 }
 
 

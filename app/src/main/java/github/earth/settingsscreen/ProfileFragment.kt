@@ -96,14 +96,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun setImageAndUsername() {
         viewModel.getCurrentUserDetails()
-        viewModel.profileImageUri.observe(viewLifecycleOwner, Observer {
-            Glide.with(this).load(it).placeholder(ivProfileImage.drawable).into(ivProfileImage)
-        })
         viewModel.profileUsername.observe(viewLifecycleOwner, Observer {
             it?.let {
                 username_text.setText(it)
             }
         })
+        viewModel.profileImageUri.observe(viewLifecycleOwner, Observer {
+            Glide.with(this).load(it).placeholder(ivProfileImage.drawable).into(ivProfileImage)
+        })
+
     }
 
 

@@ -3,6 +3,10 @@ package github.earth.placesscreen
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+<<<<<<< HEAD
+import android.content.Intent.getIntent
+=======
+>>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -26,14 +30,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import github.earth.R
-import github.earth.placesscreen.dialogs.map_edit_dialog
-import github.earth.dialog_fragments.map_info_dialog
 import github.earth.room.data.places_data.PlacesRoom
 import github.earth.room.places_room.PlacesViewModel
 import github.earth.room.stats_room.StatsViewModel
 import github.earth.statsscreen.StatsFragment
 import kotlinx.coroutines.InternalCoroutinesApi
+<<<<<<< HEAD
+import kotlinx.coroutines.internal.synchronized
+=======
+>>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
 import java.util.*
+
 
 //internal — любой клиент внутри модуля, который видит объявленный класс, видит и его internal члены
 class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListener,
@@ -205,7 +212,11 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
                 val timer = Timer()
                 timer.scheduleAtFixedRate(object : TimerTask() {
                     override fun run() {
+<<<<<<< HEAD
+                        synchronized(this) {
+=======
                         kotlinx.coroutines.internal.synchronized(this) {
+>>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
                             fusedLocationClient.lastLocation
                                 .addOnSuccessListener { location ->
                                     if (location != null) {

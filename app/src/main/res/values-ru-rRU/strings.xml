@@ -39,4 +39,5 @@
     <string name="сonfirmation">Подтверждение</string>
     <string name="u_selected_icon">Вы выбрали новую иконку, приложение будет перезапущено если вы продолжите.</string>
     <string name="u_selected_theme">Вы выбрали новую тему, приложение будет быстро перезапущено если вы продолжите.</string>
+    <string name="ntf_text">Пришло время для сортировки!</string>
 </resources>

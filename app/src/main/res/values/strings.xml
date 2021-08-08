@@ -53,6 +53,7 @@
 
     <!-- Notifications -->
 
+    <string name="ntf_text">It\'s time to sort!</string>
     <string name="contentTittleSrvFrg">We will remind you about sorting in </string>
 
     <string name="widgetText">Next sorting at </string>

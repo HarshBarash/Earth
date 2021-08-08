@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -81,7 +82,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
+        //Юзайте если надо будет попать в Error Activity
+        /*var array = mutableListOf<String>()
+        array[0] = "Hello"
+        findViewById<TextView>(R.id.textView).text = array[1]*/
 
         val tutorialRepository = TutorialRepository(auth, storageRef, firestoreRef)
 

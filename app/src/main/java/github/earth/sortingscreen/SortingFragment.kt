@@ -32,6 +32,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -89,7 +90,6 @@ class SortingFragment : Fragment(), View.OnClickListener {
 //        view.findViewById<Button>(R.id.signup_btn).setOnClickListener {
 //            findNavController().navigate(R.id.action_register_to_registered)
 //        }
-
 
         fltNtf = rootView.findViewById(R.id.fltNtf)
         fltNtf.setOnClickListener(this)

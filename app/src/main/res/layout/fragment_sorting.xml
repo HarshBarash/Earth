@@ -9,8 +9,8 @@
 <!--    //нжно под Ml, фоточка юзер простым языком-->
     <ImageView
         android:id="@+id/img_view"
-        android:layout_width="@dimen/_224sdp"
-        android:layout_height="@dimen/_224sdp"
+        android:layout_width="@dimen/_164sdp"
+        android:layout_height="@dimen/_164sdp"
         android:layout_marginEnd="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnMLrn"
         app:layout_constraintEnd_toEndOf="@+id/machinelearning"
@@ -63,6 +63,7 @@
         app:layout_constraintStart_toStartOf="@+id/recycle"
         app:layout_constraintTop_toTopOf="@+id/recycle"/>
 
+
     <EditText
         android:id="@+id/howmany"
         android:layout_width="@dimen/_120sdp"
@@ -71,8 +72,6 @@
         app:layout_constraintBottom_toTopOf="@+id/recycle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -138,14 +137,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/ic_organic"
             android:gravity="center"
             android:minWidth="@dimen/_108sdp"
             android:minHeight="@dimen/_150sdp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintHorizontal_bias="0.873"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendto"
             tools:ignore="MissingConstraints"

@@ -65,13 +65,9 @@
         <service
             android:name=".services.ReminderService"
             android:enabled="true"
-<<<<<<< HEAD
             android:exported="true" />
-=======
-            android:exported="true"/>
 
         <!-- Activities -->
->>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
 
         <activity
             android:name=".SplashScreen"

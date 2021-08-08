@@ -27,6 +27,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import github.earth.authscreen.AuthViewModel
+import github.earth.authscreen.AuthViewModelProviderFactory
 import github.earth.homescreen.HomeViewModel
 import github.earth.homescreen.HomeViewModelProviderFactory
 import github.earth.services.ReminderService
@@ -37,6 +39,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var authViewModel: AuthViewModel
     lateinit var homeViewModel: HomeViewModel
     private lateinit var navController: NavController
 
@@ -64,12 +67,22 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
 
-        val tutorialRepository = TutorialRepository( storageRef, firestoreRef)
+        val tutorialRepository = TutorialRepository(auth, storageRef, firestoreRef)
+
+        //auth
+        val authViewModelProviderFactory = AuthViewModelProviderFactory(tutorialRepository)
+        authViewModel =
+            ViewModelProvider(this, authViewModelProviderFactory).get(AuthViewModel::class.java)
 
         //home
         val homeViewModelProviderFactory = HomeViewModelProviderFactory(tutorialRepository)
         homeViewModel =
             ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
+
+        //profile
+//        val profileViewModelProviderFactory = ProfileViewModelProviderFactory(tutorialRepository)
+//        profileViewModel =
+//            ViewModelProvider(this, profileViewModelProviderFactory).get(ProfileViewModel::class.java)
 
         //исправить под аву
         val menu = navigationView.menu

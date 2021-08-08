@@ -126,10 +126,10 @@
         android:text="Don't Have An Account? Signup"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/loginbtn"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/loginbtn"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
         android:id="@+id/btnForgot"
@@ -139,10 +139,20 @@
         android:textColor="#ffffff"
         android:textSize="20sp"
 
-        app:layout_constraintBottom_toTopOf="@+id/loginbtn"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="@+id/etLoginPassword"
         app:layout_constraintTop_toBottomOf="@+id/etLoginPassword"
         app:layout_constraintVertical_bias="0.324" />
+
+        <ProgressBar
+            android:id="@+id/loginProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+            app:layout_constraintStart_toStartOf="@+id/btnLogin"
+            app:layout_constraintTop_toTopOf="@+id/btnLogin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

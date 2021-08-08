@@ -29,10 +29,8 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_loginFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="github.earth.authscreen.RegisterFragment"
@@ -56,9 +54,6 @@
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_registerFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
     </fragment>
 
     <fragment

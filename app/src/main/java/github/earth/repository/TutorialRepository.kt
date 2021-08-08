@@ -17,6 +17,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class TutorialRepository(
+
+    private val auth: FirebaseAuth,
     private val storageRef: StorageReference,
     private val firestoreRef: FirebaseFirestore,
 
@@ -24,33 +26,47 @@ class TutorialRepository(
 
 
     //занос FireStore
-//    suspend fun uploadProfileImage(photoUri: Uri): Uri {
-//        val filename = UUID.randomUUID().toString()
-//        val ref = storageRef.child("profileImages/$filename")
-//        ref.putFile(photoUri)
-//            .await()
-//        return ref.downloadUrl.await()
-//    }
-//
-//    suspend fun saveUserToFirestore(user: User) {
-//        val userCollectionRef = firestoreRef.collection("users")
-//        userCollectionRef.add(user).await()
-//    }
-//
-//    suspend fun getCurrentlyLoggedInUserDetails(): User {
-//        val currentUserEmail = auth.currentUser?.email
-//        var currentUser: User? = null
-//
-//        val userCollectionRef = firestoreRef.collection("users")
-//        val querySnapshot = userCollectionRef
-//            .whereEqualTo("email", currentUserEmail)
-//            .get().await()
-//
-//        for (document in querySnapshot.documents) {
-//            currentUser = document.toObject<User>()
-//        }
-//        return currentUser!!
-//    }
+
+    suspend fun loginUser(email: String, password: String): AuthResult =
+        auth.signInWithEmailAndPassword(email, password).await()
+
+    suspend fun registerUser(email: String, password: String): AuthResult =
+        auth.createUserWithEmailAndPassword(email, password).await()
+
+
+    suspend fun uploadProfileImage(photoUri: Uri): Uri {
+        val filename = UUID.randomUUID().toString()
+        val ref = storageRef.child("profileImages/$filename")
+        ref.putFile(photoUri)
+            .await()
+        return ref.downloadUrl.await()
+    }
+
+    suspend fun saveUserToFirestore(user: User) {
+        val userCollectionRef = firestoreRef.collection("users")
+        userCollectionRef.add(user).await()
+    }
+
+    suspend fun getCurrentlyLoggedInUserDetails(): User {
+        val currentUserEmail = auth.currentUser?.email
+        var currentUser: User? = null
+
+        val userCollectionRef = firestoreRef.collection("users")
+        val querySnapshot = userCollectionRef
+            .whereEqualTo("email", currentUserEmail)
+            .get().await()
+
+        for (document in querySnapshot.documents) {
+            currentUser = document.toObject<User>()
+        }
+        return currentUser!!
+    }
+
+
+
+
+
+
 
     suspend fun uploadTutorialImage(uri: Uri): Uri {
         val filename = UUID.randomUUID().toString()

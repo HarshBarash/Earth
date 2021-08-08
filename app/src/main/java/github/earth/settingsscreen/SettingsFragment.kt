@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.R.*
+import github.earth.services.ReminderService
 import github.earth.utils.*
 import java.util.*
 
@@ -219,6 +220,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     val editor = sp.edit()
                     editor.putString(SETTINGS_THEME, selected)
                     editor.apply()
+                    ReminderService.stopService(requireContext())
                     (activity as MainActivity?)?.finish()
                     startActivity(Intent(requireContext(), MainActivity::class.java))
 
@@ -299,9 +301,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
                         apply()
                     }
-
-                    (activity as MainActivity?)?.finish()
-                    startActivity(Intent(requireContext(),MainActivity::class.java))
+                    reloadActivity()
                 }
 
             }
@@ -346,14 +346,18 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
                         apply()
                     }
-
-                    (activity as MainActivity?)?.finish()
-                    startActivity(Intent(requireContext(),MainActivity::class.java))
+                    reloadActivity()
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
+    }
+
+    private fun reloadActivity() {
+        ReminderService.stopService(requireContext())
+        (activity as MainActivity?)?.finish()
+        startActivity(Intent(requireContext(),MainActivity::class.java))
     }
 }

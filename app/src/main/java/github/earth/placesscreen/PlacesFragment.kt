@@ -3,10 +3,6 @@ package github.earth.placesscreen
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-<<<<<<< HEAD
-import android.content.Intent.getIntent
-=======
->>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -35,18 +31,15 @@ import github.earth.room.places_room.PlacesViewModel
 import github.earth.room.stats_room.StatsViewModel
 import github.earth.statsscreen.StatsFragment
 import kotlinx.coroutines.InternalCoroutinesApi
-<<<<<<< HEAD
 import kotlinx.coroutines.internal.synchronized
-=======
->>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
 import java.util.*
 
 
 //internal — любой клиент внутри модуля, который видит объявленный класс, видит и его internal члены
-class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListener,
+class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickListener,
     GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener,
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener,
-    GoogleMap.OnInfoWindowClickListener {
+    GoogleMap.OnInfoWindowClickListener*/ {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -66,11 +59,11 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
+        //mapFragment?.getMapAsync(this)
 
     }
 
-    @InternalCoroutinesApi
+/*    @InternalCoroutinesApi
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
@@ -442,5 +435,5 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
         )
         mPlacesViewModel.deletePlaces(deletePlace)
     }
-
+*/
 }

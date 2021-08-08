@@ -72,14 +72,6 @@ class ReminderService : Service() {
                 val currentDate = Date()
                 val timeFormat: DateFormat = SimpleDateFormat("HH:mm", Locale.getDefault()) //"HH:mm:ss"
 
-                //val timeFormatMin: DateFormat = SimpleDateFormat("mm", Locale.getDefault()) //"HH:mm:ss"
-                //val timeFormatHrs: DateFormat = SimpleDateFormat("HH", Locale.getDefault()) //"HH:mm:ss"
-
-                //val currentTimeMin : String = timeFormatMin.format(currentDate)
-                //val currentTimeHrs : String = timeFormatHrs.format(currentDate)
-
-                //val currentTimeIntToString = "${currentTimeHrs.toInt()}:${currentTimeMin.toInt()}"
-
                 val currentTime : String = timeFormat.format(currentDate)
 
                 Log.i(LOG_REMINDER_SERVICE, "Need Time: $inputTime\nCurrent Time: $currentTime")
@@ -149,7 +141,7 @@ class ReminderService : Service() {
         val pendingIntent = PendingIntent.getActivity(applicationContext,0,ntfIntent,0)
 
         val ntf = NotificationCompat.Builder(applicationContext, NTF_REMINDER_CHANNEL)
-            .setContentTitle("Yo, sorting time"/*R.string.contentTittle.toString()*/)
+            .setContentTitle(applicationContext.getString(R.string.ntf_text)/*R.string.contentTittle.toString()*/)
             //.setContentText("Yo, sorting time"/*R.string.contentText.toString()*/) // или input
             .setSmallIcon(R.drawable.ic_ntf_earth)
             //.setLargeIcon()

@@ -47,6 +47,33 @@
     <color name="accent_light_blue">#B0DEFF</color>
     <color name="accent_beige">#FFC6AC</color>
     <color name="accent_green">#ABDFA7</color>
+
+    <color name="night_main_def">#54A840</color>
+    <color name="night_main_purple">#5662D1</color>
+    <color name="night_main_pink">#E399EB</color>
+    <color name="night_main_blue">#024795</color>
+    <color name="night_main_red">#BB5454</color>
+    <color name="night_main_orange">#C24A24</color>
+    <color name="night_main_yellow">#DEA024</color>
+    <color name="night_main_light_pink">#E06262</color>
+    <color name="night_main_gray">#7B7676</color>
+    <color name="night_main_light_blue">#3092D7</color>
+    <color name="night_main_beige">#E6A182</color>
+    <color name="night_main_green">#598057</color>
+
+    <color name="night_accent_def">#406EA6</color>
+    <color name="night_accent_purple">#777FCF</color>
+    <color name="night_accent_pink">#D784E0</color>
+    <color name="night_accent_blue">#0653AA</color>
+    <color name="night_accent_red">#DA5858</color>
+    <color name="night_accent_orange">#DB643E</color>
+    <color name="night_accent_yellow">#E5B350</color>
+    <color name="night_accent_light_pink">#E79393</color>
+    <color name="night_accent_gray">#8C8585</color>
+    <color name="night_accent_light_blue">#217BBB</color>
+    <color name="night_accent_beige">#D18C6D</color>
+    <color name="night_accent_green">#6D996A</color>
+
     <color name="light_blue_50">#FFE1F5FE</color>
     <color name="light_blue_200">#FF81D4FA</color>
     <color name="light_blue_600">#FF039BE5</color>

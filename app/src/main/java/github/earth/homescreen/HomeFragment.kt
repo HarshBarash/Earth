@@ -1,7 +1,5 @@
 package github.earth.homescreen
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,13 +9,18 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.TutorialRecyclerViewAdapter
-import github.earth.authscreen.LoginActivity
-import github.earth.utils.*
+import github.earth.utils.FirebaseHelper
+import github.earth.utils.LOG_HOME_FRAGMENT
+import github.earth.utils.LOG_HOME_VIEW_MODEL
+import github.earth.utils.Resource
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.tutorial_item.*
+
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -31,12 +34,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var viewModel: HomeViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(LOG_HOME_FRAGMENT, "onCreate called")
 
         mFirebase = FirebaseHelper(requireActivity())
 //        mAuth = FirebaseAuth.getInstance()
+
 
 
         val uid = FirebaseAuth.getInstance().uid
@@ -63,6 +68,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             //вывлдим спасибо юзеру
 //        setCurrentUserDetails()
+
+        setCurrentUserDetails()
 
         setAllTutorials()
 
@@ -118,20 +125,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun confirmLogout() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Logout")
-            .setMessage("Are you sure you want to Logout")
-            .setPositiveButton("Logout") { dialog, _ ->
-                viewModel.userLogout()
-                this.findNavController().navigate(R.id.action_HomeFragment_to_loginFragment)
-                dialog.cancel()
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.cancel()
-            }
-            .show()
+    private fun setCurrentUserDetails() {
+        viewModel.getCurrentUserDetails()
+        viewModel.username.observe(viewLifecycleOwner, Observer{
+            tvUsername.text = it
+        })
+        viewModel.profileImageUri.observe(viewLifecycleOwner, Observer {
+            Glide.with(this).load(it).placeholder(ivProfileImage.drawable).into(ivProfileImage)
+        })
     }
+
 }
 
 

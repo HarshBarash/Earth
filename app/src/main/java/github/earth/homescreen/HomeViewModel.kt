@@ -59,15 +59,15 @@ class HomeViewModel(
         description: String,
         link: String
     ) {
-        uploadTutorialState.postValue(github.earth.utils.Resource.Loading())
+        uploadTutorialState.postValue(Resource.Loading())
         try {
             if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null && link.isNotEmpty() && time > 0) {
                 uploadTutorialImageToFirebaseStorage(title, materials, description, time, link)
             } else {
-                uploadTutorialState.postValue(github.earth.utils.Resource.Error("Please Fill the Details or Select Image"))
+                uploadTutorialState.postValue(Resource.Error("Please Fill the Details or Select Image"))
             }
         } catch (e: Exception) {
-            uploadTutorialState.postValue(e.message?.let { github.earth.utils.Resource.Error(it) })
+            uploadTutorialState.postValue(e.message?.let { Resource.Error(it) })
         }
     }
 
@@ -125,10 +125,10 @@ class HomeViewModel(
     }
 
     private fun getAllTutorial() {
-        getTutorialsState.postValue(github.earth.utils.Resource.Loading())
+        getTutorialsState.postValue(Resource.Loading())
         try {
             tutorialList = tutorialRepository.getAllTutorials()
-            getTutorialsState.postValue(github.earth.utils.Resource.Success("New Tutorial"))
+            getTutorialsState.postValue(Resource.Success("New Tutorial"))
         } catch (e: Exception) {
             getTutorialsState.postValue(e.message?.let { Resource.Error(it) })
         }

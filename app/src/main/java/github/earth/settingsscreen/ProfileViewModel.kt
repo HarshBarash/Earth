@@ -31,10 +31,11 @@ class ProfileViewModel(
     fun getCurrentUserDetails() = viewModelScope.launch {
         try {
             currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
+            profileUsername.postValue(currentUser.username)
+
             if (currentUser.profileImageUrl != null) {
                 profileImageUri.postValue(currentUser.profileImageUrl!!)
             }
-            profileUsername.postValue(currentUser.username)
         } catch (e: Exception) {
             updateState.postValue(Resource.Error(e.message.toString()))
         }

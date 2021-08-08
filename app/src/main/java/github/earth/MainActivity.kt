@@ -98,21 +98,21 @@ class MainActivity : AppCompatActivity() {
         profileViewModel =
             ViewModelProvider(this, profileViewModelProviderFactory).get(ProfileViewModel::class.java)
 
-        //исправить под аву
-        val menu = navigationView.menu
-        val menuItem = menu.findItem(R.id.profile)
-        Glide.with(this)
-            .asBitmap()
-            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
-            .apply(
-                RequestOptions
-                    .circleCropTransform()
-                    .placeholder(R.drawable.ic_userphoto))
-            .into(object : SimpleTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    menuItem?.icon = BitmapDrawable(resources, resource)
-                }
-            })
+        //todo исправить под аву
+//        val menu = navigationView.menu
+//        val menuItem = menu.findItem(R.id.profile)
+//        Glide.with(this)
+//            .asBitmap()
+//            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
+//            .apply(
+//                RequestOptions
+//                    .circleCropTransform()
+//                    .placeholder(R.drawable.ic_userphoto))
+//            .into(object : SimpleTarget<Bitmap>() {
+//                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+//                    menuItem?.icon = BitmapDrawable(resources, resource)
+//                }
+//            })
 
         //ReminderService.startService(this, "Message")
         updateService()

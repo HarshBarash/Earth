@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".placesscreen.PlacesFragment">
 
     <fragment
@@ -12,49 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         map:cameraTilt="30"
-        map:uiRotateGestures="true" />
+        map:uiRotateGestures="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
-    <ImageView
-        android:id="@+id/circle_tag3"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_75sdp"
-        android:src="@drawable/circle"
-        map:layout_constraintBottom_toBottomOf="parent"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/hear_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/ic_places_mark"
+        app:tint="?attr/iconTint"
         map:layout_constraintEnd_toEndOf="parent"
-        map:tint="#5F85B0" />
+        map:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/circle_tag2"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:src="@drawable/circle"
-        map:layout_constraintEnd_toEndOf="@+id/map"
-        map:layout_constraintTop_toTopOf="parent"
-        map:tint="@color/white" />
-
-    <ImageView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/marker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_places_mark"
-        map:layout_constraintBottom_toBottomOf="@+id/circle_tag2"
-        map:layout_constraintEnd_toEndOf="@+id/circle_tag2"
-        map:layout_constraintStart_toStartOf="@+id/circle_tag2"
-        map:layout_constraintTop_toTopOf="@+id/circle_tag2"
-        map:tint="#5F85B0" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/ic_hear_me"
+        app:tint="?attr/iconTint"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/hear_me" />
 
-    <ImageView
-        android:id="@+id/hear_me"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_25sdp"
-        android:src="@drawable/ic_hear_me"
-        map:layout_constraintBottom_toBottomOf="@+id/circle_tag3"
-        map:layout_constraintEnd_toEndOf="@+id/circle_tag3"
-        map:layout_constraintStart_toStartOf="@+id/circle_tag3"
-        map:layout_constraintTop_toTopOf="@+id/circle_tag3"
-        map:tint="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

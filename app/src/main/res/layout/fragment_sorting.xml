@@ -78,8 +78,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            tools:ignore="MissingConstraints"
-            tools:text="Plastic container" />
+            android:text="Plastic container" />
 
         <TextView
             android:id="@+id/sendto"
@@ -97,9 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints"
-            tools:text="We send it to:" />
+            android:text="We send it to:" />
 
         <ImageView
             android:layout_width="@dimen/_108sdp"
@@ -117,8 +114,7 @@
             app:layout_constraintHorizontal_bias="0.873"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendto"
-            tools:ignore="MissingConstraints"
-            tools:text="Plastic container" />
+            android:text="Plastic container" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

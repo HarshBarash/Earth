@@ -7,10 +7,14 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -43,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var homeViewModel: HomeViewModel
     lateinit var profileViewModel: ProfileViewModel
 
-
     private lateinit var navController: NavController
 
     lateinit var auth: FirebaseAuth
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setLanguage()
         setContentView(R.layout.activity_main)
+
 
         auth = FirebaseAuth.getInstance()
         storageRef = Firebase.storage.reference
@@ -69,6 +73,19 @@ class MainActivity : AppCompatActivity() {
         // Setup the bottom navigation view with navController
         val navigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         navigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment || destination.id == R.id.registerFragment) {
+                navigationView.visibility = View.GONE
+            } else {
+                navigationView.visibility = View.VISIBLE
+            }
+        }
+
+        //Юзайте если надо будет попать в Error Activity
+        /*var array = mutableListOf<String>()
+        array[0] = "Hello"
+        findViewById<TextView>(R.id.textView).text = array[1]*/
 
         val tutorialRepository = TutorialRepository(auth, storageRef, firestoreRef)
 
@@ -87,21 +104,21 @@ class MainActivity : AppCompatActivity() {
         profileViewModel =
             ViewModelProvider(this, profileViewModelProviderFactory).get(ProfileViewModel::class.java)
 
-        //исправить под аву
-        val menu = navigationView.menu
-        val menuItem = menu.findItem(R.id.profile)
-        Glide.with(this)
-            .asBitmap()
-            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
-            .apply(
-                RequestOptions
-                    .circleCropTransform()
-                    .placeholder(R.drawable.ic_userphoto))
-            .into(object : SimpleTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    menuItem?.icon = BitmapDrawable(resources, resource)
-                }
-            })
+        //todo исправить под аву
+//        val menu = navigationView.menu
+//        val menuItem = menu.findItem(R.id.profile)
+//        Glide.with(this)
+//            .asBitmap()
+//            .load("https://lh3.googleusercontent.com/proxy/tO3kS72ChposXy4SE6hETSZpnnQf2F51f0MFnRPxRg4nDzraN2Mhtpt39gTcR6hVe132dYsi-uhqP-jhyLrDQ7sVa-pzTRu0Wd_-e7vR")
+//            .apply(
+//                RequestOptions
+//                    .circleCropTransform()
+//                    .placeholder(R.drawable.ic_userphoto))
+//            .into(object : SimpleTarget<Bitmap>() {
+//                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+//                    menuItem?.icon = BitmapDrawable(resources, resource)
+//                }
+//            })
 
         //ReminderService.startService(this, "Message")
         updateService()
@@ -251,6 +268,19 @@ class MainActivity : AppCompatActivity() {
         private fun setCustomTheme() {
             val sp = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE)
             val currentTheme = sp.getString(SETTINGS_THEME, THEME_DEFAULT)
+            val currentThemeAction = sp.getString(SETTINGS_THEME_ACTION, ACTION_SYSTEM)
+
+            when (currentThemeAction) {
+                ACTION_SYSTEM -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    } else {
+                        Log.v(LOG_MAIN_ACTIVITY, "System doesn't support action FOLLOW_SYSTEM. Ignoring param and continue.")
+                    }
+                }
+                ACTION_DAY -> { AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) }
+                ACTION_NIGHT -> { AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) }
+            }
 
             if (currentTheme != THEME_DEFAULT) {
                 when (currentTheme) {

@@ -155,5 +155,4 @@
             app:argType="github.earth.models.Tutorial" />
 
     </fragment>
-
 </navigation>

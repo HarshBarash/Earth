@@ -42,6 +42,7 @@
     <string name="Theme">Theme</string>
     <string name="App_Icon">App Icon</string>
     <string name="LogOut">Log Out</string>
+    <string name="RemindService">Remind service</string>
 
     <string name="choice">Good choice!</string>
 

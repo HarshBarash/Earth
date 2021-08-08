@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_ProfileScreen_to_UserChangeScreen"
             app:destination="@id/UserChange"/>
+        <action
+            android:id="@+id/action_ProfileFragment_to_home"
+            app:destination="@id/home" />
 
     </fragment>
 
@@ -67,4 +70,7 @@
         <action android:id="@+id/actionEmailUpdated"
             app:destination="@id/UserChange"/>
     </fragment>
+
+    <include app:graph="@navigation/home" />
+
 </navigation>

@@ -43,8 +43,7 @@ class TutorialRecyclerViewAdapter : RecyclerView.Adapter<TutorialRecyclerViewAda
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val tutorial = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(tutorial.profileImageUrl)
-                .into(ivProfileImage)
+            Glide.with(this).load(tutorial.profileImageUrl).into(ivProfileImage)
             tvUsername.text = tutorial.username
 //            tvTimestamp.text = convertedDate(tutorial.timestamp)
             Glide.with(this).load(tutorial.tutorialImageUrl).placeholder(R.color.colorPrimary)

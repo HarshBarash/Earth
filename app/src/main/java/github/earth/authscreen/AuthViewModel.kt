@@ -56,6 +56,9 @@ class AuthViewModel(
     private fun uploadImageToFirebaseStorage(username: String, email: String) =
         viewModelScope.launch {
             try {
+                if (profileImageUri.value == null) {
+                    saveUserToFirestoreDatabaseWithoutImage(username, email)
+                }
                 profileImageUri.value?.let {
                     val profileImageUri = tutorialRepository.uploadProfileImage(it)
                     saveUserToFirestoreDatabase(username, email, profileImageUri.toString())
@@ -71,6 +74,19 @@ class AuthViewModel(
         profileImageUri: String
     ) = viewModelScope.launch {
         val user = User(username, email, profileImageUri)
+        try {
+            tutorialRepository.saveUserToFirestore(user)
+            registerState.postValue(Resource.Success("Successfully Registered"))
+        } catch (e: Exception) {
+            registerState.postValue(e.message?.let { Resource.Error(it) })
+        }
+    }
+
+    private fun saveUserToFirestoreDatabaseWithoutImage(
+        username: String,
+        email: String,
+    ) = viewModelScope.launch {
+        val user = User(username, email)
         try {
             tutorialRepository.saveUserToFirestore(user)
             registerState.postValue(Resource.Success("Successfully Registered"))

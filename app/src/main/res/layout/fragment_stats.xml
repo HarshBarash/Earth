@@ -14,7 +14,6 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toStartOf="@+id/fltGlobal"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@+id/appBarLayoutStats"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_account"
@@ -49,8 +48,8 @@
         android:id="@+id/cardPurpose"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_70sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +70,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:gravity="center"
                 android:text="Цель: 100k"
+                android:textColor="@color/browser_actions_text_color"
                 android:textSize="@dimen/_25ssp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

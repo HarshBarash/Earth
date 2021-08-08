@@ -15,11 +15,12 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/rect"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
     <ImageView
         android:id="@+id/visited_place_rect"
-
+        app:tint = "@color/white"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginEnd="@dimen/_20sdp"
@@ -31,7 +32,7 @@
 
     <ImageView
         android:id="@+id/rank_rect"
-
+        app:tint = "@color/white"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_20sdp"
@@ -102,7 +103,6 @@
 
     <ImageView
         android:id="@+id/saved_trees_rect"
-
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_10sdp"
@@ -110,7 +110,8 @@
         android:layout_marginRight="@dimen/_20sdp"
         android:src="@drawable/rect"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/collected"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-<!--    //нжно под Ml, фоточка юзер простым языком-->
+    <!--    //нжно под Ml, фоточка юзер простым языком-->
     <ImageView
         android:id="@+id/img_view"
         android:layout_width="@dimen/_164sdp"
@@ -25,12 +25,11 @@
         android:layout_margin="16dp"
         app:icon="@drawable/ic_photo"
         app:iconTint="@color/white"
-        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/machinelearning"
         app:layout_constraintEnd_toEndOf="@+id/machinelearning"
         app:layout_constraintStart_toStartOf="@+id/machinelearning"
-        app:layout_constraintTop_toTopOf="@+id/machinelearning" />
-
+        app:layout_constraintTop_toTopOf="@+id/machinelearning"
+        app:strokeWidth="0dp" />
 
 
     <View
@@ -43,43 +42,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/recycle"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_60sdp"
-        app:icon="@drawable/ic_recycle"
-        app:iconTint="@color/white"
-        android:background="@drawable/bottom_sheet_right"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/howmany" />
-
-    <View
-        android:id="@+id/recycleimage"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_60sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/recycle"
-        app:layout_constraintEnd_toEndOf="@+id/recycle"
-        app:layout_constraintStart_toStartOf="@+id/recycle"
-        app:layout_constraintTop_toTopOf="@+id/recycle"/>
-
-
-    <EditText
-        android:id="@+id/howmany"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:background="@drawable/bottom_sheet_right"
-        app:layout_constraintBottom_toTopOf="@+id/recycle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:backgroundTint="?attr/colorPrimary"
-        android:maxHeight="@dimen/_265sdp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet"
+        android:backgroundTint="?attr/colorPrimary"
+        android:maxHeight="@dimen/_265sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -99,8 +69,8 @@
             android:layout_marginBottom="@dimen/_170sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:textColor="?android:attr/titleTextColor"
             android:maxWidth="@dimen/_130sdp"
+            android:textColor="?android:attr/titleTextColor"
             android:textSize="@dimen/_28ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,8 +91,8 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:textSize="@dimen/_30ssp"
             android:textColor="?android:attr/titleTextColor"
+            android:textSize="@dimen/_30ssp"
             app:layout_constraintBottom_toTopOf="@+id/sorttext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,11 +128,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-24dp"
+        app:elevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:elevation="4dp"
-        app:tint="?attr/iconTint"
-        app:srcCompat="@drawable/ic_baseline_notifications_24" />
+        app:srcCompat="@drawable/ic_baseline_notifications_24"
+        app:tint="?attr/iconTint" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/calc_rect"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_65sdp"
+
+        android:layout_marginStart="@dimen/_65sdp"
+        android:layout_marginTop="@dimen/_130sdp"
+        app:layout_constraintStart_toEndOf="@+id/machinelearning"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rect"
+        app:tint="?attr/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/calc_icon"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="@id/calc_rect"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/calc_rect"
+        app:layout_constraintTop_toTopOf="@+id/calc_rect"
+        app:srcCompat="@drawable/ic_calculate"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/calc_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/calc_rect"
+        app:layout_constraintEnd_toEndOf="@+id/calc_icon"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/calc_icon"
+        app:layout_constraintTop_toBottomOf="@+id/calc_icon"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,6 +102,23 @@ class TutorialRepository(
         return _tutorials
     }
 
+    suspend fun updateProfile(currentUser: User, updatedUserMap: Map<String, Any>) {
+        val userCollectionRef = firestoreRef.collection("users")
+        val userQuery = userCollectionRef
+            .whereEqualTo("email", currentUser.email)
+            .get()
+            .await()
+
+        if (userQuery.documents.isNotEmpty()) {
+            for (document in userQuery.documents) {
+                userCollectionRef.document(document.id).set(
+                    updatedUserMap, SetOptions.merge()
+                ).await()
+            }
+
+            updateTutorials(currentUser, updatedUserMap)
+        }
+    }
 
     private suspend fun updateTutorials(currentUser: User, updatedUserMap: Map<String, Any>) {
         val tutorialCollectionRef = firestoreRef.collection("tutorials")

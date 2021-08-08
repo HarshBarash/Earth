@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -32,7 +31,8 @@ import github.earth.authscreen.AuthViewModelProviderFactory
 import github.earth.homescreen.HomeViewModel
 import github.earth.homescreen.HomeViewModelProviderFactory
 import github.earth.services.ReminderService
-import github.earth.settingsscreen.SettingsFragment
+import github.earth.settingsscreen.ProfileViewModel
+import github.earth.settingsscreen.ProfileViewModelProviderFactory
 import github.earth.utils.*
 import github.earth.widgets.UniversalAppWidget
 import java.util.*
@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var authViewModel: AuthViewModel
     lateinit var homeViewModel: HomeViewModel
+    lateinit var profileViewModel: ProfileViewModel
+
+
     private lateinit var navController: NavController
 
     lateinit var auth: FirebaseAuth
@@ -80,9 +83,9 @@ class MainActivity : AppCompatActivity() {
             ViewModelProvider(this, homeViewModelProviderFactory).get(HomeViewModel::class.java)
 
         //profile
-//        val profileViewModelProviderFactory = ProfileViewModelProviderFactory(tutorialRepository)
-//        profileViewModel =
-//            ViewModelProvider(this, profileViewModelProviderFactory).get(ProfileViewModel::class.java)
+        val profileViewModelProviderFactory = ProfileViewModelProviderFactory(tutorialRepository)
+        profileViewModel =
+            ViewModelProvider(this, profileViewModelProviderFactory).get(ProfileViewModel::class.java)
 
         //исправить под аву
         val menu = navigationView.menu

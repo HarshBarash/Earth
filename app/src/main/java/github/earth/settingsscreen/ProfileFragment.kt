@@ -1,6 +1,8 @@
 package github.earth.settingsscreen
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
@@ -9,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -24,94 +28,93 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.earth.MainActivity
 import kotlinx.android.synthetic.main.fragment_userchange.*
 
 
-class ProfileFragment : Fragment() {
 
-    private lateinit var mCameraHelper: CameraHelper
-    private lateinit var mFirebaseHelper: FirebaseHelper
-    private lateinit var mUser : User
-    private lateinit var mPendingUser: User
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var mDatabase: DatabaseReference
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
-    private val currentUser = FirebaseAuth.getInstance().currentUser
+    private lateinit var viewModel: ProfileViewModel
 
-    private lateinit var fabSettings : FloatingActionButton
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).profileViewModel
 
-    private lateinit var toChangeOne: TextView
-    private lateinit var toChangeTwo: ImageView
-    private lateinit var topAppBar: com.google.android.material.appbar.MaterialToolbar
+        setImageAndUsername()
+
+//        viewModel.updateState.observe(viewLifecycleOwner, Observer {
+//            when (it) {
+//                is Resource.Success -> {
+//                    hideProgressBar()
+//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+//                }
+//                is Resource.Error -> {
+//                    hideProgressBar()
+//                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+//                }
+//                is Resource.Loading -> {
+//                    showProgressBar()
+//                }
+//            }
+//            viewModel.doneUpdateState()
+//        })
+
+        ivProfileImage.setOnClickListener {
+            pickImageFromGallery()
+        }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.v(LOG_PROFILE_FRAGMENT, "onCreate called")
-
-        mAuth = FirebaseAuth.getInstance()
-        mDatabase = FirebaseDatabase.getInstance().reference
-        mFirebaseHelper = FirebaseHelper(activity)
-
-        mCameraHelper = CameraHelper(requireActivity())
-
-
+            //todo закинем дальше
+//        btnUpdate.setOnClickListener {
+//            updateProfile()
+//        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        Log.d(LOG_PROFILE_FRAGMENT, "onCreateView called")
-
-        toChangeOne = view.findViewById(R.id.username_text)
-        toChangeTwo = view.findViewById(R.id.user_photo)
-        fabSettings = view.findViewById(R.id.fabSettings)
-
-        // TODO: 02.08.2021 привести  все и зарефакторить
-        currentUser?.let { user ->
-            Glide.with(this)
-                .load(user.photoUrl)
-                .circleCrop()
-                .into(toChangeTwo)
-            mFirebaseHelper.currentUserReference().addValueEventListener(ValueEventListenerAdapter {
-            mUser = it.getValue(User::class.java)!!
-            view.username_text.text = mUser.username
-        })}
-
-
-//        view.userphoto.setOnClickListener({
-
-
-
-
-//        view.images_recycler.layoutManager = GridLayoutManager(view.context, 2)
-//        mFirebaseHelper.database.child("images").child(mFirebaseHelper.currentUid()!!)
-//            .addValueEventListener(ValueEventListenerAdapter {
-//                val images = it.children.map { it.getValue(String::class.java)!! }
-//                view.images_recycler.adapter = ImagesAdapter(images)
-//            })
-
-
-        toChangeOne.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
-        }
-
-        toChangeTwo.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_ProfileScreen_to_UserChangeScreen)
-        }
-
-        fabSettings.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_ProfileScreen_to_SettingsScreen)
-        }
-
-        return view
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, Constants.IMAGE_PICK_CODE)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.IMAGE_PICK_CODE) {
+            data?.data?.let {
+                viewModel.setImageUri(it)
+            }
+        }
+    }
+
+    private fun setImageAndUsername() {
+        viewModel.getCurrentUserDetails()
+        viewModel.profileImageUri.observe(viewLifecycleOwner, Observer {
+            Glide.with(this).load(it).placeholder(ivProfileImage.drawable).into(ivProfileImage)
+        })
+        viewModel.profileUsername.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                username_text.setText(it)
+            }
+        })
+    }
+
+    //дальше
+//    private fun updateProfile() {
+//        val username = etProfileUsername.text.toString()
+//        viewModel.updateProfile(username)
+//    }
+
+//    private fun showProgressBar() {
+//        btnUpdate.visibility = View.INVISIBLE
+//        updateProgressBar.visibility = View.VISIBLE
+//    }
+//
+//    private fun hideProgressBar() {
+//        btnUpdate.visibility = View.VISIBLE
+//        updateProgressBar.visibility = View.INVISIBLE
+//    }
 }
 
 

@@ -5,6 +5,6 @@ import com.google.firebase.database.Exclude
 data class User(
     val email: String ="",
     val username: String ="",
-    val photo: String? = null,
+    val profileImageUrl: String? = null,
     @Exclude val uid: String = ""
 )

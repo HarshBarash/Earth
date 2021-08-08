@@ -11,6 +11,7 @@ import github.earth.models.Tutorial
 import github.earth.models.User
 import github.earth.utils.FirebaseHelper
 import github.earth.utils.LOG_HOME_VIEW_MODEL
+import github.earth.utils.Resource
 import kotlinx.coroutines.launch
 
 
@@ -18,11 +19,8 @@ class HomeViewModel(
     private val tutorialRepository: TutorialRepository
 ) : ViewModel() {
 
-    private lateinit var mFirebaseHelper: FirebaseHelper
-    private lateinit var mUser : User
-
-    val uploadTutorialState = MutableLiveData<github.earth.utils.Resource?>()
-    val getTutorialsState = MutableLiveData<github.earth.utils.Resource>()
+    val uploadTutorialState = MutableLiveData<Resource?>()
+    val getTutorialsState = MutableLiveData<Resource>()
 
     val tutorialImageUri = MutableLiveData<Uri?>()
     val username = MutableLiveData<String>()
@@ -43,17 +41,24 @@ class HomeViewModel(
     fun getCurrentUserDetails() = viewModelScope.launch {
         try {
             val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
-            username.postValue(mUser.username)
-            email.postValue(mUser.email)
-            if (mUser.photo != null) {
-                profileImageUri.postValue(mUser.photo!!)
+            if (currentUser.profileImageUrl != null) {
+                profileImageUri.postValue(currentUser.profileImageUrl!!)
             }
+            username.postValue(currentUser.username)
+            email.postValue(currentUser.email)
         } catch (e: Exception) {
             Log.d(LOG_HOME_VIEW_MODEL, "getCurrentUserDetails: ${e.message}")
         }
     }
 
-    fun uploadTutorialDetailsToFirestore(title: String, materials: String, time: Int, description: String, link: String) {
+
+    fun uploadTutorialDetailsToFirestore(
+        title: String,
+        materials: String,
+        time: Int,
+        description: String,
+        link: String
+    ) {
         uploadTutorialState.postValue(github.earth.utils.Resource.Loading())
         try {
             if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null && link.isNotEmpty() && time > 0) {
@@ -66,12 +71,25 @@ class HomeViewModel(
         }
     }
 
-    private fun uploadTutorialImageToFirebaseStorage(title: String, materials: String, description: String, time: Int, link: String) =
+    private fun uploadTutorialImageToFirebaseStorage(
+        title: String,
+        materials: String,
+        description: String,
+        time: Int,
+        link: String
+    ) =
         viewModelScope.launch {
             try {
                 tutorialImageUri.value?.let {
                     val uploadedTutorialImageUri = tutorialRepository.uploadTutorialImage(it)
-                    saveTutorialToFirestoreDatabase(title, materials, description, time, link, uploadedTutorialImageUri.toString())
+                    saveTutorialToFirestoreDatabase(
+                        title,
+                        materials,
+                        description,
+                        time,
+                        link,
+                        uploadedTutorialImageUri.toString()
+                    )
                 }
             } catch (e: Exception) {
                 uploadTutorialState.postValue(e.message?.let { github.earth.utils.Resource.Error(it) })
@@ -100,9 +118,9 @@ class HomeViewModel(
         )
         try {
             tutorialRepository.saveTutorialToFirestore(tutorial)
-            uploadTutorialState.postValue(github.earth.utils.Resource.Success("Tutorial Uploaded Successfully"))
+            uploadTutorialState.postValue(Resource.Success("Tutorial Uploaded Successfully"))
         } catch (e: Exception) {
-            uploadTutorialState.postValue(e.message?.let { github.earth.utils.Resource.Error(it) })
+            uploadTutorialState.postValue(e.message?.let { Resource.Error(it) })
         }
     }
 
@@ -112,7 +130,7 @@ class HomeViewModel(
             tutorialList = tutorialRepository.getAllTutorials()
             getTutorialsState.postValue(github.earth.utils.Resource.Success("New Tutorial"))
         } catch (e: Exception) {
-            getTutorialsState.postValue(e.message?.let { github.earth.utils.Resource.Error(it) })
+            getTutorialsState.postValue(e.message?.let { Resource.Error(it) })
         }
     }
 

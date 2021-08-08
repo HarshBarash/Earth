@@ -4,15 +4,11 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
-import android.system.Os.accept
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.*
-import androidx.core.content.res.ResourcesCompat.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -20,21 +16,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.R.*
-import github.earth.R.color.*
-import github.earth.R.mipmap.*
 import github.earth.utils.*
-import kotlinx.coroutines.NonCancellable.cancel
 import java.util.*
 
 class SettingsFragment : Fragment(), View.OnClickListener {
 
     private val itemLanguages = arrayOf("English", "Russian", "German")
+    private val itemThemes = arrayOf("System", "Day", "Night")
 
     private lateinit var spinLanguages: Spinner
+    private lateinit var spinThemes: Spinner
     private lateinit var fltSave: FloatingActionButton
     private lateinit var swtNtf: com.google.android.material.switchmaterial.SwitchMaterial
 
     private var sLanguage: String? = null
+    private var sThemeAction: String? = null
     private var newLanguage: String? = null
     private var sIcon: String? = null
     private var sTheme: String? = null
@@ -111,12 +107,16 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         //ivIcBlue         = view.findViewById(R.id.ivIcBlue       )
 
         spinLanguages = view.findViewById(R.id.spinLanguages)
+        spinThemes = view.findViewById(R.id.spinTheme)
         fltSave = view.findViewById(R.id.fltSave)
         fltClose = view.findViewById(R.id.fltClose)
         swtNtf = view.findViewById(R.id.swtNtf)
 
-        val adapter = ArrayAdapter(requireContext(), layout.list_item, itemLanguages)
-        spinLanguages.adapter = adapter
+        val adapterThemes = ArrayAdapter(requireContext(), layout.list_item, itemThemes)
+        val adapterLang = ArrayAdapter(requireContext(), layout.list_item, itemLanguages)
+
+        spinThemes.adapter = adapterThemes
+        spinLanguages.adapter = adapterLang
 
         listenSetter()
         getUserData()
@@ -142,6 +142,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         sIcon = spConfig.getString(SETTINGS_APP_ICON, IC_DEFAULT)
         sTheme = spConfig.getString(SETTINGS_THEME, THEME_DEFAULT)
         isNtf = spConfig.getBoolean(SETTINGS_REMIND_SWITCH, true)
+        sThemeAction = spConfig.getString(SETTINGS_THEME_ACTION, ACTION_SYSTEM)
 
         swtNtf.isChecked = isNtf as Boolean
 
@@ -149,6 +150,12 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             ENGLISH -> spinLanguages.setSelection(0)
             RUSSIAN -> spinLanguages.setSelection(1)
             GERMAN  -> spinLanguages.setSelection(2)
+        }
+
+        when (sThemeAction) {
+            ACTION_SYSTEM -> spinThemes.setSelection(0)
+            ACTION_DAY -> spinThemes.setSelection(1)
+            ACTION_NIGHT -> spinThemes.setSelection(2)
         }
 
         Log.v(LOG_SETTINGS_FRAGMENT, "Theme: $sTheme")
@@ -262,6 +269,22 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             (activity as MainActivity).updateWidgets()
         }
 
+        spinThemes.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
         spinLanguages.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -302,9 +325,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
     }

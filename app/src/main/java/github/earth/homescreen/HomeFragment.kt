@@ -1,5 +1,6 @@
 package github.earth.homescreen
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.TutorialRecyclerViewAdapter
@@ -37,13 +39,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //        mAuth = FirebaseAuth.getInstance()
 
 
+        val uid = FirebaseAuth.getInstance().uid
+        if (uid == null) {
+            this.findNavController().navigate(R.id.action_HomeFragment_to_loginFragment)
+        }
+
+
+
         //Кто-нибудь, скажите Антону что это здесь не нужно
         // нужно) Так как в большем кол-ве случаев юзер здесь, нежели в реге. Поэтому и линкаю сюда
-        if (mFirebase.auth.currentUser == null) {
-            val intent_toLogin = Intent(activity, LoginActivity::class.java)
-            activity?.startActivity(intent_toLogin)
-            activity?.finish()
-        }
+//        if (mFirebase.auth.currentUser == null) {
+//            val intent_toLogin = Intent(activity, LoginActivity::class.java)
+//            activity?.startActivity(intent_toLogin)
+//            activity?.finish()
+//        }
 
 
     }
@@ -108,7 +117,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-
+    private fun confirmLogout() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Logout")
+            .setMessage("Are you sure you want to Logout")
+            .setPositiveButton("Logout") { dialog, _ ->
+                viewModel.userLogout()
+                this.findNavController().navigate(R.id.action_HomeFragment_to_loginFragment)
+                dialog.cancel()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+    }
 }
 
 

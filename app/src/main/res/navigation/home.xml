@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_shareInfoFragment"
             app:destination="@id/shareInfoFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <!--    Экраны на homefragment-->

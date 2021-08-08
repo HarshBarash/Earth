@@ -1,13 +1,16 @@
 package github.earth.homescreen
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import github.earth.TutorialRepository
 import github.earth.models.Tutorial
 import github.earth.models.User
 import github.earth.utils.FirebaseHelper
+import github.earth.utils.LOG_HOME_VIEW_MODEL
 import kotlinx.coroutines.launch
 
 
@@ -32,18 +35,23 @@ class HomeViewModel(
     }
 
 
-//    fun getCurrentUserDetails() = viewModelScope.launch {
-//        try {
-//            val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
-//            username.postValue(mUser.username)
-//            email.postValue(mUser.email)
-//            if (mUser.photo != null) {
-//                profileImageUri.postValue(mUser.photo!!)
-//            }
-//        } catch (e: Exception) {
-//            Log.d(LOG_HOMEVIEWMODEL, "getCurrentUserDetails: ${e.message}")
-//        }
-//    }
+    fun userLogout() {
+        val auth = FirebaseAuth.getInstance()
+        auth.signOut()
+    }
+
+    fun getCurrentUserDetails() = viewModelScope.launch {
+        try {
+            val currentUser = tutorialRepository.getCurrentlyLoggedInUserDetails()
+            username.postValue(mUser.username)
+            email.postValue(mUser.email)
+            if (mUser.photo != null) {
+                profileImageUri.postValue(mUser.photo!!)
+            }
+        } catch (e: Exception) {
+            Log.d(LOG_HOME_VIEW_MODEL, "getCurrentUserDetails: ${e.message}")
+        }
+    }
 
     fun uploadTutorialDetailsToFirestore(title: String, materials: String, time: Int, description: String, link: String) {
         uploadTutorialState.postValue(github.earth.utils.Resource.Loading())

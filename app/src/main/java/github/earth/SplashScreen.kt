@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
         if (mAuth.currentUser != null)
             startMainActivity()
         else
-            startLoginActivity()
+            startMainActivity()
 
     }
 

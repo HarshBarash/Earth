@@ -45,7 +45,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:textColor="?android:attr/textColor"
-                        android:text="Remind service" />
+                        android:text="@string/RemindService" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

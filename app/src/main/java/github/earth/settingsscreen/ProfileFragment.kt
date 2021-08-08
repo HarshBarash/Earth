@@ -4,12 +4,16 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.utils.Constants
@@ -20,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var fabSettings: FloatingActionButton
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,6 +62,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         btnUpdate.setOnClickListener {
             updateProfile()
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        fabSettings = rootView.findViewById(R.id.fabSettings)
+        fabSettings.setOnClickListener{
+            Navigation.findNavController(rootView).navigate(R.id.action_ProfileScreen_to_SettingsScreen)
+        }
+
+        return rootView
     }
 
     private fun pickImageFromGallery() {

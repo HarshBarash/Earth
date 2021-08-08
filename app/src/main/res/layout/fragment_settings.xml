@@ -99,16 +99,12 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <com.google.android.material.switchmaterial.SwitchMaterial
-                                    android:id="@+id/swtDarkTheme"
+                                <Spinner
+                                    android:id="@+id/spinTheme"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Dark theme"
-                                    android:layout_weight="0"
-                                    android:fontFamily="@font/roboto_medium"
-                                    android:layout_gravity="end|center"
-                                    android:textColor="?android:attr/titleTextColor"
-                                    android:textSize="@dimen/_16ssp"
+                                    android:paddingEnd="10dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 

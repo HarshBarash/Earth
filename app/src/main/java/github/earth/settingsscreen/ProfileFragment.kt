@@ -28,8 +28,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         setImageAndUsername()
 
 
-
-
         viewModel.updateState.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
@@ -51,6 +49,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             pickImageFromGallery()
         }
 
+        btnLogout.setOnClickListener {
+            confirmLogout()
+        }
 
             //todo закинем дальше
         btnUpdate.setOnClickListener {
@@ -85,13 +86,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         })
     }
 
+
     private fun confirmLogout() {
         AlertDialog.Builder(requireContext())
             .setTitle("Logout")
             .setMessage("Are you sure you want to Logout")
             .setPositiveButton("Logout") { dialog, _ ->
                 viewModel.userLogout()
-                this.findNavController().navigate(R.id.action_HomeFragment_to_loginFragment)
+                this.findNavController().navigate(R.id.action_ProfileFragment_to_home)
                 dialog.cancel()
             }
             .setNegativeButton("Cancel") { dialog, _ ->

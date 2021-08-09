@@ -110,20 +110,30 @@ class SortingFragment : Fragment(), View.OnClickListener {
             val options = arrayOf("Camera", "Gallery")
             val builder = AlertDialog.Builder(requireContext())
 
-            builder.setTitle("Pick a option")
+            //builder.setTitle("Pick a option")
+
 
             builder.setItems(options, DialogInterface.OnClickListener { dialog, which ->
                 if (which == 0) {
-                    val camerIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    cameraLauncher.launch(camerIntent)
+                    val camera_permission =
+                        ContextCompat.checkSelfPermission(requireContext(),
+                            Manifest.permission.CAMERA)
+                    if (camera_permission == PackageManager.PERMISSION_GRANTED) {
+                        val camerIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        cameraLauncher.launch(camerIntent)
+                    }else {
+                        ActivityCompat.requestPermissions(requireActivity(),
+                            arrayOf(Manifest.permission.CAMERA),
+                            targetRequestCode)
+                    }
                 } else {
                     val storageIntent = Intent()
                     storageIntent.setType("image/*")
                     storageIntent.setAction(Intent.ACTION_GET_CONTENT)
                     galleryLauncher.launch(storageIntent)
 
-                }
-            })
+                }})
+
 
             builder.show()
 

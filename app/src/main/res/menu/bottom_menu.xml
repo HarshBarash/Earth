@@ -21,7 +21,7 @@
         android:title="@string/title_places" />
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_account"
+        android:icon="@drawable/ic_settings"
         android:title="@string/title_settings" />
 </menu>
 

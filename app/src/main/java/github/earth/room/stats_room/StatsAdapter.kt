@@ -27,7 +27,7 @@ class StatsAdapter : RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
         collected_waste.text = currentItem.collected_waste.toString()
         count_visited.text = currentItem.visited_places.toString()
         rank.text = currentItem.rank.toString()
-        saved_trees.text = (currentItem.collected_waste + 10).toString()
+        saved_trees.text = (currentItem.collected_waste.toDouble()/60.0).toString()
 
         // ----- здесь можно ( нужно ) добавить действия при обновлении ------ //
 

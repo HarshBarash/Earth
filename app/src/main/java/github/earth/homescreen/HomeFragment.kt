@@ -19,13 +19,13 @@ import github.earth.utils.LOG_HOME_FRAGMENT
 import github.earth.utils.LOG_HOME_VIEW_MODEL
 import github.earth.utils.Resource
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.tutorial_item.*
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private lateinit var mFirebase: FirebaseHelper
+
 
     //    private lateinit var mAuth: FirebaseAuth
     private lateinit var navController: NavController
@@ -69,7 +69,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             //вывлдим спасибо юзеру
 //        setCurrentUserDetails()
 
-        setCurrentUserDetails()
 
         setAllTutorials()
 
@@ -125,15 +124,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun setCurrentUserDetails() {
-        viewModel.getCurrentUserDetails()
-        viewModel.username.observe(viewLifecycleOwner, Observer{
-            tvUsername.text = it
-        })
-        viewModel.profileImageUri.observe(viewLifecycleOwner, Observer {
-            Glide.with(this).load(it).placeholder(ivProfileImage.drawable).into(ivProfileImage)
-        })
-    }
 
 }
 

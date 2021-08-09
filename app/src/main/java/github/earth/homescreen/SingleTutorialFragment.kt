@@ -28,7 +28,7 @@ class SingleTutorialFragment : Fragment(R.layout.fragment_single_tutorial) {
 
     private fun setTutorialDetails(tutorial: Tutorial) {
         Glide.with(this).load(tutorial.profileImageUrl).placeholder(ivProfileImage.drawable).into(ivProfileImage)
-        tvUsername.text = tutorial.username
+        tvUsernametest.text = tutorial.username
         tvTimestamp.text = convertedDate(tutorial.timestamp)
         Glide.with(this).load(tutorial.tutorialImageUrl).placeholder(ivTutorialImage.drawable).into(ivTutorialImage)
         tvTitle.text = tutorial.title

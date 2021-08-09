@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import github.earth.TutorialRepository
 import github.earth.models.Tutorial
-import github.earth.models.User
-import github.earth.utils.FirebaseHelper
 import github.earth.utils.LOG_HOME_VIEW_MODEL
 import github.earth.utils.Resource
 import kotlinx.coroutines.launch

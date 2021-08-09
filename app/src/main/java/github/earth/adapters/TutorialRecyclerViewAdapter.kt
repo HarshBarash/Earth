@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import github.earth.models.Tutorial
+import kotlinx.android.synthetic.main.fragment_single_tutorial.view.*
 import kotlinx.android.synthetic.main.tutorial_item.view.ivProfileImage
 import kotlinx.android.synthetic.main.tutorial_item.view.ivTutorialImage
 import kotlinx.android.synthetic.main.tutorial_item.view.tvTitle
-import kotlinx.android.synthetic.main.tutorial_item.view.tvUsername
 
 
 class TutorialRecyclerViewAdapter : RecyclerView.Adapter<TutorialRecyclerViewAdapter.PostViewHolder>() {
@@ -44,7 +44,7 @@ class TutorialRecyclerViewAdapter : RecyclerView.Adapter<TutorialRecyclerViewAda
         val tutorial = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(tutorial.profileImageUrl).into(ivProfileImage)
-            tvUsername.text = tutorial.username
+            tvUsernametest.text = tutorial.username
 //            tvTimestamp.text = convertedDate(tutorial.timestamp)
             Glide.with(this).load(tutorial.tutorialImageUrl).placeholder(R.color.colorPrimary)
                 .into(ivTutorialImage)

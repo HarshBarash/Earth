@@ -30,7 +30,7 @@ class ShareFragmentPhoto  : Fragment(R.layout.fragment_sharephoto) {
             uploadTutorial()
         }
 
-        viewModel.uploadTutorialState.observe(viewLifecycleOwner, Observer {
+        viewModel.uploadTutorialState.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Success -> {
                     hideProgressBar()

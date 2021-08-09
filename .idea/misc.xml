@@ -92,7 +92,8 @@
         <entry key="app/src/main/res/layout/dialog_password.xml" value="0.23715277777777777" />
         <entry key="app/src/main/res/layout/feed_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_app_icon_dialog.xml" value="0.23715277777777777" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.32126058325493884" />
+        <entry key="app/src/main/res/layout/fragment_create_post.xml" value="0.266796875" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1825426944971537" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3076576576576577" />
         <entry key="app/src/main/res/layout/fragment_places.xml" value="0.23715277777777777" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22" />
@@ -116,7 +117,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

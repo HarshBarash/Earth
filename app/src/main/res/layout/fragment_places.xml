@@ -19,7 +19,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/hear_me"
+        android:id="@+id/marker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -30,7 +30,7 @@
         map:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/marker"
+        android:id="@+id/hear_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -38,6 +38,6 @@
         app:srcCompat="@drawable/ic_hear_me"
         app:tint="?attr/iconTint"
         map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintTop_toBottomOf="@+id/hear_me" />
+        map:layout_constraintTop_toBottomOf="@+id/marker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

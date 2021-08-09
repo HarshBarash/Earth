@@ -306,7 +306,6 @@ class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListe
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder
-                .setMessage("Если да, вам придется добавить фото с этой точки")
                 .setTitle("Вы уверены что здесь есть мусор?")
                 .setPositiveButton("Да"
                 ) { dialog, id ->

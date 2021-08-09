@@ -76,10 +76,10 @@ class StatsFragment : Fragment() {
     fun readItemAndUpdate(fragment: Fragment) {
         mStatsViewModel = ViewModelProvider(fragment).get(StatsViewModel::class.java)
         mStatsViewModel.readAllData.observe(fragment, Observer { stats ->
-            stats.forEach { stats ->
-                var collected_waste = stats.collected_waste
-                var visited_places = stats.visited_places
-                var rank = stats.rank
+            stats.forEach { it ->
+                var collected_waste = it.collected_waste
+                var visited_places = it.visited_places
+                var rank = it.rank
                 if (rank > 1) {
                     updateItem(fragment, collected_waste + 1, visited_places + 1, rank - 1)
                 }else{

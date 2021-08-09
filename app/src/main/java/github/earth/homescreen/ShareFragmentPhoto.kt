@@ -51,7 +51,7 @@ class ShareFragmentPhoto  : Fragment(R.layout.fragment_sharephoto) {
         })
 
         ivBackBtn.setOnClickListener {
-            Toast.makeText(activity, "Post Creation Cancelled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Tutorial Creation Cancelled", Toast.LENGTH_SHORT).show()
             this.findNavController().navigateUp()
             viewModel.doneTutorialImageUri()
         }
@@ -81,9 +81,8 @@ class ShareFragmentPhoto  : Fragment(R.layout.fragment_sharephoto) {
         val materials = args.materials
         val time = args.time
         val description = args.description
-        val link = args.link
 
-        viewModel.uploadTutorialDetailsToFirestore(title, materials, time, description, link )
+        viewModel.uploadTutorialDetailsToFirestore(title, materials, time, description )
     }
 
     private fun showProgressBar() {

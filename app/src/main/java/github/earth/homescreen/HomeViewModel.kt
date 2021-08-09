@@ -55,12 +55,11 @@ class HomeViewModel(
         materials: String,
         time: Int,
         description: String,
-        link: String
     ) {
         uploadTutorialState.postValue(Resource.Loading())
         try {
-            if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null && link.isNotEmpty() && time > 0) {
-                uploadTutorialImageToFirebaseStorage(title, materials, description, time, link)
+            if (title.isNotEmpty() && description.isNotEmpty() && tutorialImageUri.value != null && time > 0) {
+                uploadTutorialImageToFirebaseStorage(title, materials, description, time)
             } else {
                 uploadTutorialState.postValue(Resource.Error("Please Fill the Details or Select Image"))
             }
@@ -74,7 +73,6 @@ class HomeViewModel(
         materials: String,
         description: String,
         time: Int,
-        link: String
     ) =
         viewModelScope.launch {
             try {
@@ -85,7 +83,6 @@ class HomeViewModel(
                         materials,
                         description,
                         time,
-                        link,
                         uploadedTutorialImageUri.toString()
                     )
                 }
@@ -99,7 +96,6 @@ class HomeViewModel(
         materials: String,
         description: String,
         time: Int,
-        link: String,
         uploadedTutorialImageUri: String
 
     ) = viewModelScope.launch {
@@ -108,7 +104,6 @@ class HomeViewModel(
             materials,
             description,
             time,
-            link,
             uploadedTutorialImageUri,
             username.value.toString(),
             profileImageUri.value.toString(),

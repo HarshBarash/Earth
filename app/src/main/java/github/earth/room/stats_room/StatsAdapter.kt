@@ -19,15 +19,15 @@ class StatsAdapter : RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = statsList[position]
-        var collected_waste: TextView = holder.itemView.findViewById(R.id.txt_collected)
-        var count_visited: TextView = holder.itemView.findViewById(R.id.txt_visited_places)
-        var rank: TextView = holder.itemView.findViewById(R.id.txt_rank)
-        var saved_trees: TextView = holder.itemView.findViewById(R.id.txt_saved_trees)
+//        var collected_waste: TextView = holder.itemView.findViewById(R.id.txt_collected)
+//        var count_visited: TextView = holder.itemView.findViewById(R.id.txt_visited_places)
+//        var rank: TextView = holder.itemView.findViewById(R.id.txt_rank)
+//        var saved_trees: TextView = holder.itemView.findViewById(R.id.txt_saved_trees)
 
-        collected_waste.text = currentItem.collected_waste.toString()
-        count_visited.text = currentItem.visited_places.toString()
-        rank.text = currentItem.rank.toString()
-        saved_trees.text = (currentItem.collected_waste + 10).toString()
+//        collected_waste.text = currentItem.collected_waste.toString()
+//        count_visited.text = currentItem.visited_places.toString()
+//        rank.text = currentItem.rank.toString()
+//        saved_trees.text = (currentItem.collected_waste + 10).toString()
 
         // ----- здесь можно ( нужно ) добавить действия при обновлении ------ //
 

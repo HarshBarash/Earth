@@ -10,6 +10,9 @@ import github.earth.R
 import github.earth.models.Tutorial
 import github.earth.utils.convertedDate
 import kotlinx.android.synthetic.main.fragment_single_tutorial.*
+import kotlinx.android.synthetic.main.fragment_single_tutorial.ivProfileImage
+import kotlinx.android.synthetic.main.fragment_single_tutorial.ivTutorialImage
+import kotlinx.android.synthetic.main.fragment_single_tutorial.tvTitle
 
 class SingleTutorialFragment : Fragment(R.layout.fragment_single_tutorial) {
 

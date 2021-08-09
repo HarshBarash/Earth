@@ -72,55 +72,23 @@
 
     </EditText>
 
-    <TextView
-        android:id="@+id/TVTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Video from Youtube:"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/etTutorialDescription"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="85dp">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/etTutorialLink"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_49sdp"
-        android:layout_margin="@dimen/_12sdp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/white_btn"
-        android:hint="Link"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:maxLength="50"
-        app:layout_constraintTop_toBottomOf="@+id/TVTime"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="15dp" />
-
     <Button
         android:id="@+id/nextbuttonsecond"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_btn"
-        android:gravity="center|bottom"
-        android:layout_marginBottom="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_68sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:background="@drawable/white_btn"
+        android:gravity="center|bottom"
         android:text="Continue"
         android:textColor="#000000"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTutorialDescription"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
-
-
-
+        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

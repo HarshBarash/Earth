@@ -87,7 +87,6 @@
         <argument android:name="materials" />
         <argument android:name="time" android:defaultValue="1" />
         <argument android:name="description" />
-        <argument android:name="link" />
 
         <action
             android:id="@+id/action_SharePhotoScreen_to_HomeFragment"

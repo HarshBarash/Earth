@@ -9,7 +9,6 @@ data class Tutorial(
     val materials: String = "",
     val description: String = "",
     val time: Int = 1,
-    val link: String = "",
     val tutorialImageUrl: String = "",
     val username: String = "",
     val profileImageUrl: String = "",

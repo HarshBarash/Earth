@@ -58,14 +58,9 @@
         android:id="@+id/cardPurpose"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
-<<<<<<< HEAD
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_70sdp"
-=======
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
->>>>>>> 4b8c7c19ea2b668030c1039563fc3add24f0b621
         app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,12 +79,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Цель: 100k"
-<<<<<<< HEAD
                 android:textColor="@color/browser_actions_text_color"
-=======
-                android:textColor="?android:attr/textColorPrimary"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
->>>>>>> 4b8c7c19ea2b668030c1039563fc3add24f0b621
                 android:textSize="@dimen/_25ssp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

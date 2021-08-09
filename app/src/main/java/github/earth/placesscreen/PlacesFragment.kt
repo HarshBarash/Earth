@@ -36,10 +36,10 @@ import java.util.*
 
 
 //internal — любой клиент внутри модуля, который видит объявленный класс, видит и его internal члены
-class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickListener,
+class PlacesFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPoiClickListener,
     GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener,
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener,
-    GoogleMap.OnInfoWindowClickListener*/ {
+    GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -59,11 +59,11 @@ class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        //mapFragment?.getMapAsync(this)
+        mapFragment?.getMapAsync(this)
 
     }
 
-/*    @InternalCoroutinesApi
+    @InternalCoroutinesApi
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mStatsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
@@ -163,7 +163,7 @@ class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickLis
         }
         try {
             mPlacesViewModel.readAllData.observe(this, androidx.lifecycle.Observer { places ->
-                places.forEach{
+                places.forEach {
                     mMap.addMarker(MarkerOptions()
                         .position(LatLng(it.lattitude, it.longtitude))
                         .title("Место")
@@ -205,11 +205,7 @@ class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickLis
                 val timer = Timer()
                 timer.scheduleAtFixedRate(object : TimerTask() {
                     override fun run() {
-<<<<<<< HEAD
-                        synchronized(this) {
-=======
                         kotlinx.coroutines.internal.synchronized(this) {
->>>>>>> 78077b84a7463c6c41eb1de4c30a7322685d8462
                             fusedLocationClient.lastLocation
                                 .addOnSuccessListener { location ->
                                     if (location != null) {
@@ -435,5 +431,5 @@ class PlacesFragment : Fragment()/*, OnMapReadyCallback, GoogleMap.OnPoiClickLis
         )
         mPlacesViewModel.deletePlaces(deletePlace)
     }
-*/
+
 }

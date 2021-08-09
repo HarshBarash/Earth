@@ -40,4 +40,5 @@
     <string name="u_selected_icon">Sie haben ein neues Symbol ausgewählt, die App wird neu gestartet, wenn Sie fortfahren.</string>
     <string name="u_selected_theme">" Sie haben ein neues Thema ausgewählt, die App wird schnell neu gestartet, wenn Sie fortfahren."</string>
     <string name="ntf_text">Es ist Zeit zu sortieren!</string>
+    <string name="RemindService">" Erinnerungsdienst"</string>
 </resources>

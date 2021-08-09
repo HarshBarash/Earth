@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/rect_calc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_310sdp"
+        android:layout_marginBottom="@dimen/_35sdp"
+        app:layout_constraintBottom_toTopOf="@+id/result_calc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/rect"
+        app:tint="@color/accent_blue" />
+
+    <EditText
+        android:id="@+id/calc_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:background="@drawable/rect_calc"
+        android:gravity="center"
+        android:hint="500 kg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="@id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/rect_calc"
+        app:layout_constraintTop_toBottomOf="@+id/message_calc" />
+
+    <TextView
+        android:id="@+id/result_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_210sdp"
+        android:text="Result"
+        android:textColor="@color/accent_blue"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/title_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:text="Calculator"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintEnd_toEndOf="@id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@id/rect_calc"
+        app:layout_constraintTop_toTopOf="@id/rect_calc" />
+
+    <TextView
+        android:id="@+id/message_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:gravity="center"
+        android:text="Input quantity of waste in kg"
+        android:textColor="@color/secondary_text_color_day"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintEnd_toEndOf="@id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toStartOf="@id/rect_calc"
+        app:layout_constraintTop_toTopOf="@id/rect_calc" />
+
+    <ImageView
+        android:id="@+id/tree2"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="@id/rect_calc"
+        app:layout_constraintTop_toBottomOf="@+id/result_calc"
+        app:layout_constraintVertical_bias="0.263"
+        app:srcCompat="@drawable/ic_places"
+        app:tint="@color/accent_blue" />
+
+    <ImageView
+        android:id="@+id/tree3"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tree2"
+        app:layout_constraintEnd_toEndOf="@id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tree2"
+        app:srcCompat="@drawable/ic_places"
+        app:tint="@color/accent_blue" />
+
+    <ImageView
+        android:id="@+id/tree1"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tree2"
+        app:layout_constraintEnd_toStartOf="@+id/tree2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/rect_calc"
+        app:srcCompat="@drawable/ic_places"
+        app:tint="@color/accent_blue" />
+
+    <Button
+        android:id="@+id/calc_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:backgroundTint="@color/white"
+        android:text="Calculate"
+        android:gravity="center"
+        android:textColor="@color/accent_blue"
+        app:cornerRadius="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/rect_calc"
+        app:layout_constraintEnd_toEndOf="@+id/rect_calc"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/rect_calc" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

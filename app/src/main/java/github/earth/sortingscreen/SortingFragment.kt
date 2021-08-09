@@ -22,9 +22,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -58,13 +56,14 @@ class SortingFragment : Fragment(), View.OnClickListener {
     lateinit var ivPicture: ImageView
     lateinit var tvResult: TextView
     lateinit var btnChoosePicture: Button
-    private val CAMERA_PERMISSION_CODE=123
-    private val STORAGE_PERMISSION_CODE=113
+    lateinit var calc_btn_onSorting: ImageView
+    private val CAMERA_PERMISSION_CODE = 123
+    private val STORAGE_PERMISSION_CODE = 113
 
 
     private lateinit var fltNtf: FloatingActionButton
 
-    private lateinit var cameraLauncher:ActivityResultLauncher<Intent>
+    private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
 
     lateinit var inputImage: InputImage
@@ -80,7 +79,7 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         Log.v(LOG_SORTING_FRAGMENT, "onCreateView called")
         // Inflate the layout for this fragment
@@ -100,15 +99,21 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
         imageLabeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
 
+        calc_btn_onSorting = rootView.findViewById(R.id.calc_icon)
+
+        calc_btn_onSorting.setOnClickListener {
+            val dialog = showCalcDialog(rootView)
+            dialog.show()
+        }
+
         btnChoosePicture.setOnClickListener {
             val options = arrayOf("Camera", "Gallery")
             val builder = AlertDialog.Builder(requireContext())
 
             builder.setTitle("Pick a option")
 
-            builder.setItems(options, DialogInterface.OnClickListener{
-                    dialog, which ->
-                if (which== 0) {
+            builder.setItems(options, DialogInterface.OnClickListener { dialog, which ->
+                if (which == 0) {
                     val camerIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     cameraLauncher.launch(camerIntent)
                 } else {
@@ -126,17 +131,17 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
         cameraLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
-            object : ActivityResultCallback<ActivityResult>{
+            object : ActivityResultCallback<ActivityResult> {
                 override fun onActivityResult(result: ActivityResult?) {
-                    val data=result?.data
+                    val data = result?.data
                     try {
                         val photo = data?.extras?.get("data") as Bitmap
                         ivPicture.setImageBitmap(photo)
                         inputImage = InputImage.fromBitmap(photo, 0)
                         processImage()
 
-                    }catch (e: Exception) {
-                        Log.d(LOG_SORTING_FRAGMENT, "onActivityResult: ${e.message}" )
+                    } catch (e: Exception) {
+                        Log.d(LOG_SORTING_FRAGMENT, "onActivityResult: ${e.message}")
                     }
                 }
             }
@@ -144,14 +149,14 @@ class SortingFragment : Fragment(), View.OnClickListener {
 
         galleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
-            object : ActivityResultCallback<ActivityResult>{
+            object : ActivityResultCallback<ActivityResult> {
                 override fun onActivityResult(result: ActivityResult?) {
-                    val data=result?.data
+                    val data = result?.data
                     try {
-                      inputImage = InputImage.fromFilePath(requireActivity(), data?.data)
-                      ivPicture.setImageURI(data?.data)
-                      processImage()
-                    }catch (e: Exception) {
+                        inputImage = InputImage.fromFilePath(requireActivity(), data?.data)
+                        ivPicture.setImageURI(data?.data)
+                        processImage()
+                    } catch (e: Exception) {
 
                     }
                 }
@@ -159,6 +164,33 @@ class SortingFragment : Fragment(), View.OnClickListener {
         )
 
         return rootView
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun showCalcDialog(view_: View): AlertDialog {
+        return activity?.let {
+            val builder = AlertDialog.Builder(it)
+            val inflater = requireActivity().layoutInflater
+            var calc_et: EditText? = view_?.findViewById(R.id.calc_et)
+            val layout = inflater.inflate(R.layout.custom_dialog_calculator, null)
+            val calc_btn: Button? = view_?.findViewById(R.id.calc_btn)
+            var result: TextView? = view_?.findViewById(R.id.result_calc)
+
+            calc_btn?.setOnClickListener {
+                result?.text = (calc_et?.text.toString().toInt().toDouble() / 60.0).toString() + " trees"
+            }
+
+            builder
+                .setView(layout)
+                .setNegativeButton("Отмена",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        dialog.cancel()
+                        dialog.dismiss()
+                    })
+
+            builder.create()
+
+        } ?: throw IllegalStateException("Activity cannot be null")
     }
 
     //ML здесь
@@ -173,8 +205,8 @@ class SortingFragment : Fragment(), View.OnClickListener {
                     result = result + "\n" + label.text
                 }
 
-                tvResult.text=result
-            }.addOnFailureListener{
+                tvResult.text = result
+            }.addOnFailureListener {
                 Log.d(LOG_SORTING_FRAGMENT, "processImage: ${it.message}")
             }
     }
@@ -188,8 +220,10 @@ class SortingFragment : Fragment(), View.OnClickListener {
         super.onResume()
     }
 
-    private fun checkPermission(permission:String, requestCode: Int) {
-        if (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_DENIED) {
+    private fun checkPermission(permission: String, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(requireContext(),
+                permission) == PackageManager.PERMISSION_DENIED
+        ) {
 
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(permission), requestCode)
         } else {
@@ -200,19 +234,19 @@ class SortingFragment : Fragment(), View.OnClickListener {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode==CAMERA_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 activity?.showToast("Camera Permission Granted")
             } else {
                 activity?.showToast("Camera Permission Denied")
 
             }
         } else if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 activity?.showToast("Storage Permission Granted")
             } else {
                 activity?.showToast("Storag Permission Denied")

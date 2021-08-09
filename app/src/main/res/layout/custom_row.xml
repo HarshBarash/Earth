@@ -4,113 +4,225 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCollected"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/collected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Собрано:"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/txt_collected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="0 кг"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_15ssp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardVisitedPlaces"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardSavedTrees">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/visited_place"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Мест посещено:"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/txt_visited_places"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="0"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardRank"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardCollected">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Рейтинг:"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/txt_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="0"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSavedTrees"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/saved_trees"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Деревьев спасено:"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/txt_saved_trees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="0"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_15ssp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <ImageView
         android:id="@+id/collected_rect"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/rect"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
+        app:tint="@color/white" />
+=======
+        tools:visibility="gone" />
+>>>>>>> 4b8c7c19ea2b668030c1039563fc3add24f0b621
 
     <ImageView
         android:id="@+id/visited_place_rect"
-
+        app:tint = "@color/white"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_62sdp"
         android:src="@drawable/rect"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone" />
 
     <ImageView
         android:id="@+id/rank_rect"
-
+        app:tint = "@color/white"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_62sdp"
         android:src="@drawable/rect"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_visited_places"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:fontFamily="@font/roboto"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/visited_place_rect"
-        app:layout_constraintTop_toBottomOf="@+id/visited_place" />
-
-    <TextView
-        android:id="@+id/txt_rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="0"
-        android:textColor="@color/background_day"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/rank_rect"
-        app:layout_constraintTop_toBottomOf="@+id/rank" />
-
-    <TextView
-        android:id="@+id/rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Рейтинг:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/rank_rect"
-        app:layout_constraintTop_toTopOf="@+id/rank_rect" />
-
-    <TextView
-        android:id="@+id/visited_place"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_40sdp"
-
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Мест посещено:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
-        app:layout_constraintStart_toStartOf="@+id/visited_place_rect"
-        app:layout_constraintTop_toTopOf="@+id/visited_place_rect" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
 
     <ImageView
         android:id="@+id/saved_trees_rect"
-
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
         android:src="@drawable/rect"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/collected"
@@ -171,6 +283,9 @@
         android:textSize="@dimen/_15ssp"
         app:layout_constraintStart_toStartOf="@+id/saved_trees_rect"
         app:layout_constraintTop_toTopOf="@+id/saved_trees_rect" />
+=======
+        tools:visibility="gone" />
+>>>>>>> 4b8c7c19ea2b668030c1039563fc3add24f0b621
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

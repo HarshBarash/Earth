@@ -7,11 +7,14 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -79,7 +82,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
+        //Юзайте если надо будет попать в Error Activity
+        /*var array = mutableListOf<String>()
+        array[0] = "Hello"
+        findViewById<TextView>(R.id.textView).text = array[1]*/
 
         val tutorialRepository = TutorialRepository(auth, storageRef, firestoreRef)
 
@@ -262,6 +268,19 @@ class MainActivity : AppCompatActivity() {
         private fun setCustomTheme() {
             val sp = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE)
             val currentTheme = sp.getString(SETTINGS_THEME, THEME_DEFAULT)
+            val currentThemeAction = sp.getString(SETTINGS_THEME_ACTION, ACTION_SYSTEM)
+
+            when (currentThemeAction) {
+                ACTION_SYSTEM -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    } else {
+                        Log.v(LOG_MAIN_ACTIVITY, "System doesn't support action FOLLOW_SYSTEM. Ignoring param and continue.")
+                    }
+                }
+                ACTION_DAY -> { AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) }
+                ACTION_NIGHT -> { AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) }
+            }
 
             if (currentTheme != THEME_DEFAULT) {
                 when (currentTheme) {

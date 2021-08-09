@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import github.earth.MainActivity
 import github.earth.R
 import github.earth.R.*
+import github.earth.services.ReminderService
 import github.earth.utils.*
 import java.util.*
 
@@ -219,6 +220,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     val editor = sp.edit()
                     editor.putString(SETTINGS_THEME, selected)
                     editor.apply()
+                    ReminderService.stopService(requireContext())
                     (activity as MainActivity?)?.finish()
                     startActivity(Intent(requireContext(), MainActivity::class.java))
 
@@ -276,6 +278,31 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
+                Log.v(LOG_SETTINGS_FRAGMENT, "Spinner: " + itemThemes[position])
+
+                val selectedAction =
+                    when {
+                        itemThemes[position] == itemThemes[0] -> ACTION_SYSTEM
+                        itemThemes[position] == itemThemes[1] -> ACTION_DAY
+                        itemThemes[position] == itemThemes[2] -> ACTION_NIGHT
+                        else -> Log.v(LOG_SETTINGS_FRAGMENT, "Selected action is null!")
+                    }
+
+                if (selectedAction == sThemeAction)
+                    return
+                else {
+
+                    val spConfig = activity?.getSharedPreferences(SETTINGS_FILE, Context.MODE_PRIVATE) ?: return
+                    with(spConfig.edit()) {
+
+                        Log.v(LOG_SETTINGS_FRAGMENT, "New Theme Action: $selectedAction")
+
+                        putString(SETTINGS_THEME_ACTION, selectedAction.toString())
+
+                        apply()
+                    }
+                    reloadActivity()
+                }
 
             }
 
@@ -319,14 +346,18 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
                         apply()
                     }
-
-                    (activity as MainActivity?)?.finish()
-                    startActivity(Intent(requireContext(),MainActivity::class.java))
+                    reloadActivity()
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
+    }
+
+    private fun reloadActivity() {
+        ReminderService.stopService(requireContext())
+        (activity as MainActivity?)?.finish()
+        startActivity(Intent(requireContext(),MainActivity::class.java))
     }
 }
